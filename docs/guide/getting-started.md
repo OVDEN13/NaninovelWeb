@@ -1,148 +1,219 @@
-﻿# Getting Started
+﻿# Начало работы 
 
-## Prerequisites
-Naninovel is an extension for [Unity game engine](https://unity.com/), so it's strongly recommended to at least learn the basics of using the engine before starting with Naninovel.
+## Необходимые компоненты
 
-The following manual chapters should be considered essential:
-- [Installing Unity](https://docs.unity3d.com/Manual/GettingStartedInstallingHub)
-- [Creating Projects](https://docs.unity3d.com/Manual/GettingStarted)
-- [Editor Interface](https://docs.unity3d.com/Manual/LearningtheInterface)
-- [Using the Asset Store](https://docs.unity3d.com/Manual/AssetStore)
-- [Publishing Builds](https://docs.unity3d.com/Manual/PublishingBuilds)
+Naninovel – это расширение для [игрового движка Unity](https://unity.com/), поэтому настоятельно рекомендуется изучить основы использования движка перед началом работы с Naninovel.
 
-In case you're not going to build any custom gameplay outside of Naninovel, feel free to ignore the scene-related information altogether, as Naninovel will take care of that.
+Указанные ниже главы руководства являются важнейшими:
+- [Установка Unity](https://docs.unity3d.com/Manual/GettingStartedInstallingHub)
+- [Создание проектов](https://docs.unity3d.com/Manual/GettingStarted)
+- [Интерфейс редактора](https://docs.unity3d.com/Manual/LearningtheInterface)
+- [Использование Asset Store](https://docs.unity3d.com/Manual/AssetStore)
+- [Публикация сборок](https://docs.unity3d.com/Manual/PublishingBuilds)
 
-## Create New Unity Project
-Consult the [Unity manual](https://docs.unity3d.com/Manual/GettingStarted) on how to create a new project.
+В случае, если вы не собираетесь создавать какой-либо пользовательский геймплей за пределами Naninovel, можете не углубляться в изучение информации о сценах, так как Naninovel позаботится об этом.
 
-When creating a project you'd probably like to use `2D Template` to set the editor in 2D behaviour mode, so that images will be imported as sprite assets by default and you won't have to manually change the import settings. You can change the editor behaviour mode later using the [project settings](https://docs.unity3d.com/Manual/2DAnd3DModeSettings.html).
+## Основные концепты
 
-When you create a new project, Unity will automatically add a sample scene with two game objects inside it: a "Main Camera" and "Directional Light". Naninovel is completely scene-independent, so you can remove those two objects from the scene so they don't produce any unnecessary performance overhead. You can also remove the sample scene itself, though it's recommended to have at least one scene in a project for some editor features to work correctly.
+Прежде чем использовать Naninovel, давайте пробежимся по некоторым основным концептам.
 
-## Install Naninovel
-Import Naninovel package using the [Asset Store window](https://docs.unity3d.com/Manual/AssetStore.html) and wait for the initial scripts compilation and assets import process. You are free to move `Naninovel` package folder anywhere inside your project assets directory, if you wish.
+Важнейшим из них, с которым вы постоянно будете сталкиваться в остальной части руководства, является *актор*. Актор – это объект, описываемый идентификатором (ID), внешностью, положением в пространстве (в сцене) и некоторыми другими параметрами.
 
-Over the course of using Naninovel a number of assets (configuration, settings, saves, etc) will be automatically generated inside `Assets/NaninovelData` folder. In contrast to the package folder, you shouldn't manually move the data folder (it'll be automatically regenerated). If you wish to change the location of the data folder, edit `Generated Data Path` property in the engine configuration menu.
+Актор – абстрактный объект, который не может существовать непосредственно; вместо этого используются его специализированные типы с различными дополнительными параметрами:
 
-## Add Naninovel Script
-Use `Create -> Naninovel -> Naninovel Script` assets context menu to create a naninovel script asset. 
+Тип актора | Дополнительные параметры | Описание
+--- | --- | ---
+[Персонаж](/guide/characters.md) | Направление взгляда | Представляет персонажа в сцене.
+[Фон](/guide/backgrounds.md) | Отсутствуют | Представляет фоновое изображение сцены; по умолчанию размещается за акторами персонажей.
+[Текстовый принтер](/guide/text-printers.md) | Текст, ID персонажа, Процесс отображения | Постепенно проявляет (печатает) текстовое сообщение в течение некоторого времени.
+[Обработчик выбора](/guide/choices.md) | Варианты выбора | Позволяет игроку выбрать один из доступных вариантов.
 
-![Create Naninovel Script](https://i.gyazo.com/be7677077abeb4f805979bd647d6d90e.png)
+Рассмотрим типичную сцену визуальной новеллы – с персонажем, изображенным поверх фона. В Naninovel она будет представлена следующим образом:
 
-*Notice: you can create and store naninovel scripts (as well as all the other Naninovel resources) under any project folder and organize them in any way you like; the naming is also up to you. The above illustration is just an example.*
+![](https://i.gyazo.com/1d4d5130056f7d6acee978c5fde42cfc.gif)
 
-Naninovel scripts are text documents (`.nani` extension) where you control what happens on scenes. You can open and edit them with a text editor of your choice, like Notepad, TextEdit or [Atom](https://atom.io).
+Теперь, предположим, вы хотите, чтобы персонаж "Kohaku" выглядел счастливым. У вас есть несколько текстур (изображений) этого персонажа, изображающих различные эмоции. В Naninovel такие текстуры называются "внешностью" актора. Чтобы получить желаемый результат, нужно изменить внешность актора персонажа. Точно так же для того, чтобы "MainBackground" отображал другой фон, необходимо изменить внешность актора фона.
 
-![Open Naninovel Script](https://i.gyazo.com/311c80fb669b44e0974ea95c22024ea4.png)
+Акторы и их параметры управляются (направляются) с помощью команд, указанных в [скриптах Naninovel](/guide/naninovel-scripts.md).
 
-You can also use visual script editor to edit the naninovel scripts. Select the created script asset and you'll see the visual editor automatically open in the inspector window.
+Ещё одним широко используемым концептом является [пользовательский интерфейс](/guide/user-interface.md) (UI). UI используется игроком для взаимодействия с акторами и остальной игрой. Сюда входят различные меню (главное меню, сохранение-загрузка, настройки и т. д.) и панели управления (режим авточтения, пропуск текста и т. д.). Элементы пользовательского интерфейса по умолчанию располагаются поверх акторов.
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/e1f40ff0fb7898e11afa0f058bb6ed6d.mp4" type="video/mp4"></video>
+Текстовые принтеры и обработчики выбора рассматриваются и как акторы, и как элементы пользовательского интерфейса, то есть они имеют качества акторов и могут управляться с помощью скриптов Naninovel, и в то же время используются игроками для взаимодействия с игрой.
 
-To add a new line to the script, either right-click the place, where you want to insert the line, or press `Ctrl+Space` (you can change the default key bindings in the input configuration menu) and select the desired line or command type. To re-order lines, drag them using their number labels. To remove a line, right-click it and choose "Remove".
+Если вы знакомы с программированием, взгляните на [архитектуру движка](/guide/engine-architecture.md), чтобы понять, как он спроектирован с точки зрения программного обеспечения.
 
-When you've changed the script using visual editor, you'll see an asterisk (`*`) over the script name in the inspector header. That means the asset is dirty and need to be saved; press `Ctrl+S` to save the asset. In case you'll attempt to select another asset while the script is dirty, a dialogue window will pop-up allowing to either save or revert the changes.
+## Создание нового проекта Unity
 
-The visual editor will automatically sync edited script if you update it externally, so you can seamlessly work with the scripts in both text and visual editors.
+Итак, держа основные концепты в уме, начнем первоначальную настройку. Первое, что вам понадобится – проект Unity. Обратитесь к [руководству Unity](https://docs.unity3d.com/Manual/GettingStarted), описывающему создание проекта.
 
-*In the rest of this guide we will use a text editor, but you can repeat all the same steps with the visual editor, if you wish.*
+При создании проекта вы, вероятно, захотите использовать шаблон `2D Template`, чтобы установить редактор в режим 2D проекта, благодаря чему изображения будут импортироваться по умолчанию как спрайты, и вам не придется вручную изменять настройки импорта. Вы можете изменить режим работы редактора позже, используя [настройки проекта](https://docs.unity3d.com/Manual/2DAnd3DModeSettings.html).
 
-In order for a Naninovel-related asset (like our created script) to become "visible" for the engine, it should be assigned as a project resource. When creating the scripts via the create assets menu, they're assigned automatically. To assign (or edit/remove) a script resource manually use script resources window accessible with `Naninovel -> Resources -> Scripts` editor context menu. To add a script, press `+` (plus sign) button in the list to add a new record and drag-drop script asset to the list. It's also possible to drag-drop multiple assets or even whole folders to the list to add them in batch.
+Когда вы создадите новый проект, Unity автоматически добавит пример сцены с двумя игровыми объектами в ней: "Main Camera" и "Directional Light". Naninovel полностью независим от сцены, поэтому вы можете удалить эти объекты из сцены, чтобы они не создавали ненужной производительной нагрузки. Вы также можете удалить саму сцену, хотя для корректной работы некоторых функций редактора рекомендуется иметь в проекте хотя бы одну сцену.
 
-![Add Naninovel Script](https://i.gyazo.com/b3281a145ba54e6cb6cbdaa478ea894d.png)
+## Установка Naninovel
 
-Open the created script in a text editor and add the following text:
+Загрузите пакет Naninovel с помощью [окна Asset Store](https://docs.unity3d.com/Manual/AssetStore.html) и дождитесь начальной компиляции скриптов и импорта ассетов. Вы можете свободно перемещать папку 'Naninovel' в любое место в директории ассетов вашего проекта, если хотите.
+
+В процессе использования Naninovel в папке 'Assets/NaninovelData' будет автоматически сгенерирован ряд ассетов (конфигурация, настройки, сохранения и т.д.). В отличие от папки пакета Naninovel, не стоит вручную перемещать папку данных (она будет автоматически перегенерирована). Если вы хотите изменить её расположение, измените свойство `Generated Data Path` в меню конфигурации движка. 
+
+## Добавление скрипта Naninovel
+
+Воспользуйтесь контекстным меню ассетов `Create -> Naninovel -> Naninovel Script` для создания ассета скрипта Naninovel. 
+
+![Создание скрипта Naninovel](https://i.gyazo.com/be7677077abeb4f805979bd647d6d90e.png)
+
+::: note
+Вы можете создавать и хранить скрипты Naninovel (а также все другие ресурсы Naninovel) в любой папке проекта и организовывать их по своему усмотрению, как и задавать им имена. Приведенная выше иллюстрация является лишь примером.
+:::
+
+Скрипты Naninovel – это текстовые документы (с расширением `.nani`) где вы контролируете происходящее в сцене. Вы можете открывать их и редактировать с помощью любого текстового редактора на ваш выбор, например Notepad, TextEdit или [Atom](https://atom.io).
+
+![Открытие скрипта Naninovel](https://i.gyazo.com/f552c2ef323f9ec1171eba72e0c55432.png)
+
+Вы также можете использовать визуальный редактор скриптов для редактирования скриптов Naninovel. Выберите созданный скрипт, и вы увидите, что визуальный редактор автоматически откроется в окне инспектора.
+
+[!ba57b9f78116e57408125325bdf66be9]
+
+Чтобы добавить новую строку в скрипт, щелкните правой кнопкой мыши в месте, куда вы хотите вставить строку, либо нажмите `Ctrl+Space` (вы можете изменить стандартные комбинации клавиш в меню конфигурации ввода) и выберите нужную строку или тип команды. Чтобы изменить порядок строк, перетащите их, используя их номерные метки. Чтобы удалить строку, нажмите на неё правой кнопкой мыши и выберите "Удалить".
+
+После изменения скрипта с помощью визуального редактора вы увидите звездочку (`*`) над именем сценария в шапке инспектора. Это означает, что ассет изменён и должен быть сохранен; нажмите `Ctrl+S`, чтобы сохранить внесённые изменения. Если вы попытаетесь выбрать другой ассет, не сохранив изменения в скрипте, появится диалоговое окно, позволяющее либо сохранить, либо отменить изменения.
+
+Визуальный редактор автоматически синхронизирует редактируемый скрипт при его обновлении извне, так что вы можете легко работать со сценариями как в текстовых, так и в визуальных редакторах.
+
+::: note
+В остальной части этого руководства мы будем использовать текстовый редактор, но вы можете повторить все те же шаги в визуальном редакторе, если хотите.
+:::
+
+Для того, чтобы ассет Naninovel (например, созданный вами скрипт) стал "видимым" для движка, он должен быть назначен ресурсом проекта. При создании с помощью меню создания ассетов скрипты назначаются автоматически. Чтобы назначить (или отредактировать/удалить) файл скрипта вручную, используйте окно скриптовых ресурсов, доступное в меню редактора `Naninovel -> Resources -> Scripts`. Чтобы добавить скрипт, нажмите кнопку `+` (знак плюс) в списке, чтобы добавить новую строку, и перетащите файл скрипта в неё. Кроме того, можно перетащить несколько выделенных ассетов или даже целые папки в список, чтобы добавить их группой.
+
+![Добавление скрипта Naninovel](https://i.gyazo.com/b3281a145ba54e6cb6cbdaa478ea894d.png)
+
+Откройте созданный скрипт в текстовом редакторе и добавьте следующий текст:
+
 ```
 Hello World!
 @stop
 ```
-The first line will print the text "Hello World!" when the game is run and the second is required to gracefully stop script execution.
+Первая строка выведет текст "Hello World!" при запуске игры, а вторая требуется для корректной остановки выполнения скрипта.
 
-Enter play mode and start a new game to see the result.
+Войдите в режим воспроизведения и начните новую игру, чтобы увидеть результат.
 
-It's also possible to store the naninovel scripts at a `Resources/Scripts` folder, which will make them all "visible" to the engine by default. This is not recommended though, as some of the editor features (like script selection dropdowns) won't work.
+::: note
+Все доступные встроенные команды скрипта, поддерживаемые параметры и примеры использования приведены в [справочнике по API](/api/). Кроме того, можно добавить пользовательские команды; дополнительную информацию смотрите в [руководстве](/guide/custom-commands.md).
+:::
 
-In case "NEW GAME" button of the title menu is not active, make sure "Start Game Script" property in the script configuration (`Naninovel -> Configuration -> Scripts`) is equal to the name of the created script. The property is populated automatically when creating the first script via create asset menu, but this may not work if you copy some existing script to the project.
+Если кнопка "НОВАЯ ИГРА" в главном меню неактивна, убедитесь, что свойство `Start Game Script` в настройках скриптов (`Naninovel -> Configuration -> Scripts`) равно имени созданного скрипта. Свойство заполняется автоматически при создании первого скрипта через меню создания ассетов, но может не сработать, если вы скопируете в проект уже существующий скрипт.
 
-![Start Script](https://i.gyazo.com/76e167cb24adfb4d0b454b372f05eb3d.png)
+![](https://i.gyazo.com/47e34c913994a5b3e88d8f30d5127b7b.png)
 
-## Add Character
-Characters in Naninovel can be based on regular and diced sprites, animated Live2D models and 3D meshes; you can add your own implementations as well. For the purpose of this tutorial, we’ll use a sprite implementation. 
+## Добавление персонажа
 
-Each character is represented by ID and a set of appearances. To add a sprite character, you can either use the character manager GUI (recommended) or place the character’s appearance sprites in a `Resources/Characters/CharacterName` folder, where `CharacterName` is the name of the character. 
+Персонажи в Naninovel могут быть основаны на обычных и нарезанных спрайтах, анимированных моделях Live2D и 3D-моделях; вы также можете добавить свои собственные варианты реализации. В этом туториале мы будем использовать спрайты.
 
-If you choose to use the manager GUI, access it with `Naninovel -> Resources -> Characters` menu, add new character record specifying its ID, then double click the ID record (or press button at the and of the record) and add all the appearance sprites to the `Resources` list. Just like with naninovel scripts, you can drag-drop multiple assets and folders to the list.
+Каждый персонаж представлен ID и набором вариантов внешности. Чтобы добавить персонажа, используйте графический интерфейс менеджера персонажей, доступный через меню `Naninovel -> Resources -> Characters`, добавьте новую строку актора персонажа, указав ее ID, затем дважды щелкните по ней (или нажмите кнопку в конце строки) и добавьте все варианты спрайта в список `Resources`. Как и в случае со скриптами Naninovel, вы можете перетащить в список сразу несколько ассетов и папок.
 
-![Add Character](https://i.gyazo.com/c8a4f7f987621831b4a2ecb3145a4a07.png)
+![Создание персонажа](https://i.gyazo.com/0c1e81ea1a20165c1bf88854df177b7f.png)
 
-Let’s assume the added character ID is "Kohaku". Edit naninovel script to show the added character:
+Предположим, что ID созданного персонажа – "Kohaku". Отредактируйте скрипт Naninovel, чтобы показать добавленного персонажа:
+
 ```
 @char Kohaku
 Hello World!
 @stop
 ```
-Run the game and you’ll see one of the character appearance sprites at the center of the screen. When you don’t specify an appearance, either the one named equal to character's ID or "Default" will be chosen by default. To select a specific appearance, add its name after the character ID separated by a dot like this:
+
+Запустите игру, и вы увидите спрайт персонажа в центре экрана. Если вы не укажете внешность, то по умолчанию будет выбрана либо та, имя которой равно ID персонажа, либо внешность с названием "Default". Чтобы выбрать определенную внешность, добавьте её название после ID персонажа, разделив их точкой, как здесь:
+
 ```
 @char Kohaku.Happy
 Hello World!
 @stop
 ```
-Given there is an appearance with the name "Happy" added for the character "Kohaku", the corresponding sprite will now be shown instead of the default one.
 
-You can now also associate the printed text with the character by adding its ID followed by a colon before the text:
+Так как персонажу "Kohaku" была выбрана внешность под названием "Happy", соответствующий спрайт будет отображен вместо стандартного.
+
+Теперь вы можете связать выводимый текст с именем персонажа, добавив его ID, а затем двоеточие перед текстом:
+
 ```
 @char Kohaku.Happy
 Kohaku: Hello World!
 @stop
 ```
-To hide (remove from scene) a character (or any other actor, like background, text printer, etc), use [`@hide`](/api/#hide) command followed by actor ID:
+
+Кроме того, можно объединить объявление внешности персонажа с выводом текстом, чтобы сократить код:
+
 ```
-@char Kohaku.Happy
-Kohaku: Hello World!
+Kohaku.Happy: Hello World!
+@stop
+```
+
+Чтобы скрыть (удалить из сцены) персонажа (или любой другой актор, например, фон, текстовый принтер и т. д.), используйте команду [@hide], за которой следует ID актора:
+```
+Kohaku.Happy: Hello World!
 @hide Kohaku
 @stop
 ```
 
-## Add Background
-Similar to characters, a background can be represented in multiple ways in Naninovel: sprite, generic object, video and scene; custom user implementations are also possible. 
+## Добавление фона
 
-While you can create multiple independent background actors, in a typical VN game you'll usually use just one and transition it to different appearances. To simplify the routine, a `MainBackground` actor is added to the background actors list by default and you don't have to specify the ID every time to change its appearance in naninovel scripts.
+Подобно персонажам, фон в Naninovel может быть представлен несколькими способами: спрайт, простой объект, видео и сцена; также возможны пользовательские реализации.
 
-Add sprite background in the same way you’ve added a character: using editor GUI `Naninovel -> Resources -> Backgrounds` (`MainBackground` actor will be chosen automatically) or place the appearance sprites under a `Resources/Backgrounds/MainBackground` folder.
+Вы можете создать несколько независимых акторов фона, хотя в типичной визуальной новелле обычно используется только один, меняется лишь его внешность. Чтобы упростить процедуру, актор `MainBackground` по умолчанию добавляется в список акторов фона, и вам не нужно указывать его ID каждый раз, чтобы изменить его внешность в скриптах Naninovel.
 
-![Add Background](https://i.gyazo.com/98e88780625c7f2e1ef88db7ef10d1f4.png)
+Добавьте фоновые спрайты через меню `Naninovel -> Resources -> Backgrounds`. Строка `MainBackground` откроется автоматически, но вы все равно можете вернуться в список акторов и создать другие, если потребуется.
 
-Let’s assume the added background appearance sprite is named "City". To show a background, use a [`@back`](/api/#back) command followed by the background appearance name:
+![Добавление фона](https://i.gyazo.com/98e88780625c7f2e1ef88db7ef10d1f4.png)
+
+Предположим, что добавленная внешность спрайта фона называется "City". Чтобы отобразить фон, используйте команду [@back], за которой следует название внешности фона:
+
 ```
 @back City 
 ```
-When switching between backgrounds a cross-fade [transition effect](/guide/background-transition-effects.md) will be used by default. To change the effect, specify transition type after the appearance name:
+
+При переключении между фонами по умолчанию будет использоваться кроссфейд [эффект перехода](/guide/transition-effects.md). Чтобы сменить эффект, укажите тип перехода после внешности:
+
 ```
 @back City 
 @back School.RadialBlur
 ```
-This will transition "City" to "School" using "RadialBlur" transition effect.
 
-## Add Music and Sound Effects
-To add a BGM (background music) or SFX (sound effect) asset, either use `Naninovel -> Resources -> Audio` editor menu (recommended) or place the audio assets inside `Resources/Audio` folder. You can use any audio formats [supported by Unity](https://docs.unity3d.com/Manual/AudioFiles.html).
+Это позволит перейти от фона "City" к фону "School", используя эффект перехода "RadialBlur".
 
-![Managing Audio](https://i.gyazo.com/cacdec36623dbbfcf9f49c594de53c0f.png)
+Чтобы обратиться к фону, отличному от основного (например, если вы хотите создать несколько фонов поверх друг друга), укажите ID актора. Например, если фоновый актор с ID "Flower" существует отдельно от основного, следующие команды изменят его внешность на "Bloomed", а затем на "Withered":
 
-Let’s assume the added BGM file name is "ThePromenade". To play this track as a background music use [`@bgm`](/api/#bgm) command followed by the name of the track:
+```
+@back Flower id:Flower
+@back Withered id:Flower
+```
+
+## Добавление музыки и звуковых эффектов
+Чтобы добавить ассет BGM (фоновая музыка) или SFX (звуковой эффект), используйте меню редактора `Naninovel -> Resources -> Audio`. Вы можете использовать любые аудиоформаты, [поддерживаемые Unity](https://docs.unity3d.com/Manual/AudioFiles.html).
+
+![Управление аудио](https://i.gyazo.com/cacdec36623dbbfcf9f49c594de53c0f.png)
+
+Допустим, вы добавили BGM трек под названием "ThePromenade". Для воспроизведения этого трека в качестве фоновой музыки используйте команду [@bgm], за которой следует название трека:
 ```
 @bgm ThePromenade
 ```
-A cross-fade effect will be automatically applied when switching the music tracks. The music will loop by default, though you can change this, as well as volume and fade duration using command parameters.
+Эффект кроссфейда будет автоматически применен при смене музыкального трека. Музыка по умолчанию будет зациклена, но вы можете изменить это, как и громкость, и длительность затухания с помощью параметров команды.
 
-On the contrary, sound effects won't loop by default. Assuming you've added an "Explosion" SFX, use an [`@sfx`](/api/#sfx) command to play it back:
+Напротив, звуковые эффекты по умолчанию не будут зациклены. Предположим, вы добавили SFX с названием "Explosion" – используйте команду [@sfx], чтобы воспроизвести его:
 ```
 @sfx Explosion
 ```
 
-## Video Guide
+## Видеогайд
 
-In case you prefer following video guides, here is one illustrating the above instructions.
+Если вы предпочитаете видеогайды, то здесь вы можете найти таковой, иллюстрирующий вышеприведенные инструкции.
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/t3frIFlIABw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+[!!wFil5vje3NE]
+
+## Демо-проект
+
+Полные исходники демо-проекта (того же, что демонстрировался в магазине) доступны на GitHub здесь: [github.com/Elringus/NaninovelDemo](https://github.com/Elringus/NaninovelDemo). 
+
+Вы можете [клонировать репозиторий с помощью клиента Git](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) или [скачать его в виде zip-архива](https://github.com/Elringus/NaninovelDemo/archive/master.zip). Обратите внимание на то, что ресурсы, распространяемые вместе с демо-проектом, могут быть предметами пользовательских лицензий и предоставляться исключительно в учебных целях.
+
+::: warn
+Пакет Naninovel не распространяется вместе с проектом, а значит, при первом его открытии могут появиться ошибки компиляции; импортируйте Naninovel из хранилища ассетов, чтобы решить эту проблему.
+:::
