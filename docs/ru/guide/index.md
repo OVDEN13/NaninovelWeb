@@ -1,20 +1,22 @@
-# Introduction
+# Введение
 
-Naninovel is an extension for [Unity game engine](https://unity3d.com). It consists of a C# framework and editor utilities to support development of [visual novel games](https://en.wikipedia.org/wiki/Visual_novel).
-
-[!!lRxIKDU9z4k]
+Naninovel это расширение для [игрового движка Unity](https://unity3d.com). Оно состоит из C#-фреймворка и утилит редактора для поддержки разработки игр в жанре [визуальный роман](https://en.wikipedia.org/wiki/Visual_novel).
 
 ::: warn
-While Naninovel doesn't limit what you can achieve with Unity, there are some requirements (supported Unity versions, project configuration, target platforms) for some of the built-in features to work correctly; consult [compatibility page](/guide/compatibility.md) for more information.
+Хотя Naninovel не ограничивает в том, что вы можете создать с помощью Unity, существуют требования для некоторых встроенных функций; смотрите [руководство по совместимости](/ru/guide/compatibility.md) для дополнительной информации.
 :::
 
-Make sure to read [getting started guide](/guide/getting-started.md) when using the engine for the first time. 
+Прочитайте [стартовое руководство](/ru/guide/getting-started.md) перед первым использованием Naninovel. 
 
-If you're looking for a specific topic, try using search bar located at the website header; also, check out the [FAQ](/faq/), where we have answers for some of the frequently asked questions. All the available script commands, supported parameters and usage examples are listed in the [API reference](/api/). Feel free to [contact the support](/support/#developer-support) in case you can't find the required information.
+Если вы ищите конкретную информацию, используйте поле поиска, расположенное в правом-верхнем углу сайта; также, обратите внимание на [FAQ](/ru/faq/), где собраны ответы на часто задаваемые вопросы. Все встроенные команды, их параметры и примеры использования перечислены в [руководстве по командам](/api/). Если вы не смогли найти нужную информацию, [обратитесь в поддержку](/ru/support/#поддержка-разработчика).
 
-## Features
+::: note
+На Русском языке доступны лишь несколько основных статей из документации, которые также могут быть устаревшими и неточными. Для полной актуальной документации переключитесь на Английский язык с помощью выпадающиего списка в правом-верхнем углу веб-сайта.
+:::
 
-Following are some of the features Naninovel provides out of the box:
+## Функции
+
+Далее перечислена часть функций Naninovel:
 
 * [Document-based scripts](/guide/naninovel-scripts.md)
   * [Generic text lines](/guide/naninovel-scripts.md#generic-text-lines)

@@ -4,15 +4,15 @@
 
 ![](https://i.gyazo.com/0a5b219b059fd61c85d225e903d77857.png)
 
-Be aware, that in contrast to Bolt, where all the Naninovel's C# API is available by default, PlayMaker requires creating a special C# class for each action. This means that only a limited subset of the engine API is available out of the box when using PlayMaker. The available custom actions could also break in case Naninovel's API change (especially while we're in beta development stage).
+Be aware, that in contrast to Bolt, where all the Naninovel's C# API is available by default, PlayMaker requires creating a special C# class for each action. This means that only a limited subset of the engine API is available out of the box when using PlayMaker. The available custom actions could also break in case Naninovel's API change.
 
 ## Setup
 
 Install PlayMaker following instructions from the [official manual](https://hutonggames.fogbugz.com/default.asp?W11).
 
-Download and import [custom Naninovel actions for PlayMaker](https://github.com/Elringus/NaninovelPlayMaker/raw/master/NaninovelPlayMaker.unitypackage).
+Download and import [PlayMaker extension package](https://github.com/Elringus/NaninovelPlayMaker/raw/master/NaninovelPlayMaker.unitypackage).
 
-The custom Naninovel actions should now appear in the PlayMaker actions browser under "Naninovel" category.
+The custom Naninovel actions should appear in the PlayMaker actions browser under "Naninovel" category.
 
 ![](https://i.gyazo.com/a40b0b7b21c73d3b5f64b005085198ea.png)
 
@@ -20,9 +20,7 @@ The custom Naninovel actions should now appear in the PlayMaker actions browser 
 
 The following video demonstrates using PlayMaker FSM (finite state machine) to initialize Naninovel engine, preload and play a scenario script.
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/N856vi18XVU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+[!!N856vi18XVU]
 
 ### Events
 

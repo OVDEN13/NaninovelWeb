@@ -10,7 +10,7 @@ You can use Naninovel to handle dialogue scenes in AC or load AC from a Naninove
 
 Install both Adventure Creator and Naninovel (the order doesn't matter).
 
-Install [NaninovelAdventureCreator](https://github.com/Elringus/NaninovelAdventureCreator/raw/master/NaninovelAdventureCreator.unitypackage) extension package.
+Download and import [Adventure Creator extension package](https://github.com/Elringus/NaninovelAdventureCreator/raw/master/NaninovelAdventureCreator.unitypackage).
 
 Set `NaninovelAdventureCreator/Runtime/Actions` as the source for custom actions in AC settings. Consult [AC guide](https://www.adventurecreator.org/tutorials/writing-custom-action) for more info on custom actions.
 
@@ -34,10 +34,8 @@ Use `@turnOnAC` custom Naninovel command in a Naninovel script to enable AC, res
 
 The following video demonstrates AC's demo scene integrated with Naninovel to handle a dialogue.
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/7tOIFZRSAec" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+[!!7tOIFZRSAec]
 
-## Example Project
-
+::: example
 See the [GitHub project](https://github.com/Elringus/NaninovelAdventureCreator) for an integration example. When opening the project for the first time you'll get errors due to missing Adventure Creator and Naninovel packages. Just import them from Asset Store and the errors will go away.
+:::

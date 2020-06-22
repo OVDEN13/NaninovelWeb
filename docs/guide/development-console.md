@@ -16,7 +16,7 @@ public static void ToggleDebugInfo () => UI.DebugInfoGUI.Toggle();
 
 In the console, type either full method name or the shortcut (if applied) and press `Enter` key to execute the method.
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/bd41a9a8fff91eb575b235a6b641dcce.mp4 " type="video/mp4"></video>
+[!bd41a9a8fff91eb575b235a6b641dcce]
 
 Following commands are currently available:
 
@@ -25,10 +25,11 @@ Command | Description
 nav | Toggles naninovel script navigator UI.
 debug | Toggles [naninovel script debug](/guide/naninovel-scripts.md#scripts-debug) window.
 var | Toggles [custom variable editor](/guide/custom-variables.md#variables-debug) window.
-purge | When [Google Drive provider](/guide/google-drive-integration.md) is used, purges the downloaded resources cache.
+purge | When [Google Drive provider](/guide/resource-providers.md#google-drive) is used, purges the downloaded resources cache.
 play | Starts executing currently loaded naninovel script.
 stop | Halts execution of the currently loaded naninovel script.
 rewind (int) | Rewinds currently loaded naninovel script to the provided line index. The line should be either a command or a generic text. When rewinding back, the line should exist in the rollback stack.
+reload | Performs [hot reload](/guide/naninovel-scripts.md#hot-reload) of the currently played naninovel script. Works only in Unity editor.
 
 ## Executing Commands
 
@@ -40,6 +41,4 @@ You can invoke the script commands via development console. Input the command st
 
 — will print the value of the `VariableName` with the default printer.
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/wcgTGro0_SE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+[!!wcgTGro0_SE]

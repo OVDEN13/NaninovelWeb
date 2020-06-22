@@ -18,10 +18,8 @@ Under "Namespaces" tab add a new namespace record, find "Naninovel" in the list,
 
 That's it, you can now use Naninovel C# API in your bolt graphs.
 
-## Usage
+![](https://i.gyazo.com/080106d574ea894f62ea79b7dd904ab2.png)
 
-The following video demonstrates using Bolt flow graph to subscribe to `Engine.OnInitialized` event, get `ScriptPlayer` engine service and play a naninovel script.
-
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/w7PAhE7HO9c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+::: example
+An example project is available on GitHub: [github.com/Elringus/NaninovelBolt](https://github.com/Elringus/NaninovelBolt). Be aware, that neither Naninovel, nor Bolt packages are not distributed with the project, hence compilation errors will be produced after opening it for the first time; import the packages from the Asset Store to resolve the issues.
+:::
