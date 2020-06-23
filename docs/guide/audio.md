@@ -1,105 +1,105 @@
-﻿# Audio
+﻿# Аудио
 
-Background music (BGM) and sound effects (SFX) are covered in this article; for the voices see [voicing guide](/guide/voicing.md).
+В данной статье рассматриваются фоновая музыка (BGM) и звуковые эффекты (SFX); для голосов см. [руководство по озвучке?](/guide/voicing.md).
 
-To add, edit or remove BGM and SFX resources use audio resources manager accessible via `Naninovel -> Resources -> Audio`. You can use any audio formats [supported by Unity](https://docs.unity3d.com/Manual/AudioFiles.html).
+Чтобы добавить, отредактировать или удалить ресурсы BGM и SFX, используйте диспетчер аудиоресурсов, доступный через `Naninovel -> Resources -> Audio`. Вы можете использовать любые аудиоформаты, [поддерживаемые Unity](https://docs.unity3d.com/Manual/AudioFiles.html).
 
 ![](https://i.gyazo.com/cacdec36623dbbfcf9f49c594de53c0f.png)
 
-In case you have a lot of audio files and it's inconvenient to assign them via editor menu, it's possible to just drop them at `Resources/Naninovel/Audio` folder and they'll automatically be available in the scripts. You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in naninovel scripts. Eg, audio clip stored as `Resources/Naninovel/Audio/Music/Ambient/Noise002.wav` can be referenced in scripts as `Music/Ambient/Noise002`.
+Если у вас много аудиофайлов и их неудобно назначать через меню редактора, можно просто поместить их в папку `Resources/Naninovel/Audio`, и они автоматически будут доступны в скриптах. Вы можете дополнительно организовать их с помощью вложенных папок, если хотите; в этом случае используйте слеш (`/`) при ссылке на них в скриптах naninovel. Например, аудиоклип по адресу: `Resources/Naninovel/Audio/Music/Ambient/Noise002.wav` можно объявить в скрипте как `Music/Ambient/Noise002`.
 
-It's also possible to use [addressable asset system](/guide/resource-providers.md#addressable) to manually expose the resources. To expose an asset, assign address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "MainTheme.wav" BGM, assign the clip asset following address: `Naninovel/Audio/MainTheme`. Be aware, that addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
+Также можно использовать [систему адрессируемых ассетов?](/guide/resource-providers.md#addressable), чтобы вручную распределить ресурсы. Чтобы предоставить доступ к ассету, назначьте адрес, равный пути, который вы использовали бы для его объявления с помощью метода, описанного выше, за исключением опущенной части "Resources/". Например, для объявления BGM "MainTheme.wav" назначьте ассету следующий адрес:`Naninovel/Audio/MainTheme`. Имейте в виду, что адресируемый провайдер по умолчанию не используется в редакторе; вы можете разрешить его, включив свойство `Enable Addressable In Editor` в меню конфигурации провайдера ресурсов.
 
 ::: warn
-Audio assets not assigned via resources manager won't be available in various editor dropdowns, such as the one used to select `Message Sound` for a character actor.
+Ассеты аудио, не объявленные через диспетчер ресурсов, не будут доступны в различных выпадающих меню редактора, как, например, в том, что используется для выбора `Message Sound` для актора персонажа.
 ::: 
 
-Audio playback behavior can be configured using `Naninovel -> Configuration -> Audio` context menu; for available options see [configuration guide](/guide/configuration.md#audio). 
+Поведение воспроизводимого звука можно настроить с помощью контекстного меню `Naninovel -> Configuration -> Audio`; доступные параметры см. в разделе [Руководство по конфигурации](/guide/configuration.md#audio).
 
-## Background Music
+## Фоновая музыка
 
-Use [@bgm] command followed by the clip name to control the music playback in naninovel scripts:
+Используйте команду [@bgm], за которой следует название трека, чтобы управлять воспроизведением музыки в скриптах Naninovel:
 
 ```
-; Starts playing a music track with the name `Sanctuary` in a loop
+; Начать проигрывать зацикленный трек с названием `Sanctuary` 
 @bgm Sanctuary
 
-; Same as above, but fades-in the volume over 10 seconds and plays only once
+; То же самое, что выше, но в начале используется фейд в 10 секунд, и трек проигрывается только один раз
 @bgm Sanctuary fade:10 loop:false
 
-; Changes volume of all the played music tracks to 50% over 2.5 seconds and makes them play in a loop
+; Изменить громкость всех воспроизводимых музыкальных треков до 50% за 2,5 секунды и зациклить их
 @bgm volume:0.5 loop:true time:2.5
 ```
 
-Music tracks are looped by default. When music track name is not specified in [@bgm] command, all the currently played tracks will be affected. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
+Музыкальные треки по умолчанию зациклены. Если название трека не указано в команде [@bgm], то командой будут затронуты все проигрываемые в данный момент треки. При вызове трека, который уже воспроизводится, воспроизведение не будет затронуто (трек не начнет воспроизводиться с самого начала), но будут применены указанные параметры (громкость, зацикливание).
 
-It's possible to play an intro followed by a loop with `intro` parameter, eg:
+Можно воспроизвести вступление трека, за которым следует зацикленная часть, используя параметр `intro`, например:
 
 ```
-; Playes `BattleThemeIntro` once and then immediately `BattleThemeMain` in a loop.
+; Проиграть `BattleThemeIntro` один раз, а затем сразу же зацикленный `BattleThemeMain`.
 @bgm BattleThemeMain intro:BattleThemeIntro
 ```
 
-To stop a playing music track, use [@stopBgm] command followed by clip name. When clip name is not specified, the command will stop all the currently played tracks.
+Чтобы остановить воспроизведение музыки, используйте команду [@stopBgm], за которой следует название трека. Если название трека не указано, команда остановит все воспроизводимые в данный момент треки.
 
 ```
-; Fades-out the `Promenade` music track over 10 seconds and stops the playback
+; Затухание трека `Promenade` в течение 10 секунд и остановка воспроизведения
 @stopBgm Promenade fade:10
 
-; Stops all the currently played music tracks
+; Остановить все играющие в данный момент музыкальные треки
 @stopBgm
 ```
 
-## Sound Effects
+## Звуковые эффекты
 
-Use [@sfx] and [@stopSfx] commands followed by the clip name to control playback of the sound effects in naninovel scripts:
+Используйте команды [@sfx] и [@stopSfx], за которыми следует название клипа, чтобы управлять воспроизведением звуковых эффектов в сценариях Naninovel:
 
 ```
-; Plays an SFX with the name `Explosion` once
+; Однократно воспроизвести SFX под названием `Explosion`
 @sfx Explosion
 
-; Plays an SFX with the name `Rain` in a loop
+; Зацикленно воспроизводить SFX `Rain`
 @sfx Rain loop:true
 
-; Changes volume of all the played SFX tracks to 75% over 2.5 seconds and disables looping for all of them
+; Изменить громкость всех воспроизводимых треков SFX до 75% за 2,5 секунды и отключает зацикливание для всех них
 @sfx volume:0.75 loop:false time:2.5
 ```
 
-Sound effect tracks are not looped by default. When sfx track name is not specified in [@sfx] command, all the currently played tracks will be affected. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
+Треки звуковых эффектов по умолчанию  не зациклены. Если название трека не указано в команде [@sfx], то командой будут затронуты все проигрываемые в данный момент треки. При вызове трека, который уже воспроизводится, воспроизведение не будет затронуто (трек не начнет воспроизводиться с самого начала), но будут применены указанные параметры (громкость, зацикливание).
 
-To stop a playing sound effect (no matter looped or not), use [@stopSfx] command followed by clip name. When clip name is not specified, the command will stop all the currently played SFX tracks.
+Чтобы остановить воспроизведение звукового эффекта (вне зависимости, зациклен тот или нет), используйте команду [@stopSfx], за которой следует название трека. Если название трека не указано, команда остановит все воспроизводимые в данный момент треки.
 
 ```
-; Stop playing an SFX with the name `Rain`, fading-out for 15 seconds.
+; Затухание и остановка трека `Rain` в течение 15 секунд
 @stopSfx Rain fade:15
 
-; Stops all the currently played sound effect tracks
+; Остановить все играющие в данный момент треки звуковых эффектов
 @stopSfx
 ```
 
-## Audio Mixer
+## Аудиомикшер
 
-Naninovel uses an [audio mixer](https://docs.unity3d.com/Manual/AudioMixer.html) asset when playing the audio to separate BGM, SFX and voice channels.
+Naninovel использует ассет [аудиомикшера](https://docs.unity3d.com/Manual/AudioMixer.html) при воспроизведении аудио для разделения каналов BGM, SFX и голосовой озвучки.
 
 ![](https://i.gyazo.com/6271d59ee9ac63a0a218316bd3bc78a8.png)
 
-It's possible to assign a custom mixer asset, change groups used for each audio channel and volume control handlers (exposed parameter names) in the audio configuration menu. When no custom mixer assets assigned, a default one will be used.
+В меню конфигурации аудио можно назначить пользовательский ассет микшера, изменить группы, используемые для каждого аудиоканала, и контроллеры регулировки громкости (названия открытых параметров?). Если пользовательские ассеты микшера не назначены, то по умолчанию будет использоваться стандартный.
 
 ![](https://i.gyazo.com/ef2db68edb871608d1718117a37e9486.png)
 
-To play an audio via a custom mixer group, specify group path with `group` parameter available in [@bgm], [@sfx] and [@voice] commands.
+Чтобы воспроизвести звук через пользовательскую группу в микшере, укажите путь к группе параметром `group`, доступным в командах [@bgm], [@sfx] и [@voice].
 
 ```
-; Play `Noise` audio resource in loop via `Master/Ambient` mixer group.
+; Воспроизвести зацикленное аудио `Noise` через группу микшера `Master/Ambient`.
 @sfx Noise loop:true group:Master/Ambient
 
-; Play `ScaryVoice` voice resource via `Master/Reverb` mixer group.
+; Воспроизвести голосовое аудио `ScaryVoice` через группу микшера `Master/Reverb`.
 @voice ScaryVoice group:Master/Reverb
 ```
 
-Groups are retrieved with `FindMatchingGroups(groupPath)` method of the currently assigned audio mixer asset; see [Unity documentation](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) for more information on the expected path format. In case multiple groups are associated with the provided path, the first one will be used to play the audio.
+Группы извлекаются? с помощью метода `FindMatchingGroups(groupPath)` текущего назначенного ассета аудиомикшера; см. [документацию Unity](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) для получения дополнительной информации об ожидаемом формате пути. В случае, если несколько групп связаны с предоставленным путем, использоваться для воспроизведения звука будет первая из них.
 
-In C# scripts, currently used audio mixer can be retrieved via `IAudioManager` [engine service](/guide/engine-services.md).
+В скриптах C# используемый в настоящее время аудиомикшер можно получить? через `IAudioManager` [сервис движка](/guide/engine-services.md).
 
 ```
 var audioManager = Engine.GetService<IAudioManager>();
