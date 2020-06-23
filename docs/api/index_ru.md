@@ -38,43 +38,43 @@ wait | Boolean | Должен ли проигрыватель сценариев
 
 ID | Тип | Описание
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">ActorIds</span> | List&lt;String&gt; | IDs of the actors to animate.
-loop | Boolean | Whether to loop the animation; make sure to set `wait` to false when loop is enabled,  otherwise script playback will loop indefinitely.
-appearance | String | Appearances to set for the animated actors.
-transition | String | Type of the [transition effect](/guide/transition-effects.md) to use when animating appearance change (crossfade is used by default).
-visibility | String | Visibility status to set for the animated actors.
-posX | String | Position values over X-axis (in 0 to 100 range, in percents from the left border of the screen) to set for the animated actors.
-posY | String | Position values over Y-axis (in 0 to 100 range, in percents from the bottom border of the screen) to set for the animated actors.
-posZ | String | Position values over Z-axis (in world space) to set for the animated actors; while in ortho mode, can only be used for sorting.
-rotation | String | Rotation values (over Z-axis) to set for the animated actors.
-scale | String | Scale values (uniform) to set for the animated actors.
-tint | String | Tint colors to set for the animated actors.  <br /><br />  Strings that begin with `#` will be parsed as hexadecimal in the following way:  `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF.  <br /><br />  Strings that do not begin with `#` will be parsed as literal colors, with the following supported:  red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta.
-easing | String | Names of the easing functions to use for the animations.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the actor's manager configuration settings.
-time | String | Duration of the animations per key, in seconds.  When a key value is missing, will use one from a previous key.  When not assigned, will use 0.35 seconds duration for all keys.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">ActorIds</span> | List&lt;String&gt; | ID актеров для анимации.
+loop | Boolean | Следует ли зацикливать анимацию;убедитесь, что для `wait` установлено значение false, когда включен цикл, в противном случае воспроизведение сценария будет повторяться бесконечно.
+appearance | Строка | Установка внешности для анимированных актеров.
+transition | Строка | Тип [эффекта перехода](/guide/transition-effects.md) который будет использоваться при изменении внешнего вида (по умолчанию используется кроссфейд).
+visibility | Строка | Статус видимости для анимированных актеров.
+posX | Строка | Значения позиции анимированного актера, по оси Х (в диапазоне от 0 до 100, в процентах от левой границы экрана).
+posY | Строка | Значения позиции анимированного актера, по оси Y (в диапазоне от 0 до 100, в процентах от нижней границы экрана).
+posZ | Строка | Значения позиции анимированного актера, по оси Z (в мировом пространстве); В орто-режиме, ожно использовать только для сортировки.
+rotation | Строка | Значения поворота (по оси Z) для анимированных актеров.
+scale | Строка | Значения шкалы (единообразные) для анимированных актеров.
+tint | Строка | Оттенок цвета для анимированных актеров.  <br /><br />  Строки, начинающиеся с `#` будет проанализирован как шестнадцатеричный следующим образом:  `#RGB` (становится RRGGBB), `#RRGGBB`, `#RGBA` (становится RRGGBBAA), `#RRGGBBAA`; Если альфа не указана, по значение по умолчанию будет FF.  <br /><br />  Строки, которые не начинаются с `#`, будут анализироваться как цвета, поддерживаются:  red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta.
+easing | Строка | Названия функций замедления, используемых для анимации. <br /><br />  Доступные варианты: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  Если не указан, будет использоваться функция замедления по умолчанию, установленная в настройках конфигурации менеджера актера.
+time | Строка | Продолжительность ключа анимации в секундах. Если значение ключа отсутствует, будет использоваться значение из предыдущего ключа. Если значение не установлено, будет использовать задержка 0.35 секунд для всех ключей.
 
 </div>
 
 #### Example
 ```
-; Animate `Kohaku` actor over three animation steps (key frames),
-; changing positions: first step will take 1, second — 0.5 and third — 3 seconds.
+; Анимация актера "Kohaku" за три шага анимации (ключевые кадры),
+; смена позиций: первый шаг займет 1, второй - 0.5 и третий - 3 секунды.
 @animate Kohaku posX:50|0|85 time:1|0.5|3
 
-; Start loop animations of `Yuko` and `Kohaku` actors; notice, that you can skip
-; key values indicating that the parameter shouldn't change during the animation step.
+; Старт цикла анимации актеров "Yuko" и "Kohaku"; обратите внимание, что вы можете пропустить
+; ключевые значения, указывающие, что параметр не должен изменяться на этапе анимации.
 @animate Kohaku,Yuko loop:true appearance:Surprise|Sad|Default|Angry transition:DropFade|Ripple|Pixelate posX:15|85|50 posY:0|-25|-85 scale:1|1.25|1.85 tint:#25f1f8|lightblue|#ffffff|olive easing:EaseInBounce|EaseInQuad time:3|2|1|0.5 wait:false
 ...
-; Stop the animations.
+; Остановка анимации.
 @animate Yuko,Kohaku loop:false
 
-; Start a long background animation for `Kohaku`.
+; Запуск длинной фоновой анимации для `Kohaku`.
 @animate Kohaku posX:90|0|90 scale:1|2|1 time:10 wait:false
-; Do something else while the animation is running.
+; Вы можете сделать что-нибудь еще, пока анимация запущена.
 ...
-; Here we're going to set a specific position for the character,
-; but the animation could still be running in background, so reset it first.
+; Здесь мы собираемся установить конкретную позицию для персонажа,
+; но анимация все еще может работать в фоновом режиме, поэтому сначала сбросьте ее.
 @animate Kohaku
-; Now it's safe to modify previously animated properties.
+; Теперь можно безопасно менять свойства, которые ранее были анимированны
 @char Kohaku pos:50 scale:1
 ```
 
