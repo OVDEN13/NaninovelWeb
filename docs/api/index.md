@@ -80,13 +80,13 @@ time | Строка | Продолжительность ключа анимац
 
 ## append
 
-#### Summary
+#### Кратко
 Добавляет предоставленный текст к текстовому принтеру.
 
-#### Remarks
+#### Примечание
 Весь текст будет добавлен немедленно, без эффекта постепенного проявления и прочих эффектов.
 
-#### Parameters
+#### Параметры
 
 <div class="config-table">
 
@@ -108,44 +108,44 @@ Lorem ipsum
 
 ## arrange
 
-#### Summary
-Arranges specified characters by X-axis.  When no parameters provided, will execute an auto-arrange evenly distributing visible characters by X-axis.
+#### Кратко
+Упорядочивает указанных персонажей по оси X. Если параметры не указаны, будет выполнено автоматическое выравнивание, равномерно распределяющее видимых персонажей по оси X.
 
-#### Parameters
+#### Параметры
 
 <div class="config-table">
 
-ID | Type | Description
+ID | Тип | Описание
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">CharacterPositions</span> | List&lt;Named&lt;Decimal&gt;&gt; | A collection of character ID to scene X-axis position (relative to the left screen border, in percents) named values.  Position 0 relates to the left border and 100 to the right border of the screen; 50 is the center.
-look | Boolean | When performing auto-arrange, controls whether to also make the characters look at the scene origin (enabled by default).
-time | Decimal | Duration (in seconds) of the arrangement animation. Default value: 0.35 seconds.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">CharacterPositions</span> | List&lt;Named&lt;Decimal&gt;&gt; | Коллекция ID персонажей по оси Х на сцене (относительно левой границы экрана, в процентах) с именованными значениями.  Позиция 0 относится к левой границе, а 100 к правой границе экрана; 50 это центр.
+look | Boolean | При выполнении автоматической аранжировки определяет, следует ли также заставлять персонажей смотреть в начало сцены (по умолчанию включено).
+time | Decimal | Продолжительность (в секундах) анимации аранжировки. Значение по умолчанию: 0.35 секунды.
 
 </div>
 
 #### Example
 ```
-; Evenly distribute all the visible characters
+; Равномерно распределить всех видимых персонажей 
 @arrange
 
-; Place character with ID `Jenna` 15%, `Felix` 50% and `Mia` 85% away
-; from the left border of the screen.
+; Переместить персонажей с идентификаторами `Jenna` в 15%,` Felix` в 50% и `Mia` в 85%
+; от левой границы экрана.
 @arrange Jenna.15,Felix.50,Mia.85
 ```
 
 ## back
 
-#### Summary
-Modifies a [background actor](/guide/backgrounds.md).
+#### Кратко
+Изменяет [актер фона](/guide/backgrounds.md).
 
-#### Remarks
-Backgrounds are handled a bit differently from characters to better accommodate traditional VN game flow.  Most of the time you'll probably have a single background actor on scene, which will constantly transition to different appearances.  To remove the hassle of repeating same actor ID in scripts, it's possible to provide only  the background appearance and transition type (optional) as a nameless parameter assuming `MainBackground`  actor should be affected. When this is not the case, ID of the background actor can be explicitly provided via the `id` parameter.
+#### Примечание
+Фоны обрабатываются немного иначе, чем персонажи, чтобы лучше приспособиться к традиционному игровому ходу в визуальных новеллах. Большую часть времени у вас, вероятно, будет один актер фона на сцене, который будет постоянно переходить в разные виды. Чтобы устранить необходимость повторения одного и того же идентификатора субъекта в сценариях, можно указать только внешний вид фона и тип перехода (необязательно) в качестве безымянного параметра, предполагая, влияение будет оказано на "MainBackground". Если это не так, идентификатор фонового актера может быть явно указан через параметр `id`.
 
-#### Parameters
+#### Параметры
 
 <div class="config-table">
 
-ID | Type | Description
+ID | Тип | Описание
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">AppearanceAndTransition</span> | Named&lt;String&gt; | Appearance (or [pose](/guide/backgrounds.md#poses)) to set for the modified background and type of a [transition effect](/guide/transition-effects.md) to use.  When transition is not provided, a cross-fade effect will be used by default.
 pos | List&lt;Decimal&gt; | Position (relative to the screen borders, in percents) to set for the modified actor.  Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the screen.  Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
