@@ -1,440 +1,440 @@
-﻿# Background Transition Effects
+﻿# Эффекты переходов фонов
 
-When changing background appearance with [`@back`](/api/#back) command, you can additionally specify which transition effect to use. For example, following command will transition to "River" background using "DropFade" transition effect:
+При изменении внешности фона с помощью команды [`@back`](/api/#back) можно дополнительно указать, какой эффект перехода следует использовать. Например, следующая команда будет переходить к фону "River" с помощью эффекта перехода "DropFade":
 
 ```
 @back River.DropFade
 ```
 
-When no transition effect is specified a cross-fade is used by default. 
+Если эффект перехода не задан, то по умолчанию используется кроссфейд.
 
-You can also specify duration of the transition (in seconds) with the `time` parameter:
+Вы также можете указать продолжительность перехода (в секундах) с помощью параметра `time`:
 
 ```
 @back River.DropFade time:1.5
 ```
 
-The above statement will transition to "River" background using "DropFade" transition over 1.5 seconds. Default `time` for all transitions is 0.35 seconds.
+Приведенное выше выражение вызовет переход к фону "River" с помощью перехода "DropFade" за 1,5 секунды. По умолчанию `time` для всех переходов составляет 0,35 секунды.
 
-In case you wish to skip to the next command immediately after executing the transition (and not wait for the duration of the effect), you can set `wait` parameter to `false`. E.g.:
+Если вы хотите перейти к следующей команде сразу после объявления перехода (а не ждать окончания перехода), вы можете установить параметр `wait` в значение `false`. Напр.:
 
 ```
 @back River.Ripple time:1.5 wait:false
 @bgm PianoTheme
 ```
-— "PianoTheme" background music will start playing right away and won't be delayed for 1.5 seconds, while the transition is in progress.
+– Фоновая музыка "PianoTheme" начнет играть сразу же и не будет задержана на 1,5 секунды процесса перехода.
 
-Some of the transition effects also support additional parameters, which you can control with `params` parameter:
+Некоторые эффекты перехода также поддерживают дополнительные параметры, которыми можно управлять с помощью параметра `params`:
 
 ```
 @back River.Ripple params:10,5,0.02
 ``` 
-— will set frequency of the ripple effect to 10, speed to 5 and amplitude to 0.02. When no `params` is specified, default parameters will be used.
+— установит частоту эффекта пульсации на 10, скорость на 5 и амплитуду на 0,02. Если параметр `params` не указан, будут использоваться значения по умолчанию.
 
-If you wish to modify selected parameters, you can skip others and they'll have their default values:
+Если вы хотите изменить отдельные параметры, вы можете пропустить другие, и они будут иметь свои значения по умолчанию:
 
 ```
 @back River.Ripple params:,,0.02
 ``` 
 
-All the transition parameters are of decimal type. You can find available transition effects with their parameters and default values in the docs below.
+Все параметры перехода имеют десятичный тип. Доступные эффекты перехода с их параметрами и значениями по умолчанию можно найти в приведенной ниже документации.
 
 ## BandedSwirl
 
-### Demo
+### Демонстрация
 
 <video class="video" loop autoplay><source src=" https://i.gyazo.com/37432ac584ef04d94d3e4f9535fdffc4.mp4" type="video/mp4"></video>
 
-### Parameters
-Name |  Default 
+### Параметры
+Имя |  По умолчанию 
 --- | --- 
-Twist amount | 5
-Frequency | 10
+Количество скруток | 5
+Частота | 10
 
-### Examples
+### Примеры
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.BandedSwirl
 
-; Apply the transition with defeault twist amount, but low frequency 
+; Применить переход со стандартным количеством скруток, но низкой частотой 
 @back Appearance.BandedSwirl params:,2.5
 ```
 
 ## Blinds
 
-### Demo
+### Демонстрация
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/73a259f2a513a92ef893ebd6a25e9013.mp4" type="video/mp4"></video>
 
-### Parameters
-Name |  Default 
+### Параметры
+Имя |  По умолчанию 
 --- | --- 
-Count | 6
+Количество | 6
 
-### Examples
+### Примеры
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.Blinds
 
-; Apply the transition using 30 blinds instead of default 6
+; Применить переход, используя 30 полос вместо стандартных 6
 @back Appearance.Blinds params:30
 ```
 
 ## CircleReveal
 
-### Demo
+### Демонстрация
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/4f914c6741a5e48a22cafe2ab242a426.mp4" type="video/mp4"></video>
 
-### Parameters
-Name |  Default 
+### Параметры
+Имя |  По умолчанию 
 --- | --- 
-Fuzzy amount | 0.25
+Уровень размытия | 0.25
 
-### Examples
+### Примеры
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.CircleReveal
 
-; Apply the transition with a high fuzzy amount
+; Применить переход с высоким уровнем размытия
 @back Appearance.CircleReveal params:3.33
 ```
 
 ## CircleStretch
 
-### Demo
+### Демонстрация
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/f09bb69a3c045eeb1f6c8ec0b9dcd790.mp4" type="video/mp4"></video>
 
-### Examples
+### Примеры
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.CircleStretch
 ```
 
 ## CloudReveal
 
-### Demo
+### Демонстрация
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/618ec451a9e10f70486db0bb4badbb71.mp4" type="video/mp4"></video>
 
-### Examples
+### Примеры
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.CloudReveal
 ```
 
 ## Crossfade
 
-### Demo
+### Демонстрация
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/dc4781a577ec891065af1858f5fe2ed1.mp4" type="video/mp4"></video>
 
-### Examples
+### Примеры
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.Crossfade
 ```
 
 ## Crumble
 
-### Demo
+### Демонстрация
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/e27c8477842a2092728ea0cc1ae76bda.mp4" type="video/mp4"></video>
 
-### Examples
+### Примеры
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.Crumble
 ```
 
-## Disolve
+## Disolve (dissolve?)
 
-### Demo
+### Демонстрация
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/b2993be8de032a65c7d813c6d749e758.mp4" type="video/mp4"></video>
 
-### Parameters
-Name |  Default 
+### Параметры
+Имя |  По умолчанию 
 --- | --- 
-Step | 99999
+Шаг | 99999
 
-### Examples
+### Примеры
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.Disolve
 
-; Apply the transition with a low step
+; Применить переход c малым шагом?
 @back Appearance.Disolve params:100
 ```
 
 ## DropFade
 
-### Demo
+### Демонстрация
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/3c3840bb311ccb9fe223960f2e46f800.mp4" type="video/mp4"></video>
 
-### Examples
+### Примеры
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.DropFade
 ```
 
 ## LineReveal
 
-### Demo
+### Демонстрация
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/c0e5259cd3d4ed2016ab74a65a7eec63.mp4" type="video/mp4"></video>
 
-### Parameters
-Name |  Default 
+### Параметры
+Имя |  По умолчанию
 --- | --- 
-Fuzzy amount | 0.25
-Line Normal X | 0.5
-Line Normal Y | 0.5
+Уровень размытия | 0.25
+Уклон по оси X? | 0.5
+Уклон по оси Y | 0.5
 
-### Examples
+### Примеры
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.LineReveal
 
-; Apply the transition with a vertical line slide
+;  Применить переход с вертикальным слайдом?
 @back Appearance.LineReveal params:,0,1
 ```
 
 ## Pixelate
 
-### Demo
+### Демонстрация
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/0ac9339b21303e20c524aaf6b6ca95f4.mp4" type="video/mp4"></video>
 
-### Examples
+### Примеры
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.Pixelate
 ```
 
 ## RadialBlur
 
-### Demo
+### Демонстрация
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/f8269fb68519c57c99643948a027a2a1.mp4" type="video/mp4"></video>
 
-### Examples
+### Примеры
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.RadialBlur
 ```
 
 ## RadialWiggle
 
-### Demo
+### Демонстрация
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/a401b3b93a61276ed68ededa2e75e9ae.mp4" type="video/mp4"></video>
 
-### Examples
+### Примеры
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.RadialWiggle
 ```
 
 ## RandomCircleReveal
 
-### Demo
+### Демонстрация
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/f6e685b13fe2d76733fd43878602eabc.mp4" type="video/mp4"></video>
 
-### Examples
+### Примеры
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.RandomCircleReveal
 ```
 
 ## Ripple
 
-### Demo
+### Демонстрация
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/ff1bd285dc675ca5ac04f7ae4500f1c4.mp4" type="video/mp4"></video>
 
-### Parameters
-Name |  Default 
+### Параметры
+Имя |  По умолчанию
 --- | --- 
-Frequency | 20
-Speed | 10
-Amplitude | 0.5
+Частота | 20
+Скорость | 10
+Амплитуда | 0.5
 
-### Examples
+### Примеры
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.Ripple
 
-; Apply the transition with a high frequency and amplitude
+; Применить переход с высокими частотой и амплитудой
 @back Appearance.Ripple params:45,,1.1
 ```
 
 ## RotateCrumble
 
-### Demo
+### Демонстрация
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/8d476f466858e4788e5ad6014d6db314.mp4" type="video/mp4"></video>
 
-### Examples
+### Примеры
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.RotateCrumble
 ```
 
 ## Saturate
 
-### Demo
+### Демонстрация
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/ad6eb77b7065387b9cb9afd77adbc784.mp4" type="video/mp4"></video>
 
-### Examples
+### Примеры
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.Saturate
 ```
 
 ## Shrink
 
-### Demo
+### Демонстрация
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/8c8bf00348df28ab89813c21f8655c07.mp4" type="video/mp4"></video>
 
-### Parameters
-Name |  Default 
+### Параметры
+Имя |  По умолчанию
 --- | --- 
-Speed | 200
+Скорость | 200
 
-### Examples
+### Примеры
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.Shrink
 
-; Apply the transition with a low speed
+; Применить переход с низкой скоростью
 @back Appearance.Shrink params:50
 ```
 
 ## SlideIn
 
-### Demo
+### Демонстрация
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/800ee6f5fba39ab8d46f5eb09f2126cf.mp4" type="video/mp4"></video>
 
-### Parameters
-Name |  Default 
+### Параметры
+Имя |  По умолчанию
 --- | --- 
-Slide amount | 1
+Количество слайдов | 1
 
-### Examples
+### Примеры
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.SlideIn
 ```
 
 ## SwirlGrid
 
-### Demo
+### Демонстрация
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/5a21293d979323a112ffd07f1fffd28d.mp4" type="video/mp4"></video>
 
-### Parameters
-Name |  Default 
+### Параметры
+Имя |  По умолчанию
 --- | --- 
-Twist amount | 15
-Cell count | 10
+Количество скруток | 15
+Количество клеток | 10
 
-### Examples
+### Примеры
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.SwirlGrid
 
-; Apply the transition with high twist and low cell count
+; Применить переход с большим количеством скруток и малым количеством клеток
 @back Appearance.SwirlGrid params:30,4
 ```
 
 ## Swirl
 
-### Demo
+### Демонстрация
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/6ac9a2fe1bb9dfaf6a8292ae5d03960e.mp4" type="video/mp4"></video>
 
-### Parameters
-Name |  Default 
+### Параметры
+Имя |  По умолчанию
 --- | --- 
-Twist amount | 15
+Количество скруток | 15
 
-### Examples
+### Примеры
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.Swirl
 
-; Apply the transition with high twist
+; Применить переход с большим количеством скруток
 @back Appearance.Swirl params:25
 ```
 
 ## Water
 
-### Demo
+### Демонстрация
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/7c684f9a122006f38a0be2725895b76f.mp4" type="video/mp4"></video>
 
-### Examples
+### Примеры
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.Water
 ```
 
 ## Waterfall
 
-### Demo
+### Демонстрация
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/b6eebcb68002064ababe4d7476139a7c.mp4" type="video/mp4"></video>
 
-### Examples
+### Примеры
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.Waterfall
 ```
 
 ## Wave
 
-### Demo
+### Демонстрация
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/e189ca12868d7ae4c9d8f0ca3d9dd298.mp4" type="video/mp4"></video>
 
-### Parameters
-Name |  Default 
+### Параметры
+Имя |  По умолчанию
 --- | --- 
-Magnitude | 0.1
-Phase | 14
-Frequency | 20
+Интенсивность? | 0.1
+Фаза? | 14
+Частота | 20
 
-### Examples
+### Примеры
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.Wave
 
-; Apply the transition with a high magnitude and low frequency
+; Применить переход с высокой интенсивностью и низкой частотой
 @back Appearance.Wave params:0.75,,5
 ```
 
-## Custom Transition Effects
+## Пользовательские Эффекты Перехода
 
-You can make custom transitions based on a dissolve mask texture. Dissolve mask is a greyscale texture, where the color defines when the pixel will transition to the target texture. For example, consider following spiral dissolve mask:
+Вы можете создавать пользовательские переходы на основе текстур маски растворения. Маска растворения? – это текстура оттенков серого, где цвет определяет, когда пиксель совершит переход к целевой текстуре. Например, рассмотрим следующую спиральную маску растворения:
 
 ![](https://i.gyazo.com/3c32e920efdf6cfb35214b6c9b617a6a.png)
 
-— the black square in the top-right corner indicates that the transition target should be displayed there at the start of the transition and the pure-white square in the center will transition in the very end.
+- Черный квадрат в правом верхнем углу указывает на то, что целевая текстура перехода должна быть отображена там в самом начале перехода, а чистый белый квадрат в центре будет совершать переход в самом конце.
 
-To make a custom transition, use `Custom` transition mode and specify path (relative to project "Resources" folder) to the dissolve mask texture via the `dissolve` parameter, eg:
+Чтобы создать пользовательский переход, используйте режим перехода `Custom` и укажите путь (относительно папки "Resources" проекта) к текстуре маски растворения с помощью параметра `dissolve`, например:
 
 ```
 @back Appearance.Custom dissolve:Textures/Spiral
 ```
 
-Check out the following video for the usage examples:
+Посмотрите следующее видео для примеров использования:
 
 <div class="video-container">
     <iframe src="https://www.youtube-nocookie.com/embed/HZjey6M2-PE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

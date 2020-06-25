@@ -1,25 +1,26 @@
 ﻿# Bolt
 
-[Bolt](https://assetstore.unity.com/packages/tools/visual-scripting/bolt-87491) is an advanced visual scripting solution for Unity providing the most flexibility for both programmers and designers. 
+[Bolt](https://assetstore.unity.com/packages/tools/visual-scripting/bolt-87491) – это передовое визуальное скриптовое решение для Unity, обеспечивающее максимальную гибкость как для программистов, так и для дизайнеров. 
+
 
 ![](https://i.gyazo.com/ab7c9d92b32810b030aba24b4bd95405.jpg)
 
-## Setup
+## Установка
 
-Download and install Bolt package to your Naninovel project. **Bolt v2 is recommended**, as the previous version doesn't support generics under AOT platforms (Naninovel core API is using generics extensively).
+Скачайте и установите пакет Bolt в свой проект Naninovel. **Рекомендуется использовать Bolt v2**, так как предыдущие версии не поддерживают дженерики под платформами AOT (ядро API Naninovel? широко использует дженерики).
 
-Now we need to expose Naninovel API for Bolt. Open the extractor tool via `Tools/Bolt/Extractor...`:
+Теперь нам нужно сделать API Naninovel для Bolt. Откройте распаковщик через `Tools/Bolt/Extractor...`:
 
 ![](https://i.gyazo.com/bcd6cf253b77b20f12b7557f41d2a0ae.png)
 
-Under "Namespaces" tab add a new namespace record, find "Naninovel" in the list, check "Hierarchy" and press "Fast Extract":
+Во вкладке "Namespaces" добавьте новую запись пространства имен, найдите в списке "Naninovel", установите флажок "Hierarchy" и нажмите кнопку "Fast Extract":
 
 ![](https://i.gyazo.com/0a0460e46aa57fde767b037d6d3af70e.png)
 
-That's it, you can now use Naninovel C# API in your bolt graphs.
+Вот и все, теперь вы можете использовать Naninovel C# API в своих графиках Bolt.
 
 ![](https://i.gyazo.com/080106d574ea894f62ea79b7dd904ab2.png)
 
 ::: example
-An example project is available on GitHub: [github.com/Elringus/NaninovelBolt](https://github.com/Elringus/NaninovelBolt). Be aware, that neither Naninovel, nor Bolt packages are not distributed with the project, hence compilation errors will be produced after opening it for the first time; import the packages from the Asset Store to resolve the issues.
+Пример проекта доступен на GitHub: [github.com/Elringus/NaninovelBolt](https://github.com/Elringus/NaninovelBolt). Имейте в виду, что ни Naninovel, ни Bolt не поставляются вместе с проектом, поэтому ошибки компиляции будут возникать после его первого открытия; импортируйте пакеты из хранилища ассетов, чтобы решить эту проблему.
 :::
