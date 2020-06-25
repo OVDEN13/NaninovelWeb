@@ -92,16 +92,16 @@ time | Строка | Продолжительность ключа анимац
 
 ID | Тип | Описание
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Text</span> | String | The text to append.
-printer | String | ID of the printer actor to use. Will use a a default one when not provided.
-author | String | ID of the actor, which should be associated with the appended text.
+<span class="command-param-nameless command-param-required" title="Безымянный параметр: значение следует указывать после ID команды без указания ID параметра. Обязательный параметр: параметр должен всегда указываться">Tекст</span> | Строка | Текст для добавления.
+принтер | Строка | ID актера принтера, который будет использован. Если параметр не указан, будет использован принтер по умолчанию.
+автор | Строка | ID актера, который должен быть связан с добавленым текстом.
 
 </div>
 
 #### Example
 ```
-; Print first part of the sentence as usual (gradually revealing the message),
-; then append the end of the sentence at once.
+; Напечатайте первую часть предложения как обычно (постепенно проявляя сообщение)
+; затем добавьте конец предложения сразу.
 Lorem ipsum
 @append " dolor sit amet."
 ```
