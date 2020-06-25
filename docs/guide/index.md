@@ -1,10 +1,14 @@
 # Introduction
 
+::: warn
+This is a translated version of the documentation. It may be incorrect or out of date. For the relevant and up to date version [switch to the original documentation](/guide/).
+:::
+
 Naninovel is an extension for [Unity game engine](https://unity3d.com). It consists of a C# framework and editor utilities to support development of [visual novel games](https://en.wikipedia.org/wiki/Visual_novel).
 
 [!!lRxIKDU9z4k]
 
-::: warn
+::: note
 While Naninovel doesn't limit what you can achieve with Unity, there are some requirements (supported Unity versions, project configuration, target platforms) for some of the built-in features to work correctly; consult [compatibility page](/guide/compatibility.md) for more information.
 :::
 

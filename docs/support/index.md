@@ -29,7 +29,7 @@ Unity is a standalone product with an enormous set of features; it has its own d
 ## Developer Support
 
 ::: warn
-Developer support is limited to Naninovel-specific topics only. For anything Unity-related (build UIs with uGUI, setup addressable system, write C# scripts, etc) see the [information above](/support/#unity-support).
+Developer support is limited to Naninovel-specific topics only and can be provided in either English or Russian languages. For anything Unity-related (build UIs with uGUI, setup addressable system, write C# scripts, etc) see the [information above](/support/#unity-support).
 :::
 
 To receive direct developer support join Naninovel Discord server ([discord.gg/BfkNqem](https://discord.gg/BfkNqem)) and register your copy of the asset using the following registration form: [naninovel.com/register](https://naninovel.com/register/).
@@ -54,7 +54,7 @@ Follow the steps below to create and share a reproduction project:
 1. Create a new Unity project. Make sure you're using Unity version supported by the [current Naninovel release](https://github.com/Elringus/NaninovelWeb/releases).
 2. Import the latest available Naninovel version from the Asset Store (in case a pre-release version is available, use it instead).
 3. Add the required assets and modify the project to reproduce the issue. Please **keep naninovel scripts as short as possible** and only add assets that are **essential to replicate the issue**.
-4. Create a text file (.txt) inside the project directory and specify step-by-step instructions on how to reproduce the issue, eg:
+4. Create a text file (.txt) inside the project directory and specify step-by-step instructions (in English) on how to reproduce the issue, eg:
 
 ```
 1. Open scene "SampleScene".
