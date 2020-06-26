@@ -1,153 +1,153 @@
-# Characters 
+# Персонажи 
 
-Characters are actors used to represent scene entities that are placed on top of the [backgrounds](/guide/backgrounds.md). 
+Персонажи – это акторы, используемые для показа элементов сцены, размещённых поверх [фонов](/guide/backgrounds.md). 
 
-A character actor is defined with a name, appearance, visibility, transform (position, rotation, scale) and look direction. It can change appearance, visibility, transform and look direction over time.
+Актор персонажа определяется именем, внешностью, видимостью, трансформацией (что включает в себя положение, поворот, масштаб) и направлением взгляда. Он может изменять внешность, видимость, трансформацию и направление взгляда с течением времени.
 
-Characters' behavior can be configured using `Naninovel -> Configuration -> Characters` context menu; for available options see [configuration guide](/guide/configuration.md#characters). The characters' resources manager can be accessed using `Naninovel -> Resources -> Characters` context menu.
+Поведение персонажей может быть настроено с помощью контекстного меню `Naninovel -> Configuration -> Characters`; доступные варианты см. в [руководстве по конфигурации](/guide/configuration.md#characters). Доступ к менеджеру ресурсов персонажей можно получить с помощью контекстного меню `Naninovel -> Resources -> Characters`.
 
-![Add Character](https://i.gyazo.com/c8a4f7f987621831b4a2ecb3145a4a07.png)
+![Добавление персонажа](https://i.gyazo.com/c8a4f7f987621831b4a2ecb3145a4a07.png)
 
-In case you have a lot of characters and/or appearances per character and it's inconvenient to assign them all via editor menu, it's possible to just drop them at `Resources/Naninovel/Characters` folder, grouped under folders corresponding to actor ID. Eg, to add appearances for a character actor with "Kohaku" ID, store the textures (sprites) at `Resources/Naninovel/Characters/Kohaku` folder and they'll automatically be available in the scripts.
+В случае, если у вас есть много персонажей и/или внешностей для каждого персонажа, и вам неудобно назначать их все через меню редактора, вы можете просто поместить их в папку `Resources/Naninovel/Characters`, сгруппированными в папки, соответствующие ID их акторов. Например, чтобы добавить внешнность для актора персонажа с ID "Kohaku", сохраните текстуры (спрайты) в папке `Resources/Naninovel/Characters/Kohaku`, и они автоматически будут доступны в сценариях.
 
-You can additionally organize appearance resources with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in naninovel scripts. Eg, appearance texture stored as `Resources/Naninovel/Characters/Kohaku/Casual/Angry` can be referenced in scripts as `Casual/Angry`.
+Вы можете дополнительно организовать ресурсы внешностей с помощью подпапок, если хотите; в этом случае используйте прямой слеш (`/`) при ссылке на них в скриптах Naninovel. Например, текстура внешности, сохранённая как `Resources/Naninovel/Characters/Kohaku/Casual/Angry` может быть объявлена в сценариях как `Casual/Angry`.
 
-It's also possible to use [addressable asset system](/guide/resource-providers.md#addressable) to manually expose the resources. To expose an asset, assign address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "Happy" appearance for "Kohaku" character, assign the texture asset following address: `Naninovel/Characters/Kohaku/Happy`. Be aware, that addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
+Также можно использовать [систему адрессируемых ассетов?](/guide/resource-providers.md#addressable), чтобы вручную распределить ресурсы. Чтобы предоставить доступ к ассету, назначьте адрес, равный пути, который вы использовали бы для его объявления с помощью метода, описанного выше, за исключением опущенной части "Resources/". Например, для объявления внешности "Happy" для персонажа "Kohaku" назначьте ассету следующий адрес: `Naninovel/Characters/Kohaku/Happy`. Имейте в виду, что адресируемый провайдер по умолчанию не используется в редакторе; вы можете разрешить его, включив свойство `Enable Addressable In Editor` в меню конфигурации провайдера ресурсов.
 
-In naninovel scripts, characters are mostly controlled with [@char] command:
+В сценариях Naninovel персонажи в основном контролируются с помощью команды [@char]:
 
 ```
-; Shows character with name `Sora` with a default appearance.
+; Вывадение персонажа с именем `Sora` с внешностью по умолчанию.
 @char Sora
 
-; Same as above, but sets appearance to `Happy`.
+; То же, что и выше, но с применением внешности `Happy`.
 @char Sora.Happy
 
-; Same as above, but also positions the character 45% away from the left border
-; of the screen and 10% away from the bottom border; also makes him look to the left.
+; То же, что и выше, но также позиционируя персонажа на расстоянии 45% от левой границы
+; экрана и на 10% от нижней границы; также заставляя его смотреть влево.
 @char Sora.Happy look:left pos:45,10
 ```
 
-## Poses
+## Позы
 
-Each character has `Poses` property allowing to specify named states (poses).
+Каждый персонаж имеет свойство `Poses`, позволяющее задавать различные именованные состояния("позы").
 
 ![](https://i.gyazo.com/5b022d32eddb3e721ed036c96f662f5d.png)
 
-Pose name can be used as appearance in [@char] command to apply all the parameters specified in the pose state at once, instead of specifying them individually via the command parameters.
+Название позы может быть использовано в качестве внешности в команде [@char] для применения всех параметров, указанных в позе сразу, вместо того, чтобы указывать их по отдельности с помощью команд параметров.
 
 ```
-; Given `SuperAngry` pose is defined for `Kohaku` character,
-; applies all the parameters specified in the pose state.
+; Данная поза `SuperAngry` определена для персонажа `Kohaku`,
+; применяет все параметры, указанные в состоянии позы.
 @char Kohaku.SuperAngry
 
-; Same as above, but using `DropFade` transition over 3 seconds.
+; То же, что и выше, но с использованием перехода `DropFade` длительностью в 3 секунды.
 @char Kohaku.SuperAngry transition:DropFade time:3
 ```
 
-Notice, that when a pose is used as appearance, you can still override individual parameters, eg:
+Обратите внимание, что когда поза используется в качестве внешности, вы все еще можете переопределить отдельные параметры, например:
 
 ```
-; Given `SuperAngry` pose is defined for `Kohaku` character,
-; applies all the parameters specified in the pose state,
-; except tint, which is overridden in the command.
+; Данная поза `SuperAngry` определена для персонажа `Kohaku`,
+; применяет все параметры, указанные в состоянии позы,
+; за исключением оттенка, который переопределён отдельной командой.
 @char Kohaku.SuperAngry tint:#ff45cb
 ```
 
-## Display Names
+## Отображаемые имена
 
-In the character configuration you can set a `Display Name` for specific characters. When set, display name will be shown in the printer name label UI, instead of the character's ID. This allows using compound character names, that contains spaces and special characters (which is not allowed for IDs).
+В конфигурации персонажей вы можете установить `Display Name` для определенных персонажей. При установке отображаемое имя будет выводиться в метке имени в принтере вместо ID персонажа. Это позволяет использовать составные имена персонажей, содержащие пробелы и специальные символы (что не допускается для ID).
 
-For localization, use "CharacterNames" [managed text](/guide/managed-text) document, which is automatically created when running generate managed text resources task. Values from the "CharacterNames" document won't override values set in the character metadata when under the source locale.
+Для локализации используйте [управляемый текстовый?](/guide/managed-text) документ "CharacterNames", который автоматически создается при запуске задачи генерировать управляемые текстовые ресурсы. Значения из документа "CharacterNames" не будут переопределять значения, заданные в метаданных персонажей, пока они находятся в исходной локали.
 
-It's possible to bind a display name to a custom variable to dynamically change it throughout the game via naninovel scripts. To bind a display name, specify name of the custom variable wrapped in curly braces in the character configuration menu.
+Можно привязать отображаемое имя к пользовательской переменной, чтобы динамически изменять его на протяжении всей игры с помощью сценариев Naninovel. Чтобы связать отображаемое имя, укажите имя пользовательской переменной, заключенной в фигурные скобки, в меню конфигурации персонажей.
 
 ![](https://i.gyazo.com/9743061df462bd809afc45bff20bbb6d.png)
 
-You can then change the variable value in the scripts and it will also change the display name:
+После этого вы можете изменять значение переменной в сценариях, и это будет также изменять отображаемое имя:
 
 ```
 @set PlayerName="Mistery Man"
 Player: ...
 
 @set PlayerName="Dr. Stein"
-Player: You can call me Dr. Stein.
+Player: You can call me Dr. Stein. ?
 ```
 
-It's also possible to use the name binding feature to allow player pick their display name using [@input] command:
+Также можно использовать функцию привязки имени, чтобы позволить игроку выбрать свое отображаемое имя с помощью команды [@input]:
 
 ```
 @input PlayerName summary:"Choose your name."
 @stop
-Player: You can call me {PlayerName}.
+Player: You can call me {PlayerName}. ?
 ```
 
-## Message Colors
+## Цвета сообщений
 
-When `Use Character Color` is enabled in the character configuration, printer text messages and name labels will be tinted in the specified colors when the corresponding character ID is specified in a [@print] command or generic text line.
+Если в конфигурации персонажей включена функция `Use Character Color`, текстовые сообщения принтера и метки имен будут окрашены в указанные цвета, если соответствующий ID персонажа указан в команде [@print] или общей текстовой строке.
 
-The following video demonstrates how to use display names and character colors.
+В этом видео показано, как использовать отображаемые имена и цвета персонажей.
 
 [!!u5B5s]
 
-## Avatar Textures
+## Текстуры аватаров
 
-You can assign avatar textures to characters using `avatar` parameter of [@char] command. Avatars will be shown by the compatible text printers when they print a text message that is associated with the character. Currently, only `Wide` and `Chat` text printers support the avatars feature.
+Вы можете назначать текстуры аватаров персонажам, используя параметр `avatar` команды [@char]. Аватары будут отображаться совместимыми текстовыми принтерами, когда они выводят текстовое сообщение, связанное с этим персонажем. В настоящее время функцию аватаров поддерживают только текстовые принтеры `Wide` и `Chat`.
 
 ![](https://i.gyazo.com/83c091c08846fa1cab8764a8d4dddeda.png)
 
-To use any given avatar, you have to first add it to the avatar resources and give it a name. You can do this via `Avatar Resources` property in the characters configuration menu.
+Чтобы использовать любой заданный аватар, вы должны сначала добавить его в ресурсы аватара и дать ему имя. Вы можете сделать это с помощью свойства `Avatar Resources` в меню конфигурации персонажей.
 
 ![](https://i.gyazo.com/5a0f10d174aa75ed87da1b472567e40b.png)
 
 ::: note
-Avatar names can be arbitrary and don't have to contain an existing character ID or appearance. This is only required when you want to associate an avatar with a character so that it's shown automatically.
+Имена аватаров могут быть произвольными и не обязаны содержать существующий ID персонажа или внешность. Это требуется только в том случае, если вы хотите связать аватар с персонажем, чтобы он отображался автоматически.
 :::
 
-You can then show a specific avatar texture like this:
+Теперь вы можете показать определенную текстуру аватара следующим образом:
 
 ```
 @char CharacaterId avatar:AvatarName
 ```
 
-To set a default avatar for a character, give the avatar texture resource name that equals to `CharacterID/Default`; eg, to set a default avatar for character with ID `Kohaku` name the avatar resource `Kohaku/Default`. Default avatars will be shown automatically, even when `avatar` parameter is not specified in the [@char] commands.
+Чтобы установить аватар по умолчанию для персонажа, дайте имя ресурсу текстуры аватара, который равен `CharacterID/Default`; например, чтобы установить аватар по умолчанию для персонажа с ID `Kohaku`, дайте имя ресурсу аватара `Kohaku/Default`. Заданные аватары по умолчанию будут отображаться автоматически, даже если параметр `avatar` не указан в командах [@char].
 
-It's also possible to associate avatars with specific character appearances, so that when character changes appearance, the avatar will also change automatically. For this, name the avatar resources using the following format: `CharacterID/CharacterAppearance`, where `CharacterAppearance` is the name of the appearance for which to map the avatar resource.
+Кроме того, можно связать аватары с определенными внешностями персонажа, так что когда персонаж будет менять внешность, аватар также автоматически будет меняться. Для этого назовите ресурсы аватара в следующем формате: `CharacterID/CharacterAppearance`, где `CharacterAppearance` – это имя внешности, которой сопоставляется ресурс аватара.
 
-Please note, that the **avatars are not directly connected with character appearances** and shouldn't be considered as a way to show character on the scene. Appearances specified in character's resource manager are the actual representation of a character on the scene. Avatars is a standalone feature, that "injects" an arbitrary image to a compatible text printer.
+Обратите внимание, что **аватары не связаны напрямую с внешностью персонажа** и не должны рассматриваться как способ показать характер на сцене. Внешность, указанная в диспетчере ресурсов персонажа, является фактическим представлением персонажа на сцене. Аватары – это автономная функция, которая "вводит" произвольное изображение в совместимый текстовый принтер.
 
-It's possible to show only the avatar of a character inside a text printer, but hide the character itself by setting `visible` parameter of the [@char] command to `false`, eg:
+Можно показать только аватар персонажа внутри текстового принтера, но скрыть самого персонажа, установив параметр `visible` команды [@char] в значение `false`, например:
 ```
 @char CharacaterId visible:false
 ```
 
-In case you're constantly changing avatars while the character itself should remain hidden, consider disabling `Auto Show On Modify` in the characters configuration menu; when disabled, you won't have to specify `visible:false` to change any parameters of the character while it's hidden.
+Если вы постоянно меняете аватары, в то время как сам персонаж должен оставаться скрытым, вы можете отключить `Auto Show On Modify` в меню конфигурации персонажей; когда он отключен, вам не нужно будет указывать `visible:false`, чтобы изменить какие-либо параметры персонажа, пока он скрыт.
 
-## Speaker Highlight
+## Подсветка говорящего
 
-When enabled in the character configuration, will tint the character based on whether the last printed message is associated with it.
+Если этот параметр включен в конфигурации персонажей, он будет окрашивать персонажа в зависимости от того, связано ли с тем последнее напечатанное сообщение.
 
 [!!gobowgagdyE]
 
-## Lip Sync
+## Синхронизация движений губ со звуком
 
-[Generic](/guide/characters.md#generic-characters) and [Live2D](/guide/characters.md#live2d-characters) character implementations support so called "lip synchronization" feature, allowing to drive character's mouth animation while its the author of the printed message by sending the appropriate events. 
+[Универсальные](/guide/characters.md#generic-characters) и [Live2D](/guide/characters.md#live2d-characters) реализации персонажей поддерживают так называемую функцию "синхронизации движений губ со звуком", позволяя управлять анимацией рта персонажа, пока от его имени печатается сообщение, для чего отправляя соответствующие события.
 
 [!!fx_YS2ZQGHI]
 
-When [auto voicing](/guide/voicing.md#auto-voicing) feature is enabled, lip sync events will be driven by the voice over; otherwise, printed text messages will activate the events. In the latter case, you'll probably sometimes want to manually start or stop the lip sync (eg, to prevent mouth animation when punctuation marks are printed); for such cases, use [@lipSync] command.
+Когда включена функция [автоозвучивания?](/guide/voicing.md#auto-voicing), события синхронизации губ будут управляться голосом за кадром; в противном случае печатные текстовые сообщения активируют события. В последнем случае вам, вероятно, иногда захочется вручную запустить или остановить синхронизацию губ (например, чтобы предотвратить движение рта при печати знаков препинания); в таких случаях используйте команду [@lipSync].
 
-See [Generic](/guide/characters.md#generic-characters) and [Live2D](/guide/characters.md#live2d-characters) character implementation docs below for the details on how to setup the lip sync feature.
+См. документацию по реализации [универсальных](/guide/characters.md#generic-characters) и [Live2D-](/guide/characters.md#live2d-characters)персонажей ниже для получения подробной информации о том, как настроить функцию синхронизации губ.
 
-## Linked Printer
+## Привязанный принтер
 
-It's possible to associate a [text printer](/guide/text-printers.md) with a character using `Linked Printer` property.
+Существует возможность привязать [текстоый принтер](/guide/text-printers.md) с персонажем, используя параметр `Linked Printer`.
 
 ![](https://i.gyazo.com/50ca6b39cd7f708158678339244b1dc4.png)
 
-When linked, the printer will automatically be used to handle messages authored by the character.
+При подключении принтер будет автоматически использоваться для обработки сообщений, выводимых от имени этого персонажа.
 
-Be aware, that [@print] commands (that are also used under the hood when printing generic text lines) make associated printers default and hide other visible printers by default. When printers are linked to characters, print commands will automatically change the currently visible and default text printer, while printing text associated with the corresponding characters. It's possible to prevent this behavior by disabling `Auto Default` property in printer actor configuration menu; when disabled you'll have to manually show/hide and switch default printers with [@printer] commands.
+Имейте в виду, что команды [@print] (которые также используются под капотом при печати общих текстовых строк) по умолчанию используют привязанные принтеры по умолчанию и скрывают другие видимые принтеры. Когда принтеры привязаны к персонажам, команды печати автоматически изменят текущий видимый и стандартный текстовый принтер, одновременно печатая текст, связанный с соответствующим персонажем. Такое поведение можно предотвратить, отключив свойство `Auto Default` в меню конфигурации принтера актора; если оно отключено, вам придется вручную показывать/скрывать и переключать принтеры по умолчанию с помощью команд [@printer].
 
 ## Sprite Characters 
 
