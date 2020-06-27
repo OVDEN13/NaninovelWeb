@@ -17,7 +17,7 @@
 В сценариях Naninovel персонажи в основном контролируются с помощью команды [@char]:
 
 ```
-; Вывадение персонажа с именем `Sora` с внешностью по умолчанию.
+; Вывод персонажа с именем `Sora` с внешностью по умолчанию.
 @char Sora
 
 ; То же, что и выше, но с применением внешности `Happy`.
@@ -147,177 +147,178 @@ Player: You can call me {PlayerName}. ?
 
 При подключении принтер будет автоматически использоваться для обработки сообщений, выводимых от имени этого персонажа.
 
-Имейте в виду, что команды [@print] (которые также используются под капотом при печати общих текстовых строк) по умолчанию используют привязанные принтеры по умолчанию и скрывают другие видимые принтеры. Когда принтеры привязаны к персонажам, команды печати автоматически изменят текущий видимый и стандартный текстовый принтер, одновременно печатая текст, связанный с соответствующим персонажем. Такое поведение можно предотвратить, отключив свойство `Auto Default` в меню конфигурации принтера актора; если оно отключено, вам придется вручную показывать/скрывать и переключать принтеры по умолчанию с помощью команд [@printer].
+Имейте в виду, что команды [@print] (которые также используются при печати общих текстовых строк) по умолчанию используют привязанные принтеры по умолчанию и скрывают другие видимые принтеры. Когда принтеры привязаны к персонажам, команды печати автоматически изменят текущий видимый и стандартный текстовый принтер, одновременно печатая текст, связанный с соответствующим персонажем. Такое поведение можно предотвратить, отключив свойство `Auto Default` в меню конфигурации принтера актора; если оно отключено, вам придется вручную показывать/скрывать и переключать принтеры по умолчанию с помощью команд [@printer].
 
-## Sprite Characters 
+## Спрайтовые персонажи 
 
-Sprite implementation of the character actors is the most common and simple one; it uses a set of [sprite](https://docs.unity3d.com/Manual/Sprites) assets to represent appearances of the character. The source of the sprites could be images (textures) of any [formats supported by Unity](https://docs.unity3d.com/Manual/ImportingTextures).
+Спрайтовая реализация акторов персонажей является наиболее распространенной и простой; она использует набор ассетов [спрайтов](https://docs.unity3d.com/Manual/Sprites) для представления внешности персонажа. Источником спрайтов могут быть изображения (текстуры) любых форматов, [поддерживаемых Unity](https://docs.unity3d.com/Manual/ImportingTextures).
 
-## Diced Sprite Characters
+## Нарезанные спрайты персонажей
 
-Built with an open source [SpriteDicing](https://github.com/Elringus/SpriteDicing) package, `DicedSpriteCharacter` implementation allows to significantly reduce build size and texture memory by reusing texture areas of the character sprites. 
+Основанная на пакете [Sprite Dicing](https://github.com/Elringus/SpriteDicing) с открытым исходным кодом, реализация `DicedSpriteCharacter` позволяет значительно уменьшить размер сборки и занимаемую текстурами память за счет повторного использования текстурных областей спрайтов персонажей.
 
-![Sprite Dicing](https://i.gyazo.com/af08d141e7a08b6a8e2ef60c07332bbf.png)
+![Нарезка спрайта](https://i.gyazo.com/af08d141e7a08b6a8e2ef60c07332bbf.png)
 
-Install the package via [Unity package manager](https://docs.unity3d.com/Manual/upm-ui.html): open package manager window (Window -> Package Manager), click "+" button, choose "Add package from git URL", enter `https://github.com/Elringus/SpriteDicing.git#package` to the input field and click "Add".
+Установите пакет через [менеджер пакетов Unity](https://docs.unity3d.com/Manual/upm-ui.html): откройте окно менеджера пакетов (Window -> Package Manager), нажмите кнопку "+", выберите "Add package from git URL", введите `https://github.com/Elringus/SpriteDicing.git#package` в поле ввода и нажмите кнопку "Add".
 
 [!b54e9daa9a483d9bf7f74f0e94b2d38a]
 
-`DicedSpriteAtlas` assets containing character appearances are used as the resources for the diced sprite characters. Each appearance is mapped by name to the diced sprites contained in the atlas.
+Ассеты `DicedSpriteAtlas`, содержащие внешности персонажей, используются в качестве ресурсов для нарезанных спрайтов персонажей. Каждая внешность сопоставляется по имени с нарезкой спрайтов, содержащихся в атласе.
 
-Be aware, that some of diced character metadata properties (eg, pixels per unit, pivot) are controlled by the atlas asset; while the values in the character configuration are applied to a render texture used to represent the actual sprite. When changing the atlas properties, don't forget to rebuild it for changes to take effect.
+Имейте в виду, что некоторые свойства метаданных нарезанных спрайтов (например, пиксели на единицу, pivot) управляются ассетом атласа, в то время как значения в конфигурации персонажей применяются к создаваемой текстуре?, используемой для представления фактического спрайта. При изменении свойств атласа не забудьте перестроить его, чтобы изменения вступили в силу.
 
 ![](https://i.gyazo.com/3765726bd326bb7a8a03a653f458cd3d.png)
 
-The following video guide covers creating and configuring diced sprite atlas, adding new diced character based on the created atlas and controlling the character from a naninovel script.
+Следующий видеогайд охватывает создание и настройку атласа нарезанного спрайта, добавление нового нарезанного персонажа на основе созданного атласа и управление персонажем из сценария Naninovel.
 
 [!!6PdOAOsnhio]
 
-## Layered Characters
+## Послойные персонажи
 
-The layered implementation allows composing characters from multiple sprites (layers) and then toggle them individually or in groups via naninovel scripts at runtime.
+Послойная реализация позволяет создавать персонажей из нескольких спрайтов (слоев), а затем переключать их по отдельности или группами с помощью сценариев Naninovel во время выполнения.
 
-To create a layered character prefab, use `Create -> Naninovel -> Character -> Layered` asset context menu. Enter [prefab editing mode](https://docs.unity3d.com/Manual/EditingInPrefabMode.html) to compose the layers. Several layers and groups will be created by default. You can use them or delete and add your own.
+Чтобы создать префаб послойного персонажа, используйте контекстное меню `Create -> Naninovel -> Character -> Layered`. Войдите в [режим редактирования префаба](https://docs.unity3d.com/Manual/EditingInPrefabMode.html) для составления слоев. По умолчанию будет создано несколько слоев и групп. Вы можете использовать их или удалить и добавить свои собственные.
 
-Each child game object of the root prefab object with a [sprite renderer](https://docs.unity3d.com/Manual/class-SpriteRenderer.html) component is considered a *layer*; other objects considered *groups*. Aside from organization and transformation purposes, placing layers inside groups will allow you to select a single layer or disable/enable all the layers inside a group with a single expression in naninovel script (more on that later). 
+Каждый дочерний игровой объект корневого объекта префаба с компонентом [спрайтового рендерера?](https://docs.unity3d.com/Manual/class-SpriteRenderer.html) считается *слоем*; другие объекты считаются *группами*. Помимо организации и трансформации, размещение слоев внутри групп позволит вам выбрать один слой или отключить/включить все слои внутри группы с помощью одного выражения в сценарии Naninovel (подробнее об этом позже).
 
-To hide some of the layers from being visible by default, disable sprite renderer components (not the game objects).
+Чтобы скрыть некоторые слои от просмотра по умолчанию, отключите компоненты рендерера спрайтов (а не игровые объекты).
 
-The white frame drawn over the prefab is used to describe the actor canvas, which will be rendered to a render texture at runtime. Make sure to minimize the empty areas inside the frame by moving the layers and groups to prevent wasting texture memory and for anchoring to work correctly.
+Белая рамка поверх префаба используется для описания холста актера, который будет визуализирован в готовую текстуру во время выполнения. Убедитесь, что вы минимизировали пустые области внутри кадра, перемещая слои и группы, чтобы предотвратить потерю памяти на текстуры и обеспечить правильную работу якорей.
 
 ![](https://i.gyazo.com/4ff103c27858ac9671ba3b94ab1ade20.png)
 
-You can scale the root game object to fine-tune the default size of the actor.
+Вы можете масштабировать корневой игровой объект, чтобы точно настроить размер актора по умолчанию.
 
-When authoring layered character art in Photoshop, consider using Unity's [PSD Importer package](https://docs.unity3d.com/Packages/com.unity.2d.psdimporter@3.0/manual/index.html) to automatically generate character prefab preserving all the layers and their positions. To preserve the layers hierarchy, make sure to enable `Use Layer Grouping` option in the import settings.
+При создании послойных изображений персонажей в Photoshop вы можете использовать [пакет Unity для импорта PSD](https://docs.unity3d.com/Packages/com.unity.2d.psdimporter@3.0/manual/index.html), чтобы автоматически генерировать префаб персонажа с сохранением всех слоев и их положений. Чтобы сохранить иерархию слоев, обязательно включите опцию `Use Layer Grouping` в настройках импорта.
 
-Don't forget to add the created layered prefab to the character resources (`Naninovel -> Resources -> Characters`). Choose "Naninovel.LayeredCharacter" implementation and drop prefab to the "Resource" field when configuring the resource record.
+Не забудьте добавить созданный послойный префаб к ресурсам персонажей (`Naninovel -> Resources -> Characters`). Выберите "Naninovel.LayeredCharacter" и перетащите префаб в поле "Resource" при настройке записи ресурса.
 
-To control the layered characters in naninovel scripts, use [@char] command in the same way as with the other character implementations. The only difference is how you set the appearance: instead of a single ID, use the *layer composition expression*. There are three expression types:
+Для управления послойными персонажами в сценариях Naninovel используйте команду [@char] так же, как и в других реализациях персонажей. Единственное отличие заключается в том, как вы объявляете внешность: вместо одного ID используйте *выражение композиции слоёв*. Существует три типа выражений:
 
- - Enable a single layer in group: `group>layer`
- - Enable a layer: `group+layer`
- - Disable a layer: `group-layer`
+ - Включить один слой в группе: `group>layer`
+ - Включить слой: `group+layer`
+ - Отключить слой: `group-layer`
 
-For example, consider a "Miho" character, which has a "Body" group with three layers: "Uniform", "SportSuit" and "Pajama". To enable "Uniform" layer and disable all the others, use the following command:
+Например, рассмотрим персонажа "Miho", который имеет группу "Body" с тремя слоями: "Uniform", "SportSuit" и "Pajama". Чтобы включить слой "Uniform" и отключить все остальные, используйте следующую команду:
 
 ```
 @char Miho.Body>Uniform
 ```
 
-To enable or disable a layer without affecting any other layers in the group, use "+" and "-" respectively instead of ">". You can also specify multiple composition expressions splitting them with commas:
+Чтобы включить или отключить слой, не затрагивая другие слои в группе, используйте "+" и "-" соответственно вместо ">". Вы также можете указать несколько композиционных выражений, разделив их запятыми:
 
 ```
-; Enable glasses, disable hat, select "Cool" emotion.
+; Добавить очки, убрать шляпу, выбрать эмоцию "Cool".
 @char CharId.Head/Accessories+BlackGlasses,Head-Hat,Head/Emotions>Cool
 ```
 
-To select a layer outside of any groups (a child of the root prefab object), just skip the group part, eg:
+Чтобы выбрать слой вне каких-либо групп (дочерний объект корневого объекта префаба), просто пропустите группу, например:
 
 ```
-; Given "Halo" layer object is placed under the prefab root, disable it
+; Дан слой "Halo" – дочерний объект корневого объекта префаба, убрать его
 @char CharId.-Halo
 ```
 
-It's also possible to affect all the layers inside a group (and additionally its neighbors when using select expression) by omitting layer name in composition expression:
+Кроме того, можно воздействовать на все слои внутри группы (а также на ее соседей при использовании выборного выражения), опуская имя слоя в выражении композиции:
 
 ```
-; Disable all the layers in "Body/Decoration" group
+; Убрать все слои из группы "Body/Decoration".
 @char CharId.Body/Decoration-
 
-; Enable all the existing layers.
+; Добавить все существующие слои.
 @char CharId.+
 
-; Given `Poses/Light` and `Poses/Dark` groups (each containing multiple layers), 
-; enable all the sprites inside `Light` group and disable layers inside `Dark` group
+; Даны группы `Poses/Light` и `Poses/Dark` (each containing multiple layers), 
+; добавить все спрайты из группы `Light` и убрать все из группы `Dark`.
 @char CharId.Poses/Light>
 ```
 
-The above expressions will affect not only the direct descendants of the target groups, but all the layers contained in the underlaying groups, recursively.
+Приведенные выше выражения будут рекурсивно воздействовать не только на прямых потомков выбранных групп, но и на все слои, содержащиеся в нижележащих группах.
 
-When an appearance is not specified (eg, `@char CharId` without previously setting any appearance), a default appearance will be used; default appearance of the layered characters equals to how the layered prefab looks in the editor.
+Если внешность не задана (например, `@char CharId` без предварительной настройки внешности), будет использоваться внешность умолчанию; внешность послойных персонажей по умолчанию равна тому, как выглядит послойный префаб в редакторе.
 
-The video below demonstrates how to setup a layered character and control it via naninovel commands.
+Видео ниже демонстрирует, как настраивать послойного персонажа и управлять им с помощью команд Naninovel.
 
 [!!Bl3kXrg8tiI]
 
 ::: note
-`@char Miho.Shoes>` command displayed in the video will actually select the "Shoes" group (disabling all the neighbor groups), not hide it. Correct command to hide a group is `@char Miho.Shoes-`.
+Команда `@char Miho.Shoes>`, показанная в видео, выбирает группу "Shoes" (отключая все соседние группы), но не скрывает её. Правильная команда для скрытия группы – `@char Miho.Shoes-`.
 :::
 
-It's possible to map composition expressions to keys via `Composition Map` property of `Layered Actor Behaviour` component:
+Можно сопоставить композиционные выражения для ключей с помощью свойства `Composition Map` компонента `Layered Actor Behaviour`:
 
 ![](https://i.gyazo.com/ede5cde3548a3187aa714d3e140750ba.png)
 
-— the keys can then be used to specify layered actor appearance:
+– после этого ключи могут быть использованы для определения внешности послойного персонажа:
 
 ```
-; Corresponds to `Body>Uniform,Hair/Back>Straight,Hair/Front>Straight,Shoes>Grey`.
+; Соответствует `Body>Uniform,Hair/Back>Straight,Hair/Front>Straight,Shoes>Grey`.
 @char Miho.Uniform
-; Corresponds to `Hair/Back>Straight,Hair/Front>Straight`.
+; Соответствует `Hair/Back>Straight,Hair/Front>Straight`.
 @char Miho.StraightHair
 ```
 
-While editing layered character prefab, it's possible to preview mapped composition expressions by right-clicking a map record and selecting "Preview Composition".
+При редактировании префаба послойного персонажа можно предварительно просмотреть заданные композиционные выражения, щелкнув правой кнопкой мыши по записи выражения и выбрав пункт "Preview Composition".
 
 ![](https://i.gyazo.com/9fb0aeccf4f33245d9f975592ee86dbc.gif)
 
-Be aware, that the layer objects are not directly rendered by Unity cameras at runtime; instead, they're rendered once upon each composition (appearance) change to a temporary render texture, which is then fed to a custom mesh visible to the Naninovel camera. This setup is required to prevent semi-transparency overdraw issues and to support transition animation effects.
+Имейте в виду, что объекты слоёв не визуализируются непосредственно камерами Unity во время выполнения; вместо этого они визуализируются один раз при каждом изменении композиции (внешности) во временную собранную текстуру, которая затем подается в сетку, видимую для камеры Naninovel. Эта настройка необходима для предотвращения проблем с прорисовкой полупрозрачных элементов и поддержки эффектов анимации перехода.
 
-## Generic Characters
+## Универсальные персонажи 
 
-Generic character is the most flexible character actor implementation. It's based on a prefab with a `CharacterActorBehaviour` component attached to the root object. Appearance changes and all the other character parameters are routed as [Unity events](https://docs.unity3d.com/Manual/UnityEvents.html) allowing to implement the behavior of the underlying object in any way you wish.
+Универсальный персонаж – это наиболее гибкая реализация актора персонажа. Он основан на сборке с компонентом `CharacterActorBehaviour`, прикрепленным к корневому объекту. Изменения внешности и все остальные параметры персонажей маршрутизируются как [события Unity](https://docs.unity3d.com/Manual/UnityEvents.html), позволяя реализовать поведение базового объекта любым удобным вам способом.
 
 ![](https://i.gyazo.com/9f799f4152782afb6ab86d3c494f4cc4.png)
 
-To create generic character prefab from a template, use `Create -> Naninovel -> Character -> Generic` context asset menu.
+Чтобы создать префаб универсального персонажа по шаблону, используйте контекстное меню `Create -> Naninovel -> Character -> Generic`.
 
-To setup lip sync feature for generic characters, use `On Started Speaking` and `On Finished Speaking` Unity events of `CharacterActorBehaviour` component. When the character becomes or ceases to be the author of any printed message (or rather when the message is fully revealed), the events will be invoked allowing you to trigger any custom logic, like starting or stopping mouth animation of the controlled character. This is similar to how UI's `On Show` and `On Hide` events work; find how they can be used to drive a custom animation in the [UI customization guide](/guide/user-interface.md#adding-custom-ui).
+Для настройки функции синхронизации губ для универсальных персонажей, используйте события Unity `On Started Speaking` и `On Finished Speaking` компонента `CharacterActorBehaviour`. Когда персонаж становится или перестает быть автором любого печатного сообщения (или, скорее, когда сообщение полностью раскрывается), эти события будут вызваны, позволяя вам вызвать любую логику, такую как запуск или остановка анимации рта контролируемого персонажа. Это подобно тому, как работают события пользовательского интерфейса `On Show` и `On Hide`; найти, как они могут быть использованы для управления анимацией, можно в [руководстве по настройке UI](/guide/user-interface.md#adding-custom-ui).
 
-Check the following video tutorial for example on setting up a 3D rigged model as a generic character and routing appearance changes to the rig animations via [Animator](https://docs.unity3d.com/Manual/class-AnimatorController.html) component.
+Ознакомьтесь со следующим видеоуроком как с примером по настройке 3D-модели в качестве универсального персонажа и внесению изменений внешности в анимацию модели с помощью компонента [Animator](https://docs.unity3d.com/Manual/class-AnimatorController.html) компонент.
+
+Check the following video tutorial for example on setting up a 3D rigged model as a generic character and routing appearance changes to the rig animations via [Animator](https://docs.unity3d.com/Manual/class-AnimatorController.html).
 
 [!!HPxhR0I1u2Q]
 
-Be aware, that Unity's `Animator` component could fail to register `SetTrigger` when the game object is enabled/disabled in the same frame; in case you use `GameObject.SetActive` to handle visibility changes (as it's shown in the above tutorial), consider enabling/disabling the child objects with renderers instead.
 
-## Live2D Characters
+## Персонажи Live2D
 
-Live2D character implementation uses assets created with [Live2D Cubism](https://www.live2d.com) 2D modeling and animation software. 
+Реализация персонажей Live2D использует ассеты, созданные с помощью софта для 2D-моделирования и анимации [Live2D Cubism](https://www.live2d.com).
 
-In order to be able to use this implementation you have to first install [Live2D Cubism SDK for Unity](https://live2d.github.io/#unity). Consult official Live2D docs for the installation and usage instructions.
+Чтобы иметь возможность использовать эту реализацию, необходимо сначала установить [Live2D Cubism SDK для Unity](https://live2d.github.io/#unity). Обратитесь к официальной документации Live2D для получения инструкций по установке и использованию.
 
-Then download and import [Live2D extension package](https://github.com/Elringus/NaninovelLive2D/raw/master/NaninovelLive2D.unitypackage).
+После этого скачайте и импортируйте [пакет расширения Live2D](https://github.com/Elringus/NaninovelLive2D/raw/master/NaninovelLive2D.unitypackage).
 
-Live2D model prefab used as the resource for the implementation should have a `Live2DController` component attached to the root object. Appearance changes are routed to the animator component as [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) commands appearance being the trigger name. Eg, if you have a "Kaori" Live2D character prefab and want to invoke a trigger with name "Surprise", use the following command:
+Префаб модели Live2D, используемый в качестве ресурса для реализации, должен иметь компонент `Live2DController`, прикрепленный к корневому объекту. Изменения внешности направляются в компонент аниматора как команды [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html), используя внешность как имя триггера?. Например, если у вас есть Live2D-префаб персонажа "Kaori", и вы хотите вызвать триггер с именем "Surprise", используйте следующую команду:
 
 ```
 @char Kaori.Surprise
 ```
 
-Note, that the above command will only attempt to invoke a [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) with "Surprise" argument on the animator controller attached to the prefab; you have to compose underlying [animator](https://docs.unity3d.com/Manual/Animator) state machine yourself.
+Обратите внимание, что приведенная выше команда будет только пытаться вызвать [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) с аргументом "Surprise" на контроллере аниматора, прикрепленного к префабу; вы должны самостоятельно составить нижележащую систему [аниматора??](https://docs.unity3d.com/Manual/Animator).
 
 ::: warn
-Latest version of Cubism SDK for Unity is working directly with `Animator` component; expressions and poses (exported as expression.json and pose.json), that were previously used in Cubism 2.x are now [deprecated](https://docs.live2d.com/cubism-sdk-tutorials/blendexpression) and not supported by Naninovel's extension for Live2D.
+Последняя версия Cubism SDK для Unity работает непосредственно с компонентом `Animator`; выражения и позы (экспортированные как expression.json и pose.json), которые ранее использовались в Cubism 2.x, теперь [устарели](https://docs.live2d.com/cubism-sdk-tutorials/blendexpression) и не поддерживаются расширением Naninovel для Live2D.
 :::
 
-When Live2D's `CubismLookController` and `CubismMouthController` components are present and setup on the Live2D model prefab, `Live2DController` can optionally use them to control look direction and mouth animation (aka lip sync feature) of the character.
+Когда компоненты Live2D `CubismLookController` и `CubismMouthController` присутствуют и настроены на префаб модели Live2D, `Live2DController` может дополнительно использовать их для управления направлением взгляда и анимацией рта (функцией синхронизации губ) персонажа.
 
 ![](https://i.gyazo.com/498fe948bc5cbdb4dfc5ebc5437ae6b4.png)
 
-Consult Live2D documentation on [eye tracking](https://docs.live2d.com/cubism-sdk-tutorials/lookat) and [lip sync](https://docs.live2d.com/cubism-sdk-tutorials/lipsync) for the setup details.
+Обратитесь к документации Live2D по [трекингу глаз](https://docs.live2d.com/cubism-sdk-tutorials/lookat) и [синхронизации губ](https://docs.live2d.com/cubism-sdk-tutorials/lipsync) для получения подробной информации о настройке.
 
-Be aware, that `Live2DController` expects a "Drawables" gameobject inside the Live2D model prefab (created automatically when importing Live2D models to Unity); the controller will scale this gameobject at runtime in correspondence with "scale" parameter of the [@char] commands. Hence, any local scale values set in the editor will be ignored. To set an initial scale for the Live2D prefabs, please use scale of the parent gameobject as [shown in the video guide](https://youtu.be/rw_Z69z0pAg?t=353).
+Имейте в виду, что `Live2DController` ожидает игровой объект "Drawables" внутри префаба модели Live2D (создается автоматически при импорте моделей Live2D в Unity); контроллер будет масштабировать этот объект во время выполнения в соответствии с параметром "scale" команд [@char]. Следовательно, любые локальные значения, заданные в редакторе, будут проигнорированы. Чтобы установить начальный масштаб для префабов Live2D, пожалуйста, используйте масштаб корневого игрового объекта, как [показано в видеогайде].(https://youtu.be/rw_Z69z0pAg?t=353).
 
-When Live2D extension is installed a "Live2D" item will appear in the Naninovel configuration menu providing following options:
+При установке расширения Live2D в меню конфигурации Naninovel появится пункт "Live2D", содержащий следующие параметры:
 
 ![](https://i.gyazo.com/435a4824f0ce0dd8c9c3f29d457bab24.png)
 
-Render layer specifies the layer to apply for the Live2D prefabs and culling mask to use for the cameras that will render the prefabs. Render camera field allows to use a custom setup for the render camera (the default render camera is stored inside the packages "Prefabs" folder). Camera offset allows to offset the render camera from the rendered prefab; you can use this parameters to uniformly position all the Live2D prefabs relative to the camera.
+Слой рендеринга задает слой, применяемый для префабов Live2D, и маску вырезки?, используемую для камер, которые будут рендерить префабы. Поле рендеровой камеры позволяет использовать пользовательскую настройку для камеры рендеринга (камера рендеринга по умолчанию хранится в папке пакетов "Prefabs"). Смещение камеры позволяет смещать камеру рендеринга от рендерируемого префаба; вы можете использовать эти параметры для равномерного позиционирования всех префабов Live2D относительно камеры.
 
-Following video guide covers exporting a Live2D character from Cubism Editor, configuring the prefab, creating a simple animator state machine and controlling the character from a naninovel script.
+Следующий видеогайд охватывает экспорт персонажа Live2D из Cubism Editor, настройку префаба, создание простого аниматора? и управление персонажем из сценария Naninovel.
 
 [!!rw_Z69z0pAg]
 
 ::: example
-Check out an [example project on GitHub](https://github.com/Elringus/NaninovelLive2D), where a Live2D character is used with Naninovel. Be aware, that neither Naninovel, nor Live2D SDK packages are distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store and Live2D Cubism SDK from their website to resolve the issues.
+Ознакомьтесь с [примером проекта на GitHub](https://github.com/Elringus/NaninovelLive2D), где персонаж Live2D используется в Naninovel. Имейте в виду, что ни пакеты Naninovel, ни пакеты Live2D SDK не поставляются вместе с проектом, поэтому после его первого открытия появятся ошибки компиляции; импортируйте Naninovel из Asset Store и Live2D Cubism SDK с их веб-сайта, чтобы решить эти проблемы.
 :::
