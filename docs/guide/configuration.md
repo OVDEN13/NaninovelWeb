@@ -1,76 +1,76 @@
-﻿# Configuration
-The engine configuration is stored in multiple scriptable object assets located at `Assets/NaninovelData/Resources/Naninovel/Configuration` folder. They are automatically generated when opening the corresponding configuration menus in the Unity editor for the first time. 
+﻿# Конфигурация
+Конфигурация движка хранится в нескольких скриптовых ассетах, расположенных в папке `Assets/NaninovelData/Resources/Naninovel/Configuration`. Они автоматически генерируются при первом открытии соответствующих меню конфигурации в редакторе Unity.
 
-Use `Naninovel -> Configuration` or `Edit -> Project Settings -> Naninovel` to access the configuration menu.
+Используйте `Naninovel -> Configuration` или `Edit -> Project Settings -> Naninovel` для доступа к меню конфигурации.
 
-Notice, that all the configuration menus are supporting [Unity's presets feature](https://docs.unity3d.com/Manual/Presets). It could be useful to create several configuration presets when deploying to different target platforms (eg, mobile, standlone, consoles, etc).
+Обратите внимание, что все меню конфигурации поддерживают [функцию пресетов Unity](https://docs.unity3d.com/Manual/Presets). Это может помочь в создании нескольких пресетов конфигурации при подготовке сборок для различных целевых платформ (например, мобильных, standalone?, консольных и т.д.).
 
 [!55f5c74bfc16e1af2455034647525df3]
 
-It's possible to modify configuration objects at runtime, add new custom configurations and change the way the objects are accessed at runtime (eg, read configuration from JSON files stored on a remote host); see [custom configuration](/guide/custom-configuration.md) guide for more information.
+Можно изменять объекты конфигурации во время выполнения, добавлять новые пользовательские конфигурации и изменить способ доступа к объектам во время выполнения (например, считывать конфигурацию из JSON файлы, хранящихся на удаленном устройстве?); см. руководство по [пользовательским настройкам](/guide/custom-configuration.md) для получения дополнительной информации.
 
 ::: note
-This configuration reference is valid for [Naninovel v1.10](https://github.com/Elringus/NaninovelWeb/releases).
+Данная информация о конфигурации? актуальна для [Naninovel v1. 10](https://github.com/Elringus/NaninovelWeb/releases).
 :::
 
-## Audio
+## Аудио
 
 <div class="config-table">
 
-Property | Default Value | Description
+Свойство | Значение по умолчанию | Описание
 --- | --- | ---
-Audio Loader | Audio- (Addressable, Project) | Configuration of the resource loader used with audio (BGM and SFX) resources.
-Voice Loader | Voice- (Addressable, Project) | Configuration of the resource loader used with voice resources.
-Default Master Volume | 1 | Master volume to set when the game is first started.
-Default Bgm Volume | 1 | BGM volume to set when the game is first started.
-Default Sfx Volume | 1 | SFX volume to set when the game is first started.
-Default Voice Volume | 1 | Voice volume to set when the game is first started.
-Enable Auto Voicing | False | When enabled, each `PrintText` command will attempt to play voice clip at `VoiceResourcesPrefix/ScriptName/LineIndex.ActionIndex`.
-Voice Overlap Policy | Prevent Overlap | Dictates how to handle concurrent voices playback:<br> • Allow Overlap — Concurrent voices will be played without limitation.<br> • Prevent Overlap — Prevent concurrent voices playback by stopping any played voice clip before playing a new one.<br> • Prevent Character Overlap — Prevent concurrent voices playback per character; voices of different characters (auto voicing) and any number of [@voice] command are allowed to be played concurrently.
-Custom Audio Mixer | Null | Audio mixer to control audio groups. When not provided, will use a default one.
-Master Volume Handle Name | Master Volume | Name of the mixer's handle (exposed parameter) to control master volume.
-Bgm Group Path | Master/BGM | Path of the mixer's group to control master volume.
-Bgm Volume Handle Name | BGM Volume | Name of the mixer's handle (exposed parameter) to control background music volume.
-Sfx Group Path | Master/SFX | Path of the mixer's group to control background music volume.
-Sfx Volume Handle Name | SFX Volume | Name of the mixer's handle (exposed parameter) to control sound effects volume.
-Voice Group Path | Master/Voice | Path of the mixer's group to control sound effects volume.
-Voice Volume Handle Name | Voice Volume | Name of the mixer's handle (exposed parameter) to control voice volume.
+Audio Loader | Audio- (адресируемое, проект?) | Отвечает за конфигурацию загрузчика ресурсов, используемого при работе с аудиоресурсами (BGM и SFX).
+Voice Loader | Voice- (адресируемое, проект?) |  Отвечает за конфигурацию загрузчика ресурсов, используемого при работе с аудиоресурсами голосовой озвучки.
+Default Master Volume | 1 | Уровень звукового мастер-канала при первом запуске игры.
+Default Bgm Volume | 1 | Уровень канала BGM при первом запуске игры.
+Default Sfx Volume | 1 | Уровень канала SFX при первом запуске игры.
+Default Voice Volume | 1 | Уровень канала голосовой озвучки при первом запуске игры.
+Enable Auto Voicing | False | При включении параметра каждая команда `PrintText` будет пытаться проиграть голосовой клип из `VoiceResourcesPrefix/ScriptName/LineIndex.ActionIndex`.
+Voice Overlap Policy | Prevent Overlap | Диктует принципы обработки одновременно воспроизводящихся голосов:<br> • Allow Overlap – одновременно звучащие голоса будут воспроизводиться без ограничений.<br> • Prevent Overlap — предотвращает одновременное воспроизведение путем остановки воспроизводимого в данный момент голосового клипа перед воспроизведением нового.<br> • Prevent Character Overlap – предотвращает одновременное воспроизведение голосовых клипов для персонажа; голоса разных персонажей (автоматическое озвучивание) и любое количество команд [@voice] могут быть воспроизведены одновременно?.
+Custom Audio Mixer | Null | Аудиомикшер для контроля аудиогрупп. По умолчанию использует стандартный, если никакого иного не предоставлено.
+Master Volume Handle Name | Master Volume | Имя обработчика микшера (предоставленный параметр) для управления уровнем мастер-канала.
+Bgm Group Path | Master/BGM | Путь к группе микшера для управления уровнем BGM канала. *(в англ. тексте опечатка – master volume?)*
+Bgm Volume Handle Name | BGM Volume | Имя обработчика микшера (предоставленный параметр) для управления уровнем BGM канала.
+Sfx Group Path | Master/SFX | Путь к группе микшера для управления уровнем SFX канала. *(в англ. тексте опечатка – background music?)*
+Sfx Volume Handle Name | SFX Volume | Имя обработчика микшера (предоставленный параметр) для управления уровнем SFX канала.
+Voice Group Path | Master/Voice | Путь к группе микшера для управления уровнем канала голосовой озвучки. *(в англ. тексте опечатка – sound effects?)*
+Voice Volume Handle Name | Voice Volume | Имя обработчика микшера (предоставленный параметр) для управления уровнем канала озвучки.
 
 </div>
 
-## Backgrounds
+## Фоны
 
 <div class="config-table">
 
-Property | Default Value | Description
+Свойство | Значение по умолчанию | Описание
 --- | --- | ---
-Default Metadata | Object Ref | Metadata to use by default when creating background actors and custom metadata for the created actor ID doesn't exist.
-Metadata | Object Ref | Metadata to use when creating background actors with specific IDs.
-Scene Origin | (0.5, 0.0) | Origin point used for reference when positioning actors on scene.
-Z Offset | 100 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
-Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
-Default Easing | Linear | Eeasing function to use by default for all the actor modification animations (changing appearance, position, tint, etc).
-Auto Show On Modify | True | Whether to automatically reveal (show) an actor when executing modification commands.
+Default Metadata | Object Ref | Метаданные, используемые по умолчанию при создании фоновых акторов, и пользовательские метаданные для созданного актора с неуказанным ID?.
+Metadata | Object Ref | Метаданные, используемые при создании фоновых акторов с конкретным ID.
+Scene Origin | (0.5, 0.0) | Исходная точка, используемая для отсчета при позиционировании актеров в сцене.
+Z Offset | 100 | Начальное смещение по оси Z (глубина) акторов относительно камеры, установленное при создании акторов.
+Z Step | 0.1 | Расстояние по оси Z, установленное между акторами при их создании; используется для предотвращения проблем наложения.
+Default Easing | Linear | Функция смягчения, используемая по умолчанию для всех анимаций модификации актора (изменение внешности, положения, оттенка и пр.). *(в англ. тексте опечатка – Eeasing?)*
+Auto Show On Modify | True | Следует ли автоматически выводить (показывать) актора при выполнении команд модификации.
 
 </div>
 
-## Camera
+## Камера
 
 <div class="config-table">
 
-Property | Default Value | Description
+Свойство | Значение по умолчанию | Описание
 --- | --- | ---
-Reference Resolution | (1920, 1080) | The reference resolution is used to evaluate proper rendering dimensions, so that sprite assets (like backgrounds and characters) are correctly positioned on scene. As a rule of thumb, set this equal to the resolution of the background textures you make for the game.
-Auto Correct Ortho Size | True | Whether to automatically correct camera's orthographic size based on the current display aspect ratio to ensure the backgrounds and characters are positioned correctly.
-Default Ortho Size | 5.35 | The orthographic size to set by default when auto correction is disabled.
-Initial Position | (0.0, 0.0, -10.0) | Initial world position of the camera.
-Orthographic | True | Whether the camera should render in orthographic (enabled) or perspective (disabled) mode by default. Has no effect when a custom camera prefab is assigned.
-Custom Camera Prefab | Null | A prefab with a camera component to use for rendering. Will use a default one when not specified. In case you wish to set some camera properties (background color, FOV, HDR, etc) or add post-processing scripts, create a prefab with the desired camera setup and assign the prefab to this field.
-Use UI Camera | True | Whether to render the UI in a separate camera. This will allow to use individual configuration for the main and UI cameras and prevent post-processing (image) effects from affecting the UI at the cost of a slight rendering overhead.
-Custom UI Camera Prefab | Null | A prefab with a camera component to use for UI rendering. Will use a default one when not specified. Has no effect when `UseUICamera` is disabled
-Default Easing | Linear | Eeasing function to use by default for all the camera modifications (changing zoom, position, rotation, etc).
-Thumbnail Resolution | (240, 140) | The resolution in which thumbnails to preview game save slots will be captured.
-Hide UI In Thumbnails | False | Whether to ignore UI layer when capturing thumbnails.
+Reference Resolution | (1920, 1080) | Эталонное разрешение используется для оценки правильных размеров рендеринга, чтобы спрайтовые ассеты (например, фоны и персонажи) были правильно расположены на сцене. Как правило, должно быть установлено в значение, равное разрешению фоновых текстур, которые вы используете в игре.
+Auto Correct Ortho Size | True | Следует ли автоматически корректировать ортогональный размер кадра на основе текущего соотношения сторон дисплея, чтобы обеспечить правильное расположение фонов и персонажей?.
+Default Ortho Size | 5.35 | Ортогональный размер, устанавливаемый по умолчанию при отключенной автоматической коррекции.
+Initial Position | (0.0, 0.0, -10.0) | Исходное положение камеры в пространстве.
+Orthographic | True | Должна ли камера по умолчанию рендерить в ортогональном (включен) или перспективном (отключен) режиме. Не имеет эффекта, когда назначается пользовательский префаб камеры.
+Custom Camera Prefab | Null | Префаб с компонентом камеры, используемой для рендеринга. Будет использоваться стандартный, если иного не указано. Если вы хотите настроить некоторые свойства камеры (цвет фона, FOV, HDR и т.д.) или добавить сценарии постобработки, создайте префаб с необходимой настройкой камеры и назначьте данный префаб этому полю.
+Use UI Camera | True | Следует ли визуализировать пользовательский интерфейс в отдельной камере. Это позволит использовать раздельные конфигурации для основной камеры и камеры UI и предотвратить влияние эффектов постобработки (изображения) на пользовательский интерфейс за счет незначительных ресурсных расходов на рендеринг.
+Custom UI Camera Prefab | Null | Префаб с компонентом камеры, используемой для рендеринга пользовательского интерфейса. Будет использоваться стандартный, если иного не указано. Не имеет никакого эффекта, если параметр `UseUICamera` отключен. *(в англ. тексте опечатка – пропущена точка в конце?)*
+Default Easing | Linear | Функция смягчения, используемая по умолчанию для всех модификаций камеры (изменение масштаба, положение, поворот и пр.).
+Thumbnail Resolution | (240, 140) | Разрешение, в котором будут захвачены миниатюры для превью в слотах сохранения.
+Hide UI In Thumbnails | False | Игнорировать ли слой интерфейса при захвате миниатюр.
 
 </div>
 
