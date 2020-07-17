@@ -25,7 +25,7 @@ wait | Boolean | Должен ли проигрыватель сценариев
 
 ## animate
 
-#### Кратко
+#### Краткое описание
 Команда анимации актеров с указанными ID с помощью ключевых кадров. Ключевые кадры для параметры анимации отделяются литералами `|`.
 
 #### Примечание
@@ -54,7 +54,7 @@ time | Строка | Продолжительность ключа анимац
 
 </div>
 
-#### Example
+#### Пример
 ```
 ; Анимация актера "Kohaku" за три шага анимации (ключевые кадры),
 ; смена позиций: первый шаг займет 1, второй - 0.5 и третий - 3 секунды.
@@ -80,7 +80,7 @@ time | Строка | Продолжительность ключа анимац
 
 ## append
 
-#### Кратко
+#### Краткое описание
 Добавляет предоставленный текст к текстовому принтеру.
 
 #### Примечание
@@ -108,7 +108,7 @@ Lorem ipsum
 
 ## arrange
 
-#### Кратко
+#### Краткое описание
 Упорядочивает указанных персонажей по оси X. Если параметры не указаны, будет выполнено автоматическое выравнивание, равномерно распределяющее видимых персонажей по оси X.
 
 #### Параметры
@@ -123,7 +123,7 @@ time | Decimal | Продолжительность (в секундах) ани
 
 </div>
 
-#### Example
+#### Пример
 ```
 ; Равномерно распределить всех видимых персонажей 
 @arrange
@@ -135,11 +135,11 @@ time | Decimal | Продолжительность (в секундах) ани
 
 ## back
 
-#### Кратко
+#### Краткое описание
 Изменяет [актер фона](/guide/backgrounds.md).
 
 #### Примечание
-Фоны обрабатываются немного иначе, чем персонажи, чтобы лучше приспособиться к традиционному игровому ходу в визуальных новеллах. Большую часть времени у вас, вероятно, будет один актер фона на сцене, который будет постоянно переходить в разные виды. Чтобы устранить необходимость повторения одного и того же идентификатора субъекта в сценариях, можно указать только внешний вид фона и тип перехода (необязательно) в качестве безымянного параметра, предполагая, влияение будет оказано на "MainBackground". Если это не так, идентификатор фонового актера может быть явно указан через параметр `id`.
+Фоны обрабатываются немного иначе, нежели персонажи, чтобы лучше приспособиться к традиционному течению визуальных новелл. Большую часть времени вы, вероятно, будете иметь одного фонового актора в сцене, который будет постоянно менять внешности. Чтобы избавиться от лишнего повторения одного и того же ID актора в сценариях, можно предоставить только внешность фона и тип перехода (необязательно) в качестве безымянного параметра, что автоматически преобразует актора "MainBackground". Если это не так, ID фонового актора может быть конкретно указан с помощью параметра `id`:
 
 #### Параметры
 
@@ -147,36 +147,35 @@ time | Decimal | Продолжительность (в секундах) ани
 
 ID | Тип | Описание
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">AppearanceAndTransition</span> | Named&lt;String&gt; | Appearance (or [pose](/guide/backgrounds.md#poses)) to set for the modified background and type of a [transition effect](/guide/transition-effects.md) to use.  When transition is not provided, a cross-fade effect will be used by default.
-pos | List&lt;Decimal&gt; | Position (relative to the screen borders, in percents) to set for the modified actor.  Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the screen.  Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
-id | String | ID of the actor to modify; specify `*` to affect all visible actors.
-appearance | String | Appearance (or pose) to set for the modified actor.
-transition | String | Type of the [transition effect](/guide/transition-effects.md) to use (crossfade is used by default).
-params | List&lt;Decimal&gt; | Parameters of the transition effect.
-dissolve | String | Path to the [custom dissolve](/guide/transition-effects.md#custom-transition-effects) texture (path should be relative to a `Resources` folder).  Has effect only when the transition is set to `Custom` mode.
-visible | Boolean | Visibility status to set for the modified actor.
-position | List&lt;Decimal&gt; | Position (in world space) to set for the modified actor.  Use Z-component (third member) to move (sort) by depth while in ortho mode.
-rotation | List&lt;Decimal&gt; | Rotation to set for the modified actor.
-scale | List&lt;Decimal&gt; | Scale to set for the modified actor.
-tint | String | Tint color to set for the modified actor.  <br /><br />  Strings that begin with `#` will be parsed as hexadecimal in the following way:  `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF.  <br /><br />  Strings that do not begin with `#` will be parsed as literal colors, with the following supported:  red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta.
-easing | String | Name of the easing function to use for the modification.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the actor's manager configuration settings.
-time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 seconds.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">AppearanceAndTransition</span> | Named&lt;String&gt; | Внешний вид (или [поза](/guide/backgrounds.md#poses)) для фона и типа использованного [эффекта перехода](/guide/transition-effects.md). Если переход не предусмотрен, по умолчанию будет использоваться эффект перекрестного затухания.
+pos | List&lt;Decimal&gt; | Положение (относительно границ экрана, в процентах), актера. Позиция описывается следующим образом: «0.0» - левый нижний угол, «50.50» - центр, а «100.100» - верхний правый угол экрана. Используйте Z-компонент (третий параметр, например, `,,10`) для перемещения (сортировки) по глубине в режиме орто.
+id | Строка | Идентификатор актера для изменения; укажите `*`, чтобы повлиять на всех видимых актеров.
+appearance | Строка | Устанавливает внешний вид или позу, изменяймому актеру.
+transition | Строка | Тип используемого [эффекта перехода](/guide/transition-effects.md) (по умолчанию используется кроссфейд).
+params | List&lt;Decimal&gt; | Параметры эффекта перехода.
+dissolve | String | Путь к текстуре [нестандартное растворение](/guide/transition-effects.md#custom-transition-effects) (путь должен указываться относительно папки `Resources`). Действует только когда переход установлен в режим «Пользовательский».
+visible | Boolean | Статус видимости для измененного актера.
+position | List&lt;Decimal&gt; | Положение (в мировом пространстве) для измененного актера. Используйте Z-компонент (третий параметр) для перемещения (сортировки) по глубине в режиме орто.
+rotation | List&lt;Decimal&gt; | Вращение для измененного актера.
+scale | List&lt;Decimal&gt; | Масштаб для измененного актера.
+tint | String | Цвет оттенка для измененного актера.  <br /><br />  Строки, начинающиеся с `#`, будут анализироваться как шестнадцатеричные следующим образом:  `#RGB` (становится RRGGBB), `#RRGGBB`, `#RGBA` (становится RRGGBBAA), `#RRGGBBAA`; если альфа не указана, по умолчанию будет FF.  <br /><br />  Строки, которые не начинаются с `#`, будут анализироваться как буквенные цвета, поддерживаются следующие параметры:  красный, голубой, синий, темно-синий, светло-синий, фиолетовый, желтый, салатовый, фуксия, белый, серебристый, серый, черный, оранжевый, коричневый, темно-бордовый, зеленый, оливковый, темно-синий, бирюзовый, аква, пурпурный.
+easing | String | Имя функции замедления, используемой для модификации.  <br /><br />  Доступные Варианты: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  Если не указан, будет использоваться функция замедления по умолчанию, установленная в настройках конфигурации менеджера актера.
+time | Decimal | Продолжительность (в секундах) модификации. Значение по умолчанию: 0.35 секунды.
 
 </div>
 
-#### Example
+#### Пример
 ```
-; Set `River` as the appearance of the main background
+; Установите `River` в качестве появления основного фона
 @back River
 
-; Same as above, but also use a `RadialBlur` transition effect
+; То же, что и выше, но также используется эффект перехода `RadialBlur`
 @back River.RadialBlur
 
-; Tint all visible backgrounds on scene.
+; Подкрасьте все видимые фоны на сцене.
 @back id:* tint:#ffdc22
 
-; Given an `ExplosionSound` SFX and an `ExplosionSprite` background, the following
-; script sequence will simulate two explosions appearing far and close to the camera.
+; С учетом SFX `ExplosionSound` и фона` ExplosionSprite` следующая последовательность сценариев будет имитировать два взрыва, появляющихся далеко и близко к камере.
 @sfx ExplosionSound volume:0.1
 @back id:ExplosionSprite scale:0.3 pos:55,60 time:0 isVisible:false
 @back id:ExplosionSprite
@@ -190,159 +189,157 @@ time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 
 
 ## bgm
 
-#### Summary
-Plays or modifies currently played [BGM (background music)](/guide/audio.md#background-music) track with the provided name.
+#### Краткое описание
+Воспроизведение или изменение текущей воспроизводимой дорожки[BGM (background music)](guideaudio.md#background-music) с указанным именем.
 
-#### Remarks
-Music tracks are looped by default.  When music track name (BgmPath) is not specified, will affect all the currently played tracks.  When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start),  but the specified parameters (volume and whether the track is looped) will be applied.
+#### Примечания
+Музыкальные треки зациклены по умолчанию. Если название музыкальной дорожки (BgmPath) не указано, будут затронуты все воспроизводимые в данный момент дорожки.  При вызове для дорожки, которая уже воспроизводится, воспроизведение не будет затронуто (дорожка не начнет воспроизводиться с самого начала), но будут применены указанные параметры (громкость и зацикленность дорожки).
 
-#### Parameters
+#### Параметры
 
 <div class="config-table">
 
-ID | Type | Description
+ID | Тип | Описание
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">BgmPath</span> | String | Path to the music track to play.
-intro | String | Path to the intro music track to play once before the main track (not affected by the loop parameter).
-volume | Decimal | Volume of the music track.
-loop | Boolean | Whether to play the track from beginning when it finishes.
-fade | Decimal | Duration of the volume fade-in when starting playback, in seconds (0.0 by default);  doesn't have effect when modifying a playing track.
-group | String | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio.
-time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 seconds.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">BgmPath</span> | String | Путь к музыкальной дорожке для воспроизведения.
+intro | String | Путь к вступительной музыкальной дорожке, которую нужно воспроизвести один раз перед основной дорожкой (не зависит от параметра цикла).
+volume | Decimal | Объем музыкальной дорожки.
+loop | Boolean | Играть ли дорожку с начала, когда она заканчивается.
+fade | Decimal | Длительность постепенного увеличения громкости при запуске воспроизведения, в секундах (по умолчанию 0.0); не действует при изменении воспроизводимой дорожки.
+group | String | Аудио микшер [групповой путь](httpsdocs.unity3d.comScriptReferenceAudio.AudioMixer.FindMatchingGroups) это следует использовать при воспроизведении аудио.
+time | Decimal | Продолжительность (в секундах) модификации. Значение по умолчанию 0.35 секунды.
 
 </div>
 
-#### Example
+#### Пример
 ```
-; Starts playing a music track with the name `Sanctuary` in a loop
+; Начинает воспроизведение музыкальной дорожки с названием `Sanctuary` в цикле
 @bgm Sanctuary
 
-; Same as above, but fades-in the volume over 10 seconds and plays only once
+; То же, что и выше, но затухание громкости более 10 секунд и воспроизведение только один раз
 @bgm Sanctuary fade:10 loop:false
 
-; Changes volume of all the played music tracks to 50% over 2.5 seconds and makes them play in a loop
+; Изменяет громкость всех воспроизводимых музыкальных треков до 50% в течение 2,5 секунд и заставляет их воспроизводиться в цикле
 @bgm volume:0.5 loop:true time:2.5
 
-; Playes `BattleThemeIntro` once and then immediately `BattleThemeMain` in a loop.
+; Играет в BattleThemeIntro один раз, а затем сразу в BattleThemeMain.
 @bgm BattleThemeMain intro:BattleThemeIntro
 ```
 
 ## br
 
-#### Summary
-Adds a line break to a text printer.
+#### Краткое описание
+Добавляет разрыв строки в текстовый принтер.
 
-#### Parameters
+#### Параметры
 
 <div class="config-table">
 
-ID | Type | Description
+ID | Тип | Описание
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">Count</span> | Integer | Number of line breaks to add.
-printer | String | ID of the printer actor to use. Will use a default one when not provided.
-author | String | ID of the actor, which should be associated with the appended line break.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">Count</span> | Integer | Число добавляемых разрывов строк.
+printer | String | ID актера принтера для использования. Если не задано, будет использовать значение по умолчанию.
+author | String | ID Идентификатор актера, который должен быть связан с добавленным переводом строки.
 
 </div>
 
-#### Example
+#### Пример
 ```
-; Second sentence will be printed on a new line
+; Второе предложение будет напечатано в новой строке
 Lorem ipsum dolor sit amet.[br]Consectetur adipiscing elit.
 
-; Second sentence will be printer two lines under the first one
+; Второе предложение будет печататься двумя строками под первым
 Lorem ipsum dolor sit amet.[br 2]Consectetur adipiscing elit.
 ```
 
 ## camera
 
-#### Summary
-Modifies the main camera, changing offset, zoom level and rotation over time.  Check [this video](https://youtu.be/zy28jaMss8w) for a quick demonstration of the command effect.
+#### Краткое описание
+Модифицирует основную камеру, изменяя смещение, уровень масштабирования и вращение во времени.  Проверьте [это видео](https://youtu.be/zy28jaMss8w) для быстрой демонстрации командного эффекта.
 
-#### Parameters
-
+#### Параметры
 <div class="config-table">
 
-ID | Type | Description
+ID | Тип | Описание
 --- | --- | ---
-offset | List&lt;Decimal&gt; | Local camera position offset in units by X,Y,Z axes.
-roll | Decimal | Local camera rotation by Z-axis in angle degrees (0.0 to 360.0 or -180.0 to 180.0).  The same as third component of `rotation` parameter; ignored when `rotation` is specified.
-rotation | List&lt;Decimal&gt; | Local camera rotation over X,Y,Z-axes in angle degrees (0.0 to 360.0 or -180.0 to 180.0).
-zoom | Decimal | Relatize camera zoom (orthographic size or field of view, depending on the render mode), in 0.0 (no zoom) to 1.0 (full zoom) range.
-ortho | Boolean | Whether the camera should render in orthographic (true) or perspective (false) mode.
-toggle | List&lt;String&gt; | Names of the components to toggle (enable if disabled and vice-versa). The components should be attached to the same gameobject as the camera.  This can be used to toggle [custom post-processing effects](/guide/special-effects.md#camera-effects).
+offset | List&lt;Decimal&gt; | Локальное смещение положения камеры в единицах по осям X, Y, Z.
+roll | Decimal | Локальное вращение камеры по оси Z в градусах (от 0.0 до 360.0 или от -180.0 до 180.0). То же, что и третий компонент параметра вращение; игнорируется, когда указано `rotation`.
+rotation | List&lt;Decimal&gt; | Локальное вращение камеры по осям X, Y, Z в градусах (от 0.0 до 360.0 или от -180.0 до 180.0).
+zoom | Decimal | Установите масштаб камеры (ортогональный размер или поле зрения, в зависимости от режима рендеринга) в диапазоне от 0.0 (без увеличения) до 1.0 (при полном увеличении).
+ortho | Boolean | Должна ли камера отображаться в орфографическом (истинном) или перспективном (ложном) режиме.
+toggle | List&lt;String&gt; | Имена компонентов для переключения (включить, если отключено, и наоборот). Компоненты должны быть прикреплены к тому же игровому объекту, что и камера. Это можно использовать для переключения [пользовательские эффекты пост-обработки](/guide/special-effects.md#camera-effects).
 set | List&lt;Named&lt;Boolean&gt;&gt; | Names of the components to enable or disable. The components should be attached to the same gameobject as the camera.  This can be used to explicitly enable or disable [custom post-processing effects](/guide/special-effects.md#camera-effects).  Specified components enabled state will override effect of `toggle` parameter.
-easing | String | Name of the easing function to use for the modification.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the camera configuration settings.
-time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 seconds.
+easing | String |Имя функции замедления, используемой для модификации.  <br /><br />  Доступные Варианты: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  Если не указан, будет использоваться функция замедления по умолчанию, установленная в настройках конфигурации камеры.
+time | Decimal | Продолжительность (в секундах) модификации. Значение по умолчанию: 0.35 секунды.
 
 </div>
 
-#### Example
+#### Пример
 ```
-; Offset over X-axis (pan) the camera by -3 units and offset over Y-axis by 1.5 units
+; Смещение по оси X (панорамирование) камеры на -3 единицы и смещение по оси Y на 1.5 единицы
 @camera offset:-3,1.5
 
-; Set camera in perspective mode, zoom-in by 50% and move back by 5 units
+; Установите камеру в режим перспективы, увеличьте на 50% и вернитесь на 5 единиц.
 @camera ortho:false offset:,,-5 zoom:0.5
 
-; Set camera in orthographic mode and roll by 10 degrees clock-wise
+; Установите камеру в орфографический режим и поверните на 10 градусов по часовой стрелке.
 @camera ortho:true roll:10
 
-; Offset, zoom and roll simultaneously animated over 5 seconds
+; Смещение, масштабирование и угол одновременно анимированы в течение 5 секунд
 @camera offset:-3,1.5 zoom:0.5 roll:10 time:5
 
-; Instantly reset camera to the default state
+; Мгновенный сброс камеры в состояние по умолчанию
 @camera offset:0,0 zoom:0 rotation:0,0,0 time:0
 
-; Toggle `FancyCameraFilter` and `Bloom` components attached to the camera
+; Переключите компоненты `FancyCameraFilter` и` Bloom`, прикрепленные к камере
 @camera toggle:FancyCameraFilter,Bloom
 
-; Set `FancyCameraFilter` component enabled and `Bloom` disabled
+; Включите компонент `FancyCameraFilter` и отключите` Bloom`
 @camera set:FancyCameraFilter.true,Bloom.false
 ```
 
 ## char
 
-#### Summary
-Modifies a [character actor](/guide/characters.md).
+#### Краткое описание
+Модифицирует [актер персонажа](/guide/characters.md).
 
-#### Parameters
+#### Параметры
 
 <div class="config-table">
 
-ID | Type | Description
+ID | Тип | Описание
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">IdAndAppearance</span> | Named&lt;String&gt; | ID of the character to modify (specify `*` to affect all visible characters) and an appearance (or [pose](/guide/characters.md#poses)) to set.  When appearance is not provided, will use either a `Default` (is exists) or a random one.
-look | String | Look direction of the actor; supported values: left, right, center.
-avatar | String | Name (path) of the [avatar texture](/guide/characters.md#avatar-textures) to assign for the character.  Use `none` to remove (un-assign) avatar texture from the character.
-pos | List&lt;Decimal&gt; | Position (relative to the screen borders, in percents) to set for the modified actor.  Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the screen.  Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
-id | String | ID of the actor to modify; specify `*` to affect all visible actors.
-appearance | String | Appearance (or pose) to set for the modified actor.
-transition | String | Type of the [transition effect](/guide/transition-effects.md) to use (crossfade is used by default).
-params | List&lt;Decimal&gt; | Parameters of the transition effect.
-dissolve | String | Path to the [custom dissolve](/guide/transition-effects.md#custom-transition-effects) texture (path should be relative to a `Resources` folder).  Has effect only when the transition is set to `Custom` mode.
-visible | Boolean | Visibility status to set for the modified actor.
-position | List&lt;Decimal&gt; | Position (in world space) to set for the modified actor.  Use Z-component (third member) to move (sort) by depth while in ortho mode.
-rotation | List&lt;Decimal&gt; | Rotation to set for the modified actor.
-scale | List&lt;Decimal&gt; | Scale to set for the modified actor.
-tint | String | Tint color to set for the modified actor.  <br /><br />  Strings that begin with `#` will be parsed as hexadecimal in the following way:  `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF.  <br /><br />  Strings that do not begin with `#` will be parsed as literal colors, with the following supported:  red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta.
-easing | String | Name of the easing function to use for the modification.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the actor's manager configuration settings.
-time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 seconds.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">IdAndAppearance</span> | Named&lt;String&gt; | ID, который нужно изменить (укажите `*`, чтобы затронуть все видимые символы) и внешний вид(или [поза](/guide/characters.md#poses)), который нужно установить. Если внешний вид не указан, будет использоваться либо «По умолчанию» (сущетвует), либо случайный.
+look | String | Смотреть направление актера; поддерживаемые значения: слева, справа, по центру.
+avatar | String | Имя (путь) [текстуры аватара](/guide/characters.md#avatar-textures) для назначения персонажу. Используйте `none`, чтобы удалить (отменить) текстуру аватара у персонажа.
+pos | List&lt;Decimal&gt; | Установка положения (относительно границ экрана, в процентах), для измененного актера. Положение описывается следующим образом: «0.0» - левый нижний угол, «50.50» - центр, а «100.100» - верхний правый угол экрана. Используйте Z-компонент (третий параметр, например, `,, 10`) для перемещения (сортировки) по глубине в режиме орто.
+id | String | ID для изменения; укажите `*`, чтобы повлиять на всех видимых актеров.
+appearance | String | Внешний вид (или поза),  измененного актера.
+transition | String | Тип используемого [эффекта перехода](/guide/transition-effects.md) (по умолчанию используется перекрестное затухание).
+params | List&lt;Decimal&gt; | Параметры эффекта перехода.
+dissolve | String | Путь к текстуре [custom disolve](/guide/transition-effects.md#custom-transition-effects) путь должен указываться относительно папки `Resources`). Действует только когда переход установлен в режим «Пользовательский».
+visible | Boolean | Статус видимости, измененного актера.
+position | List&lt;Decimal&gt; | Положение (в мировом пространстве) измененного актера. Используйте Z-компонент (третий параметр) для перемещения (сортировки) по глубине в режиме орто.
+rotation | List&lt;Decimal&gt; | Вращение для измененного актера.
+scale | List&lt;Decimal&gt; | Масштаб, для измененного актера
+tint | String | Цвет оттенка измененного актера.  <br /><br />  Строки, начинающиеся с `#`, будут анализироваться как шестнадцатеричные следующим образом:  `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; если альфа не указана, по умолчанию будет FF.  <br /><br />  Строки, которые не начинаются с `#`, будут анализироваться как буквенные цвета, поддерживаются следующие значения: красный, голубой, синий, темно-синий, светло-синий, фиолетовый, желтый, салатовый, фуксия, белый, серебристый, серый, черный, оранжевый, коричневый , бордовый, зеленый, оливковый, темно-синий, чирок, аква, пурпурный.
+easing | String | Имя функции замедления, используемой для модификации.  <br /><br />  Доступные Варианты: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  Если не указан, будет использоваться функция замедления по умолчанию, установленная в настройках конфигурации менеджера актера.
+time | Decimal | Продолжительность (в секундах) модификации. Значение по умолчанию: 0.35 секунды.
 
 </div>
 
-#### Example
+#### Пример
 ```
-; Shows character with ID `Sora` with a default appearance.
+; Показывает персонажа с идентификатором `Sora` с появлением по умолчанию.
 @char Sora
 
-; Same as above, but sets appearance to `Happy`.
+; То же, что и выше, но устанавливает внешний вид на «Happy».
 @char Sora.Happy
 
-; Same as above, but also positions the character 45% away from the left border
-; of the screen and 10% away from the bottom border; also makes him look to the left.
+; То же, что и выше, но также расположение персонажа на 45% от левой границы экрана и на 10% от нижней границы; также заставляет его смотреть налево.
 @char Sora.Happy look:left pos:45,10
 
-; Make Sora appear at the bottom-center and in front of Felix
+; Заставить Сору появиться внизу в центре и перед Феликсом
 @char Sora pos:50,0,-1
 @char Felix pos:,,0
 
@@ -352,25 +349,25 @@ time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 
 
 ## choice
 
-#### Summary
-Adds a [choice](/guide/choices.md) option to a choice handler with the specified ID (or default one).
+#### Красткое описание
+Добавляет параметр [choice](/guide/choices.md) в обработчик выбора с указанным идентификатором (или идентификатором по умолчанию).
 
-#### Remarks
-When `goto`, `gosub` and `do` parameters are not specified, will continue script execution from the next script line.
+#### Примечание
+Если параметры `goto`,` gosub` и `do` не указаны, выполнение сценария будет продолжено со следующей строки сценария.
 
 #### Parameters
 
 <div class="config-table">
 
-ID | Type | Description
+ID | Тип | Описание
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">ChoiceSummary</span> | String | Text to show for the choice.  When the text contain spaces, wrap it in double quotes (`"`).  In case you wish to include the double quotes in the text itself, escape them.
-button | String | Path (relative to a `Resources` folder) to a [button prefab](/guide/choices.md#choice-button) representing the choice.  The prefab should have a `ChoiceHandlerButton` component attached to the root object.  Will use a default button when not provided.
-pos | List&lt;Decimal&gt; | Local position of the choice button inside the choice handler (if supported by the handler implementation).
-handler | String | ID of the choice handler to add choice for. Will use a default handler if not provided.
-goto | Named&lt;String&gt; | Path to go when the choice is selected by user;  see [@goto] command for the path format.
-gosub | Named&lt;String&gt; | Path to a subroutine to go when the choice is selected by user;  see [@gosub] command for the path format. When `goto` is assigned this parameter will be ignored.
-set | String | Set expression to execute when the choice is selected by user;  see [@set] command for syntax reference.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">ChoiceSummary</span> | String | Текст для отображения на выбор. Если текст содержит пробелы, заключите его в двойные кавычки (`" `). Если вы хотите включить двойные кавычки в сам текст, избегайте их.
+button | String | Путь (относительно папки `Resources`) к [кнопке prefab](/guide/choices.md#choice-button), представляющей выбор. Префаб должен иметь компонент `ChoiceHandlerButton`, присоединенный к корневому объекту. Будет использоваться кнопка по умолчанию, если она не указана.
+pos | List&lt;Decimal&gt; | Локальное положение кнопки выбора внутри обработчика выбора (если поддерживается реализацией обработчика).
+handler | String | ID выбора, для которого нужно добавить выбор. Будет использовать обработчик по умолчанию, если он не указан.
+goto | Named&lt;String&gt; | Путь, когда вариант ответа выбирается пользователем; см. команду [@goto] для формата пути.
+gosub | Named&lt;String&gt; | Путь к подпрограмме, которую нужно выбрать пользователем; см. команду [@gosub] для формата пути. Когда назначено `goto`, этот параметр будет игнорироваться.
+set | String | Установите выражение для выполнения, когда вариант ответа выбран пользователем; см. команду [@set] для справки по синтаксису.
 do | List&lt;String&gt; | Script commands to execute when the choice is selected by user;  don't forget to escape commas inside list values to prevent them being treated as delimiters.  The commands will be invoked in order after `set`, `goto` and `gosub` are handled (if assigned).
 show | Boolean | Whether to also show choice handler the choice is added for;  enabled by default.
 time | Decimal | Duration (in seconds) of the fade-in (reveal) animation. Default value: 0.35 seconds.
