@@ -1,30 +1,30 @@
-# Naninovel Scripts
+# Сценарии Naninovel
 
-Naninovel scripts are text documents (`.nani` extension) where you control what happens on scenes. Script assets are created with `Create -> Naninovel -> Naninovel Script` asset context menu. You can open and edit them with the built-in [visual editor](#visual-editor) or with an external text editor of your choice, like Notepad, TextEdit or [Atom](https://atom.io).
+Скрипты Naninovel – это текстовые документы (c расширениеv `.nani`), где вы контролируете то, что происходит в сценах. Ассеты сценариев создаются с помощью контекстного меню ассета `Create -> Naninovel -> Naninovel Script`. Вы можете открывать и редактировать их с помощью встроенного [визуального редактора](#visual-editor) или с помощью внешнего текстового редактора, например блокнот, TextEdit или [Atom](https://atom.io).
 
 ![](https://i.gyazo.com/f552c2ef323f9ec1171eba72e0c55432.png)
 
-Each line in a naninovel script represents a statement, which can be a command, generic text, label or a comment. Type of the statement is determined by the literal that is placed at the start of the line:
+Каждая строка в сценарии Naninovel представляет собой инструкцию, которая может быть командой, обычным текстом, меткой или комментарием. Тип оператора определяется литералом, который помещается в начале строки:
 
-Literal | Statement Type 
+Литерал | Тип инструкции 
 :---: | --- 
-@ | [Command](#command-lines)
-# | [Label](#label-lines)
-; | [Comment](#comment-lines)
+@ | [Команда](#command-lines)
+# | [Метка](#label-lines)
+; | [Комментарий](#comment-lines)
 
-When none of the above literals are present at the start of the line, it's considered a [generic text](#generic-text-lines) statement.
+Если в начале строки нет ни одного из вышеуказанных литералов, она воспринимается как строка [общего текста](#generic-text-lines).
 
-## Command Lines
+## Командные строки
 
-Line is considered a command statement if it starts with a `@` literal. Command represents a single operation, that controls what happens on the scene; eg, it can be used to change a background, move a character or load another naninovel script.
+Строка воспринимается как командная, если начинается с литерала `@`. Команда представляет собой одиночную операцию, которая управляет тем, что происходит в сцене; например, она может быть использована для изменения фона, перемещения персонажа или загрузки другого сценария Naninovel.
 
-### Command Identifier
+### Идентификатор команды
 
-Right after the command literal a command identifier is expected. This could either be name of the C# class that implements the command or the command's alias (if it's applied via `CommandAlias` attribute). 
+Сразу после литерала команды ожидается идентификатор команды. Это может быть либо имя класса C#, реализующего команду, либо псевдоним команды (если он применяется через атрибут `CommandAlias`).
 
-For example, [@save] command (used to auto-save the game) is implemented via the `AutoSave` C# class. The implementing class also has a `[CommandAlias("save")]` attribute applied, so you can use both `@save` and `@AutoSave` statements in the script to invoke this command. 
+Например, команда [@save] (используемая для автоматического сохранения игры) реализуется через C# класс `AutoSave`. Реализующий класс также имеет атрибут `[CommandAlias("save")]`, поэтому для вызова этой команды в скрипте можно использовать операторы `@save` и `@AutoSave`.
 
-Command identifiers are case-insensitive; all the following statements are valid and will invoke the same `AutoSave` command:
+Идентификаторы команд не чувствительны к регистру; все следующие операторы действительны и вызовут одну и ту же команду `AutoSave`:
 
 ```
 @save
@@ -33,119 +33,119 @@ Command identifiers are case-insensitive; all the following statements are valid
 @autosave
 ``` 
 
-### Command Parameters
+### Параметры команд
 
-Most of the commands have a number of parameters that define the effect of the command. Parameter is a key-value expression defined after the command literal separated by a column (`:`). Parameter identifier (key) could be either name of the corresponding parameter field of the command implementation class or the parameter's alias (if defined via `alias` property of `CommandParameter` attribute).
+Большинство команд имеют ряд параметров, определяющих действие команды. Параметр – это выражение типа "ключ-значение", определяемое после командного литерала, разделенного столбцом (`:`). Идентификатор параметра (ключ) может быть либо именем соответствующего поля параметра класса реализации команды, либо псевдонимом параметра (если он определен через свойство `alias` атрибута `CommandParameter`).
 
 ```
 @commandId paramId:paramValue 
 ```
 
-Consider a [@hideChars] command, which is used to hide all visible characters on the scene. It could be used as follows:
+Рассмотрим команду [@hideChars], которая используется для скрытия всех видимых персонажей в сцене. Её можно использовать следующим образом:
 
 ```
 @hideChars
 ```
 
-You can use a `time` *Decimal* parameter here to control for how long the characters will fade-out before becoming completely hidden (removed from scene):
+Вы можете здесь использовать параметр `time` типа *Decimal* для того, чтобы указать, как долго персонажи будут растворяться, прежде чем полностью скроются (исчезнут из сцены):
 
 ```
 @hideChars time:5.5
 ```
 
-This will make the characters to fade-out for 5.5 seconds, before completely removing them from scene.
+Так персонажи будут угасать в течение 5.5 секунд до того, как полностью исчезнут из сцены.
 
-You can also use a `wait` *Boolean* parameter to specify whether next command should be executed immediately after or wait for the completion of the current command:
+Вы также можете использовать параметр `wait` типа *Boolean*, чтобы указать, следует ли выполнять следующую команду сразу после завершения текущей команды или дождаться ее завершения:
 
 ```
 @hideChars time:5.5 wait:false
 @hidePrinter
 ```
 
-This will hide the text printer right after characters will begin to fade-out. If `wait` would be `true` or not specified, the printer would be hidden only when the [@hideChars] complete the execution.
+Так текстовый принтер скроется сразу после того, как персонажи начнут исчезать. Если `wait` будет иметь значение `true` (или значение не будет указано), принтер будет скрыт только тогда, когда [@hideChars] завершит выполнение.
 
-### Parameter Value Types
+### Типы значений параметров
 
-Depending on the command parameter, it could expect one of the following value types: 
+В зависимости от собственного типа параметры могут ожидать один из следующих типов значений:
 
-Type | Description
+Тип | Описание
 --- | ---
-String | A simple string value, eg: `LoremIpsum`. Don't forget to wrap the string in double quotes in case it contain spaces, eg: `"Lorem ipsum dolor sit amet."`.
-Integer | A number which is not a fraction; a whole number, eg: `1`, `150`, `-25`.
-Decimal | A decimal number with fraction delimited by a dot, eg: `1.0`, `12.08`, `-0.005`.
-Boolean | Can have one of two possible values: `true` or `false` (case-insensitive).
-Named<> | A name string associated with a value of one of the above types. The name part is delimited by a dot. Eg for *Named&lt;Integer&gt;*: `foo.8`, `bar.-20`.
-List<>| A comma-separated list of values of one of the above types. Eg for *List&lt;String&gt;*: `foo,bar,"Lorem ipsum."`, for *List&lt;Decimal&gt;*: `12,-8,0.105,2`
+String | Простое строковое значение, например: `LoremIpsum`. Не забудьте заключить строку в двойные кавычки, если она содержит пробелы, например: `"Lorem ipsum dolor sit amet."`.
+Integer | Число без дробей; целочисленное значение, например: `1`, `150`, `-25`.
+Decimal | Десятичное число с дробью, отделённой точкой, например: `1.0`, `12.08`, `-0.005`.
+Boolean | Имеет два доступных значения: `true` or `false` (нечуствительна к регистру).
+Named<> | Строка имени, связанная со значением одного из вышеперечисленных типов. Часть имени отделена точкой. Например, для *Named&lt;Integer&gt;*: `foo.8`, `bar.-20`.
+List<>| Список из значений одного из вышеперечисленных типов, разделённых точками. Например, для *List&lt;String&gt;*: `foo,bar,"Lorem ipsum."`, для *List&lt;Decimal&gt;*: `12,-8,0.105,2`
 
-### Nameless Parameters
+### Безымянные параметры
 
-Most of the commands have a nameless parameter. A parameter is considered nameless when it could be used without specifying its name. 
+Большинство команд имеют безымянный параметр. Параметр считается безымянным, если может быть использован без указания его имени. 
 
-For example, a [@bgm] command expects a nameless parameter specifying the name of the music track to play:
+Например, команда [@bgm] ожидает безымянный параметр, указывающий имя музыкального трека, который нужно проиграть:
 
 ```
 @bgm PianoTheme
 ```
-"PianoTheme" here is the value of the "BgmPath" *String* parameter.
+"PianoTheme" здесь – это значение типа *String* параметра "BgmPath".
 
-There could be only one nameless parameter per command and it should always be specified before any other parameters.
+В каждой команде может быть только один безымянный параметр, и он всегда должен указываться перед любыми другими параметрами.
 
-### Optional and Required Parameters
+### Опциональные и обязательные параметры
 
-Most of the command parameters are *optional*. It means they either have a predefined value or just doesn't require any value in order for the command to be executed. For example, when a [@resetText] command is used without specifying any parameters it will reset text of a default printer, but you can also set a specific printer ID like this: `@resetText printer:Dialogue`.
+Большинство параметров команды являются *опциональными*. Это означает, что они либо имеют предопределенное значение, либо просто не требуют никакого значения для выполнения команды. Например, если команда [@resetText] используется без указания каких-либо параметров, она сбросит текст в принтере по умолчанию, но вы также можете установить определенный ID принтера следующим образом: `@resetText printer:Dialogue`.
 
-Some parameters however are *required* in order for the command to execute and should always be specified.
+Однако некоторые параметры являются *обязательными* для выполнения команды и всегда должны быть указаны.
 
-### Commands API Reference
+### Справочик команд API
 
-For the list of all the currently available commands with a summary, parameters and usage examples see [commands API reference](/api/). 
+Для списка всех доступных сейчас команд с описанием, параметрами и примерами использования см. [справочник команд API](/ru/api/). 
 
-## Generic Text Lines
+## Универсальные текстовые строки
 
-To make writing scripts with large amounts of text more comfortable generic text lines are used. Line is considered a generic text statement if doesn't start with any of the predefined statement literals:
+Чтобы сделать написание скриптов с большим объемом текста более удобным, используются универсальные текстовые строки. Строка считается универсальным текстовым оператором, если она не начинается ни с одного из вышеуказанных литералов операторов:
 
 ```
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ```
 
-An author ID can be specified at the start of a generic text line separated by a column (`:`) to associate printed text with a [character actor](/guide/characters.md):
+ID говорящего можно указать в начале универсальной текстовой строки, отделив их двоеточием (`:`), чтобы связать печатный текст с [актором персонажа](/ru/guide/characters.md):
 
 ```
 Felix: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ```
 
-To save some typing when constantly changing character appearances associated with printed text, you can also specify appearance after the author ID:
+Чтобы сэкономить время и текст при постоянном изменении внешности персонажей, связанных с печатным текстом, вы также можете указать внешность после ID персонажа:
 
 ```
 Felix.Happy: Lorem ipsum dolor sit amet.
 ```
 
-The above line is equal to the following two:
+Строка выше аналогична следующим двум:
 
 ```
 @char Felix.Happy wait:false
 Felix: Lorem ipsum dolor sit amet.
 ```
 
-### Command Inlining
+### Встраивание команд
 
-Sometimes, you may want to execute a command while revealing (printing) a text message, right after or before a specific character. For example, an actor would change their appearance (expression) when a specific word is printed or a particular sound effect would be played in reaction to some event described in the midst of a printed message. Command inlining feature allows to handle cases like that.
+Иногда вам может потребоваться выполнить команду во время отображения (печати) текстового сообщения, сразу после или перед определенным символом. Например, актор изменил бы свою внешность (выражение) при выведении определенного слова; или воспроизведение определенного звукового эффекта в ответ на какое-то событие, описанное в середине печатного сообщения. Функция встраивания команд позволяет обрабатывать подобные ситуации.
 
-All the commands (both [built-in](/api/) and [custom ones](/guide/custom-commands.md)) can be inlined (injected) to generic text lines using square brackets (`[`,`]`):
+Все команды, (как [встроенные](/ru/api/) и [пользовательские](/ru/guide/custom-commands.md)) могут быть встроены в универсальные текстовые строки с использованием квадратных скобок (`[`,`]`):
 
 ```
 Felix: Lorem ipsum[char Felix.Happy pos:0.75 wait:false] dolor sit amet, consectetur adipiscing elit.[i] Aenean tempus eleifend ante, ac molestie metus condimentum quis.[i][br 2] Morbi nunc magna, consequat posuere consectetur in, dapibus consectetur lorem. Duis consectetur semper augue nec pharetra.
 ```
 
-Notice, that the inlined command syntax is exactly the same, except `@` literal is omitted and command body is wrapped in square brackets. Basically, you can take any command line, inline it to a generic text line and it will have the exact same effect, but at a different moment, depending on the position inside text message.
+Обратите внимание, что синтаксис встроенной команды остаётся точно таким же, за исключением того, что литерал `@` опущен, а тело команды заключено в квадратные скобки. Вы можете взять любую командную строку, встроить ее в общую текстовую строку, и она будет иметь точно такой же эффект, но в другой момент, в зависимости от позиции внутри текстового сообщения.
 
-Under the hood, generic text lines are parsed into individual commands identified by inline index; text is printed with [@print] command. For example, following generic text line in a naninovel script:
+Под капотом универсальные текстовые строки разбираются на отдельные команды, идентифицируемые встроенным индексом; текст печатается с помощью команды [@print]. Например, следующая универсальная текстовая строка в скрипте Naninovel:
 
 ```
 Lorem ipsum[char Felix.Happy pos:75 wait:false] dolor sit amet.
 ```
 
-— is actually handled by the engine as a sequence of individual commands:
+— в действительности обрабатывается движком как последовательность отдельных команд:
 
 ```
 @print "Lorem ipsum" waitInput:false
@@ -153,71 +153,70 @@ Lorem ipsum[char Felix.Happy pos:75 wait:false] dolor sit amet.
 @print "dolor sit amet."
 ```
 
-To actually print square brackets via a generic text line, escape them with backslashes, eg:
+Чтобы напечатать квадратные скобки через универсальную текстовую строку, экранируйте их с помощью обратного слэша, например:
 ```
 Some text \[ text inside brackets \]
 ```
 
-— will print "Some text [ text inside brackets ]" in-game.
+— напечатает "Some text [ text inside brackets ]" в игре.
 
-## Label Lines
+## Строки-метки
 
-Labels are used as "anchors" when navigating the naninovel scripts with [@goto] commands. To define a label, use a `#` literal at the start of the line followed with label name:
+Метки используются в качестве "якорей" при навигации по сценариям Naninovel с помощью команд [@goto]. Чтобы объявить метку, используйте литерал `#` в начале строки, за которым следует имя метки:
 
 ```
 # Epilogue
 ```
 
-You can then use a [@goto] command to "jump" to that line:
+Теперь можно использовать команду [@goto], чтобы "прыгнуть" к этой строке:
 
 ```
 @goto ScriptName.Epilogue
 ```
 
-In case you're using [@goto] command from within the same script where the label is defined, you can omit the script name:
+В случае, если вы используете команду [@goto] из того же сценария, в котором находится искомая метка, вы можете опустить имя сценария:
 
 ```
 @goto .Epilogue
 ```
 
+## Строки-комментарии
 
-## Comment Lines
-
-When line starts with a semicolon literal (`;`) it's considered a comment statement. Comment lines are completely ignored by the engine when scripts are parsed. You can use comment lines to add notes or annotations for yourself or other team members who work with naninovel scripts.
+Когда строка начинается с литерала точки с запятой (`;`), она считается оператором комментария. Строки комментариев полностью игнорируются движком при выполнении сценариев. Вы можете использовать строки комментариев для добавления заметок или аннотаций для себя или других членов команды, работающих со сценариями Naninovel.
 
 ```
-; The following command will auto-save the game.
+; Следующая команда выполнит автосохранение игры.
 @save
 ```
 
-## Conditional Execution
+## Условия исполнения
 
-While the script are executed in a linear fashion by default, you can introduce branching using `if` parameters supported by all the commands.
+Хотя сценарий по умолчанию выполняется линейно, вы можете ввести ветвление, используя параметры `if`, поддерживаемые всеми командами.
 
 ```
-; If `level` value is a number and is greater than 9000, add the choice.
+; Если значение `level` – это номер, и он больше 9000, добавить выбор.
 @choice "It's over 9000!" if:level>9000
 
-; If `dead` variable is a bool and equal to `false`, execute the print command.
+; Ессли переменная `dead` – булева, и имеет значение `false`, выполнить команду вывода текста.
 @print text:"I'm still alive." if:!dead
 
-; If `glitch` is a bool and equals `true` or random function in 1 to 10 range 
-; returns 5 or more, execute `@spawn` command.
+; Если переменная `glitch`– булева, и имеет значение `true`, или функция вывода случайного числа в диапазоне от 1 до 10 
+; возвращает 5 или больше, выполнить команду `@spawn`.
 @spawn GlitchCamera if:"glitch || Random(1, 10) >= 5"
 
-; If `score` value is in 7 to 13 range or `lucky` variable is a bool and equals 
-; `true`, load `LuckyEnd` script.
+; Если `score` имеет значение от 7 до 13, или переменная `lucky`– булева, 
+; и возвращает `true`, загрузить скрипт `LuckyEnd`.
 @goto LuckyEnd if:"(score >= 7 && score <= 13) || lucky"
 
-; You can also use conditionals in the inlined commands.
+; Вы также можете использовать условия во встроенных командах.
 Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 
-; When using double quotes inside the expression itself, 
-; don't forget to double-escape them.
+; Если в самом выражении используются двойные кавычки, 
+; не забывайте дважды экранировать их.
 @print {remark} if:remark=="Saying \\"Stop the car\\" was a mistake."
 ```
 
-It's also possible to specify multi-line conditional blocks with [@if], [@else], [@elseif] and [@endif] commands.
+Также возможно указывать многострочные условные блоки с помощью команд [@if], [@else], [@elseif] и [@endif].
 
 ```
 @if score>10
@@ -235,21 +234,23 @@ It's also possible to specify multi-line conditional blocks with [@if], [@else],
 @endif
 ```
 
-Note that tabs here are completely optional and used just for better readability.
+Обратите внимание, что табуляции полностью опциональны и используются здесь только для лучшей читаемости.
 
-The same works for generic text lines:
+То же самое работает и для универсальных текстовых строк:
 
 ```
 Lorem ipsum dolor sit amet. [if score>10]Duis efficitur imperdiet nunc. [else]Vestibulum sit amet dolor non dolor placerat vehicula.[endif]
 ```
 
-For more information on the conditional expression format and available operators see the [script expressions](/guide/script-expressions.md) guide.
+Для дополнительной информации о форматах условных выражений и доступных операторах см. гайд по [выражениям сценариев](/guide/script-expressions.md).
 
-## Visual Editor
+## Визуальный редактор
 
-You can use visual script editor to edit the naninovel scripts. Select a script asset and you'll see the visual editor automatically open in the inspector window.
+Вы можете использовать визуальный редактор сценариев для редактирования сценариев Naninovel. Выберите ресурс сценария, и вы увидите, что визуальный редактор автоматически откроется в окне инспектора.
 
 [!ba57b9f78116e57408125325bdf66be9]
+
+Чтобы добавить новую строку в сценарий, щелкните правой кнопкой мыши место, куда вы хотите вставить строку, или же нажмите `Ctrl+Space` (вы можете изменить привязки клавиш по умолчанию в меню конфигурации ввода) и выберите нужную строку или тип команды. Чтобы изменить порядок строк, перетащите их, используя их номерные метки. Чтобы удалить строку, щелкните ее правой кнопкой мыши и выберите пункт "Удалить".
 
 To add a new line to the script, either right-click the place, where you want to insert the line, or press `Ctrl+Space` (you can change the default key bindings in the input configuration menu) and select the desired line or command type. To re-order lines, drag them using their number labels. To remove a line, right-click it and choose "Remove".
 
