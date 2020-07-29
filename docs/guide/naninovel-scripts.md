@@ -242,7 +242,7 @@ Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 Lorem ipsum dolor sit amet. [if score>10]Duis efficitur imperdiet nunc. [else]Vestibulum sit amet dolor non dolor placerat vehicula.[endif]
 ```
 
-Для дополнительной информации о форматах условных выражений и доступных операторах см. гайд по [выражениям сценариев](/guide/script-expressions.md).
+Для дополнительной информации о форматах условных выражений и доступных операторах см. гайд по [выражениям сценариев](/ru/guide/script-expressions.md).
 
 ## Визуальный редактор
 
@@ -250,92 +250,90 @@ Lorem ipsum dolor sit amet. [if score>10]Duis efficitur imperdiet nunc. [else]Ve
 
 [!ba57b9f78116e57408125325bdf66be9]
 
-Чтобы добавить новую строку в сценарий, щелкните правой кнопкой мыши место, куда вы хотите вставить строку, или же нажмите `Ctrl+Space` (вы можете изменить привязки клавиш по умолчанию в меню конфигурации ввода) и выберите нужную строку или тип команды. Чтобы изменить порядок строк, перетащите их, используя их номерные метки. Чтобы удалить строку, щелкните ее правой кнопкой мыши и выберите пункт "Удалить".
+Чтобы добавить новую строку в сценарий, щелкните правой кнопкой мыши в месте, куда вы хотите вставить строку, или же нажмите `Ctrl+Space` (вы можете изменить привязки клавиш по умолчанию в меню конфигурации ввода) и выберите нужную строку или тип команды. Чтобы изменить порядок строк, перетащите их за номерные метки. Чтобы удалить строку, щелкните ее правой кнопкой мыши и выберите пункт "Удалить".
 
-To add a new line to the script, either right-click the place, where you want to insert the line, or press `Ctrl+Space` (you can change the default key bindings in the input configuration menu) and select the desired line or command type. To re-order lines, drag them using their number labels. To remove a line, right-click it and choose "Remove".
+Когда вы изменили сценарий с помощью визуального редактора, вы увидите звездочку (`*`) над именем сценария в заголовке инспектора. Это означает, что ассет был изменён и должен быть сохранен; нажмите `Ctrl+S`, чтобы сохранить ассет. Если вы попытаетесь выбрать другой ассет после изменения сценария, появится диалоговое окно, позволяющее либо сохранить, либо отменить изменения.
 
-When you've changed the script using visual editor, you'll see an asterisk (`*`) over the script name in the inspector header. That means the asset is dirty and need to be saved; press `Ctrl+S` to save the asset. In case you'll attempt to select another asset while the script is dirty, a dialogue window will pop-up allowing to either save or revert the changes.
+Визуальный редактор автоматически синхронизирует отредактированный сценарий, если вы обновите его внешне, так что вы можете легко работать со сценариями как в текстовых, так и в визуальных редакторах. В случае, если автосинхронизация не работает, убедитесь, что функция `Auto Refresh` включена в меню редактора Unity `Edit -> Preferences -> General`.
 
-The visual editor will automatically sync edited script if you update it externally, so you can seamlessly work with the scripts in both text and visual editors. In case auto-sync is not working, make sure `Auto Refresh` is enabled in the `Edit -> Preferences -> General` Unity editor menu.
-
-During the playmode, you can use visual editor to track which script line is currently being played and right-click a line to rewind the playback. This feature requires the script to have equal resource ID (when assigned in the resources manager menu) and asset name.
+В режиме воспроизведения вы можете использовать визуальный редактор, чтобы отслеживать, какая строка сценария воспроизводится в данный момент, и щелкнуть правой кнопкой мыши строку, чтобы перемотать сценарий назад. Эта функция требует, чтобы сценарий имел одинаковый ID ресурса (при назначении в меню менеджера ресурсов) и имя ассета?.
 
 [!b6e04d664ce4b513296b378b7c25be03]
 
-Currently played line will be highlighted with green color; when script playback is halted due waiting for user input, played line will be highlighted with yellow instead.
+Строка, воспроизводимая в настоящее время, будет выделена зеленым цветом; когда воспроизведение скрипта будет остановлено при ожидании ввода пользователем, воспроизводимая строка будет выделена желтым цветом.
 
-You can tweak the editor behavior and looks in the scripts configuration menu.
+Вы можете настроить поведение редактора и внешний вид в меню конфигурации сценариев.
 
 ![](https://i.gyazo.com/4b4b2608e7662b02a61b00734910308c.png)
 
 [!!9UmccF9R9xI]
 
-## Script Graph
+## Схемы сценариев
 
-When working with large amount of scripts and non-linear stories, it could become handy to have some kind of visual representation of the story flow. This is where script graph tool comes in handy.
+При работе с большим количеством сценариев и нелинейных историй, удобным может быть наличие визуального представления развития истории. Здесь вам может пригодиться инструмент сценарных схем.
 
 [!0dd3ec2393807fb03d501028e1526895]
 
-To open the graph window use `Naninovel -> Script Graph` editor menu. You can dock the window as any other editor panel if you like to.
+Чтобы открыть окно схемы, испольуйте меню редактора `Naninovel -> Script Graph`. Вы можете закрепить это окно как любую другую панель редактора, если хотите.
 
-The tool will automatically build graph representation of all the naninovel scripts (represented as nodes) assigned via editor resources (`Naninovel -> Resources -> Scripts`) and connections between them.
+Инструмент автоматически построит графическое представление всех сценариев Naninovel (в виде узлов), назначенных через ресурсы редактора (`Naninovel -> Resources -> Scripts`), и связей между ними.
 
-The connections are generated based on [@goto] and [@gosub] commands. If the command has a conditional expression assigned (`if` parameter), corresponding port in the node will be highlighted with yellow and you'll be able to see the expression when hovering the port.
+Соединения генерируются на основе команд [@goto] и [@gosub]. Если команде назначено условное выражение (параметр `if`), соответствующий порт в узле будет выделен желтым цветом, и вы сможете увидеть выражение при наведении курсора на порт.
 
-You can select script asset and open visual editor by double-clicking nodes or clicking ports. Clicking the ports will also scroll the visual editor to a line containing label (in case there were a label specified).
+Вы можете выбрать ассет сценария и открыть визуальный редактор, дважды щелкнув по узлу или порту. Щелчок по портам также приведет к прокрутке визуального редактора до строки, содержащей метку (в случае, если была указана метка).
 
-You can re-position the nodes as you like and their positions will be automatically saved when closing the graph window or exiting Unity; the positions will then be restored when re-open the window. You can also save manually by clicking "Save" button. Clicking "Auto Align" button will reset all the positions.
+Вы можете изменять положение узлов по своему усмотрению, и их позиции будут автоматически сохранены при закрытии окна схемы или выходе из Unity; затем позиции будут восстановлены при повторном открытии окна. Вы также можете сохранить положения вручную, нажав кнопку "Save". Нажатие кнопки "Auto Align" приведет к сбросу всех позиций.
 
-When changing scripts or adding new ones, click "Rebuild Graph" button to sync it.
+При изменении сценариев или добавлении новых нажмите кнопку "Rebuild Graph", чтобы синхронизировать изменения.
 
-## Hot Reload
+## Горячая перезагрузка
 
-It's possible to edit scripts at play mode (via both visual and external editors) and have the changes applied immediately, without game restart. The feature is controlled via `Hot Reload Scripts` property in the scripts configuration and is enabled by default.
+Можно редактировать сценарии в режиме воспроизведения (как с помощью визуальных, так и внешних редакторов) и сразу же применять изменения, не перезапуская игру. Эта функция управляется через свойство `Hot Reload Scripts` в конфигурации сценариев и включена по умолчанию.
 
-When modifying, adding or removing a line before the currently played one, state rollback will automatically happen to the modified line to prevent state inconsistency.
+При изменении, добавлении или удалении строки перед воспроизводимой в данный момент, откат состояния автоматически произойдет с измененной строкой, чтобы предотвратить несоответствие состояния.
 
-In case hot reload is not working, make sure `Auto Refresh` is enabled and `Script Changes While Playing` is set to `Recompile And Continue Playing`. Both properties can be found at `Edit -> Preferences -> General` Unity editor menu.
+В случае, если горячая перезагрузка не работает, убедитесь, что включено свойство `Auto Refresh`, а `Script Changes While Playing` установлено на `Recompile And Continue Playing`. Оба свойства можно найти в меню редактора Unity `Edit -> Preferences -> General`.
 
 ![](https://i.gyazo.com/5d433783e1a12531c79fe6be80c92da7.png)
 
-To manually initiate hot reload of the currently played naninovel script (eg, when editing script file outside of Unity project), use `reload` [console command](/guide/development-console.md). The command is editor-only (won't work in builds).
+Чтобы вручную инициировать горячую перезагрузку текущего сценария Naninovel (например, при редактировании файла скрипта вне проекта Unity), используйте [консольную команду](/ru/guide/development-console.md) `reload`. Команда предназначена только для редактора (не будет работать в сборках).
 
-## IDE Support
+## Поддержка IDE
 
-IDE features, like syntax highlighting, error checking, auto-completion and interactive documentation could significantly increase productivity when writing scripts. We've made an extension for a free and open-source [Atom editor](https://atom.io) (available for Windows, MacOS and Linux), which provides the essential IDE support for NaniScript syntax.
+Такие функции IDE, как подсветка синтаксиса, проверка ошибок, автозавершение и интерактивная документация, могут значительно повысить производительность при написании сценариев. Мы сделали расширение для бесплатного open-source [редактора Atom](https://atom.io) (доступен для Windows, MacOS и Linux), которое обеспечивает существенную поддержку IDE для синтаксиса NaniScript.
 
 ![](https://i.gyazo.com/e3de33e372887b0466ea513576beadd0.png)
 
-To use the extension:
+Для использования расширения:
 
-1. Install [Atom editor](https://atom.io)
-2. Install [language-naniscript](https://atom.io/packages/language-naniscript) extension
-3. Install [atom-ide-ui](https://atom.io/packages/atom-ide-ui) extension (required for our extension to provide some of the features)
-4. Restart the Atom editor
-5. Open a folder with naninovel scripts (opening a single file won't activate the extension)
+1. Установите [редактор Atom](https://atom.io)
+2. Установите расширение [language-naniscript](https://atom.io/packages/language-naniscript)
+3. Установите расширение [atom-ide-ui](https://atom.io/packages/atom-ide-ui) (требуется для нашего расширения, чтобы обеспечить работу некоторых функций)
+4. Перезапустите Atom
+5. Откройте папку со сценариями Naninovel (открытие одиночного файла не активирует расширение)
 
-Check the following video tutorial on activating and using the extension.
+Посмотрите следующий видеогайд по активации и использованию расширения.
 
 [!!njKxsjtewzA]
 
-Support for other editors is possible in the future; check [the issue on GitHub](https://github.com/Elringus/NaninovelWeb/issues/56#issuecomment-492987029) for more information.
+Поддержка других редакторов возможна в будущем; проверьте [тему на GitHub](https://github.com/Elringus/NaninovelWeb/issues/56#issuecomment-492987029) для получения дополнительной информации.
 
-## Scripts Debug
+## Отладка сценариев
 
-When working with large naninovel scripts, it could become tedious to always play them from start in order to check how things work in particular parts of the script. 
+При работе с большими сценариями Naninovel может стать утомительным всегда воспроизводить их с самого начала, чтобы проверить, как все работает в определенных частях скрипта.
 
-Using [development console](/guide/development-console.md) you can instantly "rewind" currently played script to an arbitrary line:
+С помощью [консоли разработчика](/ru/guide/development-console.md) вы можете мгновенно "перемотать" воспроизводимый в данный момент сценарий на произвольную строку:
 
 ```
 rewind 12
 ```
 
-— will start playing current script from the 12th line; you can rewind forward and backward in the same way. To open the console while game is running, make sure the console is enabled in the engine configuration and press `~` key (can be changed in the configuration) or perform multi-touch (3 or more simultaneous touches) in case the build is running on a touchscreen device.
+— начнёт воспроизведение текущего скрипта с 12-й строки; вы можете перемотать его вперед и назад таким же образом. Чтобы открыть консоль во время работы игры, убедитесь, что консоль включена в конфигурации движка, и нажмите клавишу `~` (может быть изменена в конфигурации) или выполните мультитач (3 или более одновременных касаний) в случае, если сборка проигрывается на устройстве с сенсорным экраном.
 
-To find out which script and line is currently playing, use debug window: type `debug` in the development console and press `Enter` to show the window.
+Чтобы узнать, какой сценарий и какая строка воспроизводятся в данный момент, используйте окно отладки: введите `debug` в консоли разработки и нажмите `Enter`, чтобы открыть окно.
 
-![Scripts Debug](https://i.gyazo.com/12772ecc7c14011bcde4a74c81e997b8.png)
+![Отладка сценариев](https://i.gyazo.com/12772ecc7c14011bcde4a74c81e997b8.png)
 
-Currently played script name, line number and command (inline) index are displayed in the title of the window. When [auto voicing](/guide/voicing.md#auto-voicing) feature is enabled, name of the corresponding voice clip will also be displayed. You can re-position the window by dragging it by the title. "Stop" button will halt script execution; when script player is stopped "Play" button will resume the execution. You can close the debug window by pressing the "Close" button.
+В заголовке окна отображаются имя текущего воспроизводимого сценария, номер строки и индекс команды. Если включена функция [автоозвучивания](/ru/guide/voicing.md#auto-voicing), то также будет отображаться имя соответствующего голосового клипа. Вы можете изменить положение окна, перетащив его по заголовку. Кнопка "Stop" остановит выполнение скрипта; когда проигрыватель скриптов остановлен, кнопка "Play" возобновит выполнение. Вы можете закрыть окно отладки, нажав кнопку "Close".
 
-Debug window is available in both editor and player builds.
+Окно отладки доступно как в редакторе, так и в сборках.
