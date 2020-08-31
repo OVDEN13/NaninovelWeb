@@ -1,4 +1,4 @@
-# Unlockable Items
+# Разблокируемые предметы
 
 The unlockables feature allows to manage items, which have a persistent state of being either locked or unlocked. You can use it in a variety of ways, for example to represent slots in a CG or movie gallery, achievements, tips and other systems where some entity should be able to become unlocked or activated when player satisfies a condition.
 
