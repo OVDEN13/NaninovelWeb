@@ -6,7 +6,7 @@ sidebar: auto
 
 Справочник по API командам сценария. Используйте боковую панель для быстрой навигации между доступными командами. 
 
-~~Зачеркивание~~ обозначает безымянный параметр, а **жирный** - обязательный параметр; остальные параметры следует считать необязательными. Обратитесь к [руководству по скриптам naninovell](/guide/naninovel-scripts.md) если вы не знаете, что это такое.
+~~Зачеркивание~~ обозначает безымянный параметр, а **жирный** – обязательный параметр; остальные параметры следует считать необязательными. Обратитесь к [руководству по скриптам Naninovel](/ru/guide/naninovel-scripts.md) если вы не знаете, что это такое.
 
 Следующие параметры поддерживаются всеми командами сценария:
 
@@ -14,7 +14,7 @@ sidebar: auto
 
 ID | Тип | Описание
 --- | --- | ---
-if | Строка |  Логическое [выражение сценария](/guide/script-expressions.md), контролирующее, должна ли команда выполняться.
+if | Строка |  Логическое [выражение сценария](/ru/guide/script-expressions.md), контролирующее, должна ли команда выполняться.
 wait | Boolean | Должен ли проигрыватель сценариев дождаться завершения асинхронной команды перед выполнением следующей. Не действует, когда команда выполняется мгновенно.
 
 </div>
@@ -26,11 +26,11 @@ wait | Boolean | Должен ли проигрыватель сценариев
 ## animate
 
 #### Краткое описание
-Команда анимации актеров с указанными ID с помощью ключевых кадров. Ключевые кадры для параметры анимации отделяются литералами `|`.
+Команда анимации акторов с указанными ID с помощью ключевых кадров. Ключевые кадры для параметры анимации отделяются литералами `|`.
 
 #### Примечание
-Помните, что эта команда ищет актеров с предоставленными ID по всем менеджерам актеров, и в случае, если существует несколько актеров с одинаковым ID (например, персонаж и текстовый принтер), это повлияет только на первый найденный.  <br /><br />
-При параллельном запуске команд animate (значение «wait» установлено в false) состояние затронутых актеров может изменяться непредсказуемо. Это может привести к неожиданным результатам при откате или выполнении других команд, которые влияют на состояние актера. Обязательно сбрасывайте затронутые свойства анимированных актеров (положение, оттенок, внешний вид и т. Д.) После завершения команды или используйте `@animate CharacterId` (без каких-либо аргументов), чтобы преждевременно остановить анимацию.
+Помните, что эта команда ищет акторов с предоставленными ID по всем менеджерам акторов, и в случае, если существует несколько акторов с одинаковым ID (например, персонаж и текстовый принтер), это повлияет только на первый найденный.  <br /><br />
+При параллельном запуске команд animate (значение «wait» установлено в false) состояние затронутых акторов может изменяться непредсказуемо. Это может привести к неожиданным результатам при откате или выполнении других команд, которые влияют на состояние актора. Обязательно сбрасывайте затронутые свойства анимированных акторов (положение, оттенок, внешний вид и т.д.) после завершения команды или используйте `@animate CharacterId` (без каких-либо аргументов), чтобы преждевременно остановить анимацию.
 
 #### Параметры
 
@@ -38,29 +38,29 @@ wait | Boolean | Должен ли проигрыватель сценариев
 
 ID | Тип | Описание
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">ActorIds</span> | List&lt;String&gt; | ID актеров для анимации.
-loop | Boolean | Следует ли зацикливать анимацию;убедитесь, что для `wait` установлено значение false, когда включен цикл, в противном случае воспроизведение сценария будет повторяться бесконечно.
-appearance | Строка | Установка внешности для анимированных актеров.
-transition | Строка | Тип [эффекта перехода](/guide/transition-effects.md) который будет использоваться при изменении внешнего вида (по умолчанию используется кроссфейд).
-visibility | Строка | Статус видимости для анимированных актеров.
-posX | Строка | Значения позиции анимированного актера, по оси Х (в диапазоне от 0 до 100, в процентах от левой границы экрана).
-posY | Строка | Значения позиции анимированного актера, по оси Y (в диапазоне от 0 до 100, в процентах от нижней границы экрана).
-posZ | Строка | Значения позиции анимированного актера, по оси Z (в мировом пространстве); В орто-режиме, ожно использовать только для сортировки.
-rotation | Строка | Значения поворота (по оси Z) для анимированных актеров.
-scale | Строка | Значения шкалы (единообразные) для анимированных актеров.
-tint | Строка | Оттенок цвета для анимированных актеров.  <br /><br />  Строки, начинающиеся с `#` будет проанализирован как шестнадцатеричный следующим образом:  `#RGB` (становится RRGGBB), `#RRGGBB`, `#RGBA` (становится RRGGBBAA), `#RRGGBBAA`; Если альфа не указана, по значение по умолчанию будет FF.  <br /><br />  Строки, которые не начинаются с `#`, будут анализироваться как цвета, поддерживаются:  red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta.
-easing | Строка | Названия функций замедления, используемых для анимации. <br /><br />  Доступные варианты: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  Если не указан, будет использоваться функция замедления по умолчанию, установленная в настройках конфигурации менеджера актера.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">ActorIds</span> | List&lt;String&gt; | ID акторов для анимации.
+loop | Boolean | Следует ли зацикливать анимацию; убедитесь, что для `wait` установлено значение false, когда включен цикл, в противном случае воспроизведение сценария будет повторяться бесконечно.
+appearance | Строка | Установка внешности для анимированных акторов.
+transition | Строка | Тип [эффекта перехода](/ru/guide/transition-effects.md) который будет использоваться при изменении внешнего вида (по умолчанию используется кроссфейд).
+visibility | Строка | Статус видимости для анимированных акторов.
+posX | Строка | Значения позиции анимированного актора, по оси Х (в диапазоне от 0 до 100, в процентах от левой границы экрана).
+posY | Строка | Значения позиции анимированного актора, по оси Y (в диапазоне от 0 до 100, в процентах от нижней границы экрана).
+posZ | Строка | Значения позиции анимированного актора, по оси Z (в мировом пространстве); В орто-режиме, ожно использовать только для сортировки.
+rotation | Строка | Значения поворота (по оси Z) для анимированных акторов.
+scale | Строка | Значения шкалы (единообразные) для анимированных акторов.
+tint | Строка | Оттенок цвета для анимированных акторов.  <br /><br />  Строки, начинающиеся с `#` будет проанализирован как шестнадцатеричный следующим образом:  `#RGB` (становится RRGGBB), `#RRGGBB`, `#RGBA` (становится RRGGBBAA), `#RRGGBBAA`; Если альфа не указана, по значение по умолчанию будет FF.  <br /><br />  Строки, которые не начинаются с `#`, будут анализироваться как цвета, поддерживаются:  red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta.
+easing | Строка | Названия функций замедления, используемых для анимации. <br /><br />  Доступные варианты: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  Если не указан, будет использоваться функция замедления по умолчанию, установленная в настройках конфигурации менеджера актора.
 time | Строка | Продолжительность ключа анимации в секундах. Если значение ключа отсутствует, будет использоваться значение из предыдущего ключа. Если значение не установлено, будет использовать задержка 0.35 секунд для всех ключей.
 
 </div>
 
-#### Пример
+#### Примеры
 ```
-; Анимация актера "Kohaku" за три шага анимации (ключевые кадры),
+; Анимация актора "Kohaku" за три шага анимации (ключевые кадры),
 ; смена позиций: первый шаг займет 1, второй - 0.5 и третий - 3 секунды.
 @animate Kohaku posX:50|0|85 time:1|0.5|3
 
-; Старт цикла анимации актеров "Yuko" и "Kohaku"; обратите внимание, что вы можете пропустить
+; Старт цикла анимации акторов "Yuko" и "Kohaku"; обратите внимание, что вы можете пропустить
 ; ключевые значения, указывающие, что параметр не должен изменяться на этапе анимации.
 @animate Kohaku,Yuko loop:true appearance:Surprise|Sad|Default|Angry transition:DropFade|Ripple|Pixelate posX:15|85|50 posY:0|-25|-85 scale:1|1.25|1.85 tint:#25f1f8|lightblue|#ffffff|olive easing:EaseInBounce|EaseInQuad time:3|2|1|0.5 wait:false
 ...
@@ -93,12 +93,12 @@ time | Строка | Продолжительность ключа анимац
 ID | Тип | Описание
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Безымянный параметр: значение следует указывать после ID команды без указания ID параметра. Обязательный параметр: параметр должен всегда указываться">Text</span> | Строка | Текст для добавления.
-printer | Строка | ID актера принтера, который будет использован. Если параметр не указан, будет использован принтер по умолчанию.
-author | Строка | ID актера, который должен быть связан с добавленым текстом.
+printer | Строка | ID актора принтера, который будет использован. Если параметр не указан, будет использован принтер по умолчанию.
+author | Строка | ID актора, который должен быть связан с добавленым текстом.
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Напечатайте первую часть предложения как обычно (постепенно проявляя сообщение)
 ; затем добавьте конец предложения сразу.
@@ -123,7 +123,7 @@ time | Decimal | Продолжительность (в секундах) ани
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Равномерно распределить всех видимых персонажей 
 @arrange
@@ -136,7 +136,7 @@ time | Decimal | Продолжительность (в секундах) ани
 ## back
 
 #### Краткое описание
-Изменяет [актер фона](/guide/backgrounds.md).
+Изменяет [актор фона](/ru/guide/backgrounds.md).
 
 #### Примечание
 Фоны обрабатываются немного иначе, нежели персонажи, чтобы лучше приспособиться к традиционному течению визуальных новелл. Большую часть времени вы, вероятно, будете иметь одного фонового актора в сцене, который будет постоянно менять внешности. Чтобы избавиться от лишнего повторения одного и того же ID актора в сценариях, можно предоставить только внешность фона и тип перехода (необязательно) в качестве безымянного параметра, что автоматически преобразует актора "MainBackground". Если это не так, ID фонового актора может быть конкретно указан с помощью параметра `id`:
@@ -147,24 +147,24 @@ time | Decimal | Продолжительность (в секундах) ани
 
 ID | Тип | Описание
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">AppearanceAndTransition</span> | Named&lt;String&gt; | Внешний вид (или [поза](/guide/backgrounds.md#poses)) для фона и типа использованного [эффекта перехода](/guide/transition-effects.md). Если переход не предусмотрен, по умолчанию будет использоваться эффект перекрестного затухания.
-pos | List&lt;Decimal&gt; | Положение (относительно границ экрана, в процентах), актера. Позиция описывается следующим образом: «0.0» - левый нижний угол, «50.50» - центр, а «100.100» - верхний правый угол экрана. Используйте Z-компонент (третий параметр, например, `,,10`) для перемещения (сортировки) по глубине в режиме орто.
-id | Строка | Идентификатор актера для изменения; укажите `*`, чтобы повлиять на всех видимых актеров.
-appearance | Строка | Устанавливает внешний вид или позу, изменяймому актеру.
-transition | Строка | Тип используемого [эффекта перехода](/guide/transition-effects.md) (по умолчанию используется кроссфейд).
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">AppearanceAndTransition</span> | Named&lt;String&gt; | Внешний вид (или [поза](/ru/guide/backgrounds.md#poses)) для фона и типа использованного [эффекта перехода](/ru/guide/transition-effects.md). Если переход не предусмотрен, по умолчанию будет использоваться эффект перекрестного затухания.
+pos | List&lt;Decimal&gt; | Положение (относительно границ экрана, в процентах) актора. Позиция описывается следующим образом: «0.0» - левый нижний угол, «50.50» - центр, а «100.100» - верхний правый угол экрана. Используйте Z-компонент (третий параметр, например, `,,10`) для перемещения (сортировки) по глубине в режиме орто.
+id | Строка | Идентификатор актора для изменения; укажите `*`, чтобы повлиять на всех видимых акторов.
+appearance | Строка | Устанавливает внешний вид или позу изменяемого актора.
+transition | Строка | Тип используемого [эффекта перехода](/ru/guide/transition-effects.md) (по умолчанию используется кроссфейд).
 params | List&lt;Decimal&gt; | Параметры эффекта перехода.
-dissolve | String | Путь к текстуре [нестандартное растворение](/guide/transition-effects.md#custom-transition-effects) (путь должен указываться относительно папки `Resources`). Действует только когда переход установлен в режим «Пользовательский».
-visible | Boolean | Статус видимости для измененного актера.
-position | List&lt;Decimal&gt; | Положение (в мировом пространстве) для измененного актера. Используйте Z-компонент (третий параметр) для перемещения (сортировки) по глубине в режиме орто.
-rotation | List&lt;Decimal&gt; | Вращение для измененного актера.
-scale | List&lt;Decimal&gt; | Масштаб для измененного актера.
-tint | String | Цвет оттенка для измененного актера.  <br /><br />  Строки, начинающиеся с `#`, будут анализироваться как шестнадцатеричные следующим образом:  `#RGB` (становится RRGGBB), `#RRGGBB`, `#RGBA` (становится RRGGBBAA), `#RRGGBBAA`; если альфа не указана, по умолчанию будет FF.  <br /><br />  Строки, которые не начинаются с `#`, будут анализироваться как буквенные цвета, поддерживаются следующие параметры:  красный, голубой, синий, темно-синий, светло-синий, фиолетовый, желтый, салатовый, фуксия, белый, серебристый, серый, черный, оранжевый, коричневый, темно-бордовый, зеленый, оливковый, темно-синий, бирюзовый, аква, пурпурный.
-easing | String | Имя функции замедления, используемой для модификации.  <br /><br />  Доступные Варианты: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  Если не указан, будет использоваться функция замедления по умолчанию, установленная в настройках конфигурации менеджера актера.
+dissolve | String | Путь к текстуре [нестандартное растворение](/ru/guide/transition-effects.md#custom-transition-effects) (путь должен указываться относительно папки `Resources`). Действует только когда переход установлен в режим «Пользовательский».
+visible | Boolean | Статус видимости для изменяемого актора.
+position | List&lt;Decimal&gt; | Положение (в мировом пространстве) для изменяемого актора. Используйте Z-компонент (третий параметр) для перемещения (сортировки) по глубине в режиме орто.
+rotation | List&lt;Decimal&gt; | Вращение для изменяемого актора.
+scale | List&lt;Decimal&gt; | Масштаб для изменяемого актора.
+tint | String | Цвет оттенка для изменяемого актора.  <br /><br />  Строки, начинающиеся с `#`, будут анализироваться как шестнадцатеричные следующим образом:  `#RGB` (становится RRGGBB), `#RRGGBB`, `#RGBA` (становится RRGGBBAA), `#RRGGBBAA`; если альфа не указана, по умолчанию будет FF.  <br /><br />  Строки, которые не начинаются с `#`, будут анализироваться как буквенные цвета, поддерживаются следующие параметры:  красный, голубой, синий, темно-синий, светло-синий, фиолетовый, желтый, салатовый, фуксия, белый, серебристый, серый, черный, оранжевый, коричневый, темно-бордовый, зеленый, оливковый, темно-синий, бирюзовый, аква, пурпурный.
+easing | String | Имя функции замедления, используемой для модификации.  <br /><br />  Доступные Варианты: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  Если не указан, будет использоваться функция замедления по умолчанию, установленная в настройках конфигурации менеджера актора.
 time | Decimal | Продолжительность (в секундах) модификации. Значение по умолчанию: 0.35 секунды.
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Установите `River` в качестве появления основного фона
 @back River
@@ -190,7 +190,7 @@ time | Decimal | Продолжительность (в секундах) мод
 ## bgm
 
 #### Краткое описание
-Воспроизведение или изменение текущей воспроизводимой дорожки [BGM (background music)](guideaudio.md#background-music) с указанным именем.
+Воспроизведение или изменение текущей воспроизводимой дорожки [BGM (фоновой музыки)](/ru/guide/audio.md#background-music) с указанным именем.
 
 #### Примечания
 Музыкальные треки зациклены по умолчанию. Если название музыкальной дорожки (BgmPath) не указано, будут затронуты все воспроизводимые в данный момент дорожки.  При вызове для дорожки, которая уже воспроизводится, воспроизведение не будет затронуто (дорожка не начнет воспроизводиться с самого начала), но будут применены указанные параметры (громкость и зацикленность дорожки).
@@ -203,15 +203,15 @@ ID | Тип | Описание
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">BgmPath</span> | String | Путь к музыкальной дорожке для воспроизведения.
 intro | String | Путь к вступительной музыкальной дорожке, которую нужно воспроизвести один раз перед основной дорожкой (не зависит от параметра цикла).
-volume | Decimal | Объем музыкальной дорожки.
+volume | Decimal | Громкость музыкальной дорожки.
 loop | Boolean | Играть ли дорожку с начала, когда она заканчивается.
-fade | Decimal | Длительность постепенного увеличения громкости при запуске воспроизведения, в секундах (по умолчанию 0.0); не действует при изменении воспроизводимой дорожки.
-group | String | Аудио микшер [групповой путь](httpsdocs.unity3d.comScriptReferenceAudio.AudioMixer.FindMatchingGroups) это следует использовать при воспроизведении аудио.
+fade | Decimal | Длительность постепенного увеличения громкости при запуске воспроизведения и затухания при остановке, в секундах (по умолчанию 0.0); не действует при изменении воспроизводимой дорожки.
+group | String | [Группа](https://docs.unity3d.comScriptReferenceAudio.AudioMixer.FindMatchingGroups) в аудиомикшере, используемая при воспроизведении аудио.
 time | Decimal | Продолжительность (в секундах) модификации. Значение по умолчанию 0.35 секунды.
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Начинает воспроизведение музыкальной дорожки с названием `Sanctuary` в цикле
 @bgm Sanctuary
@@ -238,12 +238,12 @@ time | Decimal | Продолжительность (в секундах) мод
 ID | Тип | Описание
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">Count</span> | Integer | Число добавляемых разрывов строк.
-printer | String | ID актера принтера для использования. Если не задано, будет использовать значение по умолчанию.
-author | String | ID Идентификатор актера, который должен быть связан с добавленным переводом строки.
+printer | String | ID актора принтера для использования. Если не задано, будет использовать значение по умолчанию.
+author | String | ID актора, который должен быть связан с добавленным переводом строки.
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Второе предложение будет напечатано в новой строке
 Lorem ipsum dolor sit amet.[br]Consectetur adipiscing elit.
@@ -255,7 +255,7 @@ Lorem ipsum dolor sit amet.[br 2]Consectetur adipiscing elit.
 ## camera
 
 #### Краткое описание
-Модифицирует основную камеру, изменяя смещение, уровень масштабирования и вращение во времени.  Проверьте [это видео](https://youtu.be/zy28jaMss8w) для быстрой демонстрации командного эффекта.
+Модифицирует основную камеру, изменяя смещение, уровень масштабирования и вращение во времени. См. [это видео](https://youtu.be/zy28jaMss8w) для быстрой демонстрации эффекта команды.
 
 #### Параметры
 <div class="config-table">
@@ -267,14 +267,14 @@ roll | Decimal | Локальное вращение камеры по оси Z 
 rotation | List&lt;Decimal&gt; | Локальное вращение камеры по осям X, Y, Z в градусах (от 0.0 до 360.0 или от -180.0 до 180.0).
 zoom | Decimal | Установите масштаб камеры (ортогональный размер или поле зрения, в зависимости от режима рендеринга) в диапазоне от 0.0 (без увеличения) до 1.0 (при полном увеличении).
 ortho | Boolean | Должна ли камера отображаться в орфографическом (истинном) или перспективном (ложном) режиме.
-toggle | List&lt;String&gt; | Имена компонентов для переключения (включить, если отключено, и наоборот). Компоненты должны быть прикреплены к тому же игровому объекту, что и камера. Это можно использовать для переключения [пользовательские эффекты пост-обработки](/guide/special-effects.md#camera-effects).
-set | List&lt;Named&lt;Boolean&gt;&gt; | Names of the components to enable or disable. The components should be attached to the same gameobject as the camera.  This can be used to explicitly enable or disable [custom post-processing effects](/guide/special-effects.md#camera-effects).  Specified components enabled state will override effect of `toggle` parameter.
+toggle | List&lt;String&gt; | Имена компонентов для переключения (включить, если отключено, и наоборот). Компоненты должны быть прикреплены к тому же игровому объекту, что и камера. Это можно использовать для переключения [пользовательские эффекты пост-обработки](/ru/guide/special-effects.md#camera-effects).
+set | List&lt;Named&lt;Boolean&gt;&gt; | Имена включаемых/выключаемых компонентов. Компоненты должны быть прикреплены к тому же игровому объекту, что и камера.  This can be used to explicitly enable or disable [custom post-processing effects](/ru/guide/special-effects.md#camera-effects). Указанное состояние компонентов перекроет эффект от параметра `toggle`.
 easing | String |Имя функции замедления, используемой для модификации.  <br /><br />  Доступные Варианты: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  Если не указан, будет использоваться функция замедления по умолчанию, установленная в настройках конфигурации камеры.
 time | Decimal | Продолжительность (в секундах) модификации. Значение по умолчанию: 0.35 секунды.
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Смещение по оси X (панорамирование) камеры на -3 единицы и смещение по оси Y на 1.5 единицы
 @camera offset:-3,1.5
@@ -301,7 +301,7 @@ time | Decimal | Продолжительность (в секундах) мод
 ## char
 
 #### Краткое описание
-Модифицирует [актер персонажа](/guide/characters.md).
+Модифицирует [актор персонажа](/ru/guide/characters.md).
 
 #### Параметры
 
@@ -309,26 +309,26 @@ time | Decimal | Продолжительность (в секундах) мод
 
 ID | Тип | Описание
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">IdAndAppearance</span> | Named&lt;String&gt; | ID, который нужно изменить (укажите `*`, чтобы затронуть все видимые символы) и внешний вид(или [поза](/guide/characters.md#poses)), который нужно установить. Если внешний вид не указан, будет использоваться либо «По умолчанию» (сущетвует), либо случайный.
-look | String | Смотреть направление актера; поддерживаемые значения: слева, справа, по центру.
-avatar | String | Имя (путь) [текстуры аватара](/guide/characters.md#avatar-textures) для назначения персонажу. Используйте `none`, чтобы удалить (отменить) текстуру аватара у персонажа.
-pos | List&lt;Decimal&gt; | Установка положения (относительно границ экрана, в процентах), для измененного актера. Положение описывается следующим образом: «0.0» - левый нижний угол, «50.50» - центр, а «100.100» - верхний правый угол экрана. Используйте Z-компонент (третий параметр, например, `,, 10`) для перемещения (сортировки) по глубине в режиме орто.
-id | String | ID для изменения; укажите `*`, чтобы повлиять на всех видимых актеров.
-appearance | String | Внешний вид (или поза),  измененного актера.
-transition | String | Тип используемого [эффекта перехода](/guide/transition-effects.md) (по умолчанию используется перекрестное затухание).
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">IdAndAppearance</span> | Named&lt;String&gt; | ID, который нужно изменить (укажите `*`, чтобы затронуть все видимые символы) и внешний вид(или [поза](/ru/guide/characters.md#poses)), который нужно установить. Если внешний вид не указан, будет использоваться либо «По умолчанию» (сущетвует), либо случайный.
+look | String | Смотреть направление актора; поддерживаемые значения: слева, справа, по центру.
+avatar | String | Имя (путь) [текстуры аватара](/ru/guide/characters.md#avatar-textures) для назначения персонажу. Используйте `none`, чтобы удалить (отменить) текстуру аватара у персонажа.
+pos | List&lt;Decimal&gt; | Установка положения (относительно границ экрана, в процентах), для измененного актора. Положение описывается следующим образом: «0.0» - левый нижний угол, «50.50» - центр, а «100.100» - верхний правый угол экрана. Используйте Z-компонент (третий параметр, например, `,, 10`) для перемещения (сортировки) по глубине в режиме орто.
+id | String | ID для изменения; укажите `*`, чтобы повлиять на всех видимых акторов.
+appearance | String | Внешний вид (или поза),  измененного актора.
+transition | String | Тип используемого [эффекта перехода](/ru/guide/transition-effects.md) (по умолчанию используется перекрестное затухание).
 params | List&lt;Decimal&gt; | Параметры эффекта перехода.
-dissolve | String | Путь к текстуре [custom disolve](/guide/transition-effects.md#custom-transition-effects) путь должен указываться относительно папки `Resources`). Действует только когда переход установлен в режим «Пользовательский».
-visible | Boolean | Статус видимости, измененного актера.
-position | List&lt;Decimal&gt; | Положение (в мировом пространстве) измененного актера. Используйте Z-компонент (третий параметр) для перемещения (сортировки) по глубине в режиме орто.
-rotation | List&lt;Decimal&gt; | Вращение для измененного актера.
-scale | List&lt;Decimal&gt; | Масштаб, для измененного актера
-tint | String | Цвет оттенка измененного актера.  <br /><br />  Строки, начинающиеся с `#`, будут анализироваться как шестнадцатеричные следующим образом:  `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; если альфа не указана, по умолчанию будет FF.  <br /><br />  Строки, которые не начинаются с `#`, будут анализироваться как буквенные цвета, поддерживаются следующие значения: красный, голубой, синий, темно-синий, светло-синий, фиолетовый, желтый, салатовый, фуксия, белый, серебристый, серый, черный, оранжевый, коричневый , бордовый, зеленый, оливковый, темно-синий, чирок, аква, пурпурный.
-easing | String | Имя функции замедления, используемой для модификации.  <br /><br />  Доступные Варианты: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  Если не указан, будет использоваться функция замедления по умолчанию, установленная в настройках конфигурации менеджера актера.
+dissolve | String | Путь к текстуре [custom disolve](/ru/guide/transition-effects.md#custom-transition-effects) путь должен указываться относительно папки `Resources`). Действует только когда переход установлен в режим «Пользовательский».
+visible | Boolean | Статус видимости, измененного актора.
+position | List&lt;Decimal&gt; | Положение (в мировом пространстве) измененного актора. Используйте Z-компонент (третий параметр) для перемещения (сортировки) по глубине в режиме орто.
+rotation | List&lt;Decimal&gt; | Вращение для измененного актора.
+scale | List&lt;Decimal&gt; | Масштаб, для измененного актора
+tint | String | Цвет оттенка измененного актора.  <br /><br />  Строки, начинающиеся с `#`, будут анализироваться как шестнадцатеричные следующим образом:  `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; если альфа не указана, по умолчанию будет FF.  <br /><br />  Строки, которые не начинаются с `#`, будут анализироваться как буквенные цвета, поддерживаются следующие значения: красный, голубой, синий, темно-синий, светло-синий, фиолетовый, желтый, салатовый, фуксия, белый, серебристый, серый, черный, оранжевый, коричневый , бордовый, зеленый, оливковый, темно-синий, чирок, аква, пурпурный.
+easing | String | Имя функции замедления, используемой для модификации.  <br /><br />  Доступные Варианты: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  Если не указан, будет использоваться функция замедления по умолчанию, установленная в настройках конфигурации менеджера актора.
 time | Decimal | Продолжительность (в секундах) модификации. Значение по умолчанию: 0.35 секунды.
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Показывает персонажа с идентификатором `Sora` с появлением по умолчанию.
 @char Sora
@@ -350,7 +350,7 @@ time | Decimal | Продолжительность (в секундах) мод
 ## choice
 
 #### Краткое описание
-Добавляет параметр [choice](/guide/choices.md) в обработчик выбора с указанным идентификатором (или идентификатором по умолчанию).
+Добавляет параметр [choice](/ru/guide/choices.md) в обработчик выбора с указанным идентификатором (или идентификатором по умолчанию).
 
 #### Примечание
 Если параметры `goto`,` gosub` и `do` не указаны, выполнение сценария будет продолжено со следующей строки сценария.
@@ -362,7 +362,7 @@ time | Decimal | Продолжительность (в секундах) мод
 ID | Тип | Описание
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">ChoiceSummary</span> | String | Текст для отображения на выбор. Если текст содержит пробелы, заключите его в двойные кавычки (`" `). Если вы хотите включить двойные кавычки в сам текст, избегайте их.
-button | String | Путь (относительно папки `Resources`) к [кнопке prefab](/guide/choices.md#choice-button), представляющей выбор. Префаб должен иметь компонент `ChoiceHandlerButton`, присоединенный к корневому объекту. Будет использоваться кнопка по умолчанию, если она не указана.
+button | String | Путь (относительно папки `Resources`) к [кнопке prefab](/ru/guide/choices.md#choice-button), представляющей выбор. Префаб должен иметь компонент `ChoiceHandlerButton`, присоединенный к корневому объекту. Будет использоваться кнопка по умолчанию, если она не указана.
 pos | List&lt;Decimal&gt; | Локальное положение кнопки выбора внутри обработчика выбора (если поддерживается реализацией обработчика).
 handler | String | ID выбора, для которого нужно добавить выбор. Будет использовать обработчик по умолчанию, если он не указан.
 goto | Named&lt;String&gt; | Путь, когда вариант ответа выбирается пользователем; см. команду [@goto] для формата пути.
@@ -374,7 +374,7 @@ time | Decimal |Продолжительность (в секундах) ани�
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Напечатайте текст, затем немедленно покажите варианты и остановите выполнение скрипта.
 Продолжить выполнение этого скрипта или ...? 
@@ -415,9 +415,9 @@ Don't forget about cucumbers!
 ## clearBacklog
 
 #### Краткое описание
-Удаляет все сообщения из [принтер бэклога](/guide/printer-backlog.md).
+Удаляет все сообщения из [принтер бэклога](/ru/guide/printer-backlog.md).
 
-#### Пример
+#### Примеры
 ```
 @clearBacklog
 ```
@@ -472,7 +472,7 @@ params | List&lt;String&gt; | Параметры, которые нужно ус
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Учитывая, что команда "@spawn Rainbow" была выполнена раньше
 @despawn Rainbow
@@ -481,12 +481,12 @@ params | List&lt;String&gt; | Параметры, которые нужно ус
 ## else
 
 #### Краткое описание
-Отмечает ветвь блока условного выполнения, который всегда выполняется в случае, если не выполняются условия открывающей [@if] и всех предшествующих [@elseif] (если есть) команд. Примеры использования см. в руководстве [условное выполнение](/guide/naninovel-scripts.md#conditional-execution).
+Отмечает ветвь блока условного выполнения, который всегда выполняется в случае, если не выполняются условия открывающей [@if] и всех предшествующих [@elseif] (если есть) команд. Примеры использования см. в руководстве [условное выполнение](/ru/guide/naninovel-scripts.md#conditional-execution).
 
 ## elseIf
 
 #### Краткое описание
-Отмечает ветвь блока условного выполнения, которая выполняется в случае выполнения собственного условия (выражение оценивается как истинное), в то время как условия открытия [@if] и всех предшествующих команд [@elseif] (если есть) не выполняются. Примеры использования см. в руководстве [условное выполнение](/guide/naninovel-scripts.md#conditional-execution).
+Отмечает ветвь блока условного выполнения, которая выполняется в случае выполнения собственного условия (выражение оценивается как истинное), в то время как условия открытия [@if] и всех предшествующих команд [@elseif] (если есть) не выполняются. Примеры использования см. в руководстве [условное выполнение](/ru/guide/naninovel-scripts.md#conditional-execution).
 
 #### Параметры
 
@@ -494,14 +494,14 @@ params | List&lt;String&gt; | Параметры, которые нужно ус
 
 ID | Тип | Описание
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | [Выражение сценария](/guide/script-expressions.md), которое должно возвращать логическое значение.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | [Выражение сценария](/ru/guide/script-expressions.md), которое должно возвращать логическое значение.
 
 </div>
 
 ## endIf
 
 #### Краткое описание
-Закрывает блок условного выполнения [@if]. Примеры использования см. в руководстве [условное выполнение](/guide/naninovel-scripts.md#conditional-execution).
+Закрывает блок условного выполнения [@if]. Примеры использования см. в руководстве [условное выполнение](/ru/guide/naninovel-scripts.md#conditional-execution).
 
 ## finishTrans
 
@@ -514,10 +514,10 @@ ID | Тип | Описание
 
 ID | Тип | Описание
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">Transition</span> | String | Тип используемого [эффекта перехода](/guide/transition-effects.md) (по умолчанию используется кроссфейд).
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">Transition</span> | String | Тип используемого [эффекта перехода](/ru/guide/transition-effects.md) (по умолчанию используется кроссфейд).
 params | List&lt;Decimal&gt; | Параметры эффекта перехода.
-dissolve | String | Путь к [заказному растворению](/guide/transition-effects.md#custom-transition-effects) текстура (путь должен быть относительно папки `Resources`). Имеет эффект, только если для перехода установлен режим `Пользовательский`.
-easing | String |Имя функции замедления, используемой для модификации.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br /> Если не указано, будет использоваться функция ослабления по умолчанию, установленная в настройках конфигурации менеджера актера.
+dissolve | String | Путь к [заказному растворению](/ru/guide/transition-effects.md#custom-transition-effects) текстура (путь должен быть относительно папки `Resources`). Имеет эффект, только если для перехода установлен режим `Пользовательский`.
+easing | String |Имя функции замедления, используемой для модификации.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br /> Если не указано, будет использоваться функция ослабления по умолчанию, установленная в настройках конфигурации менеджера актора.
 time | Decimal | Продолжительность (в секундах) перехода. Значение по умолчанию: 0.35 секунды.
 
 </div>
@@ -541,7 +541,7 @@ reset | List&lt;String&gt; | Если указано, сбрасывает со�
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Перейдите при воспроизведении к метке `VictoryScene` в воспроизводимом в данный момент скрипте, выполняет команды и переходит обратно к команде после `gosub`.
 @gosub .VictoryScene
@@ -574,7 +574,7 @@ You are victorious!
 ## goto
 
 #### Краткое описание
-Перемещает воспроизведение сценария наниновеллы по указанному пути. Когда путь ведет к другому (не воспроизводимому в данный момент) скрипту новеллы, он также [сбросит состояние](/api/#resetstate)   перед загрузкой целевого скрипта, если [ResetStateOnLoad](https://naninovel.com/guide/configuration.html#state)  не отключен в комплектации.
+Перемещает воспроизведение сценария наниновеллы по указанному пути. Когда путь ведет к другому (не воспроизводимому в данный момент) скрипту новеллы, он также [сбросит состояние](/api/#resetstate)   перед загрузкой целевого скрипта, если [ResetStateOnLoad](https://naninovel.com/ru/guide/configuration.html#state)  не отключен в комплектации.
 
 #### Параметры
 
@@ -586,7 +586,7 @@ ID | Тип | Описание
 reset | List&lt;String&gt; | Если указано, сбрасывает состояние служб ядра перед загрузкой сценария (если путь ведет к другому сценарию). Укажите `*`, чтобы сбросить все службы (кроме диспетчера переменных), или укажите имена служб, которые нужно исключить из сброса. Укажите `-`, чтобы не выполнять сброса (даже если он включен по умолчанию в конфигурации). Значение по умолчанию контролируется опцией `Reset State On Load` в меню конфигурации двигателя.
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Загружает и запускает воспроизведение сценария новеллы с именем `Script001` с самого начала.
 @goto Script001
@@ -604,7 +604,7 @@ reset | List&lt;String&gt; | Если указано, сбрасывает со�
 ## hide
 
 #### Краткое описание
-Скрывает (делает невидимыми) актеров (персонаж, фон, текстовый принтер, обработчик выбора и т. д.) С указанными идентификаторами. В случае, если найдены несколько актеров с одним и тем же идентификатором (например, персонаж и принтер), это повлияет только на первого найденного.
+Скрывает (делает невидимыми) акторов (персонаж, фон, текстовый принтер, обработчик выбора и т. д.) С указанными идентификаторами. В случае, если найдены несколько акторов с одним и тем же идентификатором (например, персонаж и принтер), это повлияет только на первого найденного.
 
 #### Параметры
 
@@ -612,17 +612,17 @@ reset | List&lt;String&gt; | Если указано, сбрасывает со�
 
 ID | Тип | Описание
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">ActorIds</span> | List&lt;String&gt; | ID актеров, которых нужно скрыть.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">ActorIds</span> | List&lt;String&gt; | ID акторов, которых нужно скрыть.
 time | Decimal | Продолжительность (в секундах) анимации затухания. Значение по умолчанию: 0.35 секунды.
 
 </div>
 
-#### Пример
+#### Примеры
 ```
-; Если актер с ID `SomeActor` виден, то скройте его в течение 3 секунд.
+; Если актор с ID `SomeActor` виден, то скройте его в течение 3 секунд.
 @hide SomeActor time:3
 
-; Спрячьте актеров `Kohaku` и `Yuko`.
+; Спрячьте акторов `Kohaku` и `Yuko`.
 @hide Kohaku,Yuko
 ```
 
@@ -641,7 +641,7 @@ time | Decimal | Продолжительность (в секундах) ани
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 @hideAll
 ```
@@ -661,7 +661,7 @@ time | Decimal | Продолжительность (в секундах) ани
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 @hideChars
 ```
@@ -682,7 +682,7 @@ time | Decimal | Продолжительность (в секундах) ани
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Скрыть принтер по умолчанию.
 @hidePrinter
@@ -693,7 +693,7 @@ time | Decimal | Продолжительность (в секундах) ани
 ## hideUI
 
 #### Краткое описание
-Делает [элементы пользовательского интерфейса](/guide/user-interface.md#ui-customization) невидимыми с указанными именами. Если имена не указаны, прекратит рендеринг (скроет) весь UI (включая все встроенные пользовательские интерфейсы).
+Делает [элементы пользовательского интерфейса](/ru/guide/user-interface.md#ui-customization) невидимыми с указанными именами. Если имена не указаны, прекратит рендеринг (скроет) весь UI (включая все встроенные пользовательские интерфейсы).
 
 #### Примечание
 Если скрыть весь UI с помощью этой команды и параметр `allowToggle`  имеет значение false (по умолчанию), пользователь не сможет повторно отобразить IU с помощью горячих клавиш или щелкнув в любом месте экрана; используйте команду [@showUI], чтобы снова сделать UI ~~ великолепный ~~ видимым.
@@ -710,7 +710,7 @@ time | Decimal | Продолжительность (в секундах) ани
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; При наличии пользовательского UI `Calendar` следующая команда скроет его.
 @hideUI Calendar
@@ -733,7 +733,7 @@ time | Decimal | Продолжительность (в секундах) ани
 #### Краткое описание
 Удерживает выполнение скрипта до тех пор, пока пользователь не активирует вход `continue`. Ярлык для `@wait i`.
 
-#### Пример
+#### Примеры
 ```
 ; Пользователь должен будет активировать ввод `continue` после первого предложения, чтобы принтер продолжил печать следующий текст.
 Lorem ipsum dolor sit amet.[i] Consectetur adipiscing elit.
@@ -742,7 +742,7 @@ Lorem ipsum dolor sit amet.[i] Consectetur adipiscing elit.
 ## if
 
 #### Краткое описание
-Обозначает начало блока условного выполнения. Всегда должен закрываться командой [@endif]. Примеры использования см. в руководстве [условное выполнение](/guide/naninovel-scripts.md#conditional-execution).
+Обозначает начало блока условного выполнения. Всегда должен закрываться командой [@endif]. Примеры использования см. в руководстве [условное выполнение](/ru/guide/naninovel-scripts.md#conditional-execution).
 
 #### Параметры
 
@@ -750,7 +750,7 @@ Lorem ipsum dolor sit amet.[i] Consectetur adipiscing elit.
 
 ID | Тип | Описание
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | [Выражение сценария](/guide/script-expressions.md), которое должно возвращать логическое значение.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | [Выражение сценария](/ru/guide/script-expressions.md), которое должно возвращать логическое значение.
 
 </div>
 
@@ -760,7 +760,7 @@ ID | Тип | Описание
 Показывает UI поля ввода, где пользователь может ввести произвольный текст. После отправки введенный текст будет присвоен указанной пользовательской переменной.
 
 #### Примечание
-Посмотрите этот [видеогид](https://youtu.be/F9meuMzvGJw) на примере использования.  <br /><br />  Чтобы назначить отображаемое имя для символа с помощью этой команды, рассмотрите возможность [привязки имени к пользовательской переменной](/guide/characters.html#display-names).
+Посмотрите этот [видеогид](https://youtu.be/F9meuMzvGJw) на примере использования.  <br /><br />  Чтобы назначить отображаемое имя для символа с помощью этой команды, рассмотрите возможность [привязки имени к пользовательской переменной](/ru/guide/characters.html#display-names).
 
 #### Параметры
 
@@ -775,7 +775,7 @@ play | Boolean | Следует ли автоматически возобнов
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Разрешить пользователю вводить произвольный текст и назначать его пользовательской переменной состояния `name`
 @input name summary:"Choose your name."
@@ -793,7 +793,7 @@ Archibald: Greetings, {name}!
 ## lipSync
 
 #### Краткое описание
-Позволяет принудительно остановить анимацию рта с синхронизацией губ для персонажа с предоставленным идентификатором; при остановке анимация не запустится снова, пока эта команда не будет разрешена снова. Персонаж должен иметь возможность получать события синхронизации губ (в настоящее время только общие реализации и реализации Live2D). См. [Руководство персонажей](/guide/characters.md#lip-sync) для получения дополнительной информации о функции синхронизации губ.
+Позволяет принудительно остановить анимацию рта с синхронизацией губ для персонажа с предоставленным идентификатором; при остановке анимация не запустится снова, пока эта команда не будет разрешена снова. Персонаж должен иметь возможность получать события синхронизации губ (в настоящее время только общие реализации и реализации Live2D). См. [Руководство персонажей](/ru/guide/characters.md#lip-sync) для получения дополнительной информации о функции синхронизации губ.
 
 #### Параметры
 
@@ -805,7 +805,7 @@ ID | Тип | Описание
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Поскольку автоматическое озвучивание отключено, а синхронизация губ управляется текстовыми сообщениями, исключите знаки препинания из анимации рта.
 Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true]Consectetur adipiscing elit.
@@ -827,7 +827,7 @@ additive | Boolean | Следует ли загружать сцену адди�
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Загрузить сцену "MyTestScene" в одиночном режиме
 @loadScene MyTestScene
@@ -838,10 +838,10 @@ additive | Boolean | Следует ли загружать сцену адди�
 ## lock
 
 #### Краткое описание
-Устанавливает [разблокируемый элемент](/guide/unlockable-items.md) с предоставленным идентификатором в состояние `locked` .
+Устанавливает [разблокируемый элемент](/ru/guide/unlockable-items.md) с предоставленным идентификатором в состояние `locked` .
 
 #### Примечание
-Разблокированное состояние элементов сохраняется в [global scope](/guide/state-management.md#global-state).<br /> Если элемент с предоставленным идентификатором не зарегистрирован в карте глобального состояния, соответствующая запись будет добавлена автоматически.
+Разблокированное состояние элементов сохраняется в [global scope](/ru/guide/state-management.md#global-state).<br /> Если элемент с предоставленным идентификатором не зарегистрирован в карте глобального состояния, соответствующая запись будет добавлена автоматически.
 
 #### Параметры
 
@@ -853,7 +853,7 @@ ID | Тип | Описание
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 @lock CG/FightScene1
 ```
@@ -876,7 +876,7 @@ gravity | Boolean | Следует ли автоматически переме�
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Активировать режим просмотра камеры с параметрами по умолчанию
 @look
@@ -907,7 +907,7 @@ ID | Тип | Описание
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Если видеоклип "Opening" добавлен в ресурсы, воспроизводит его.
 @movie Opening
@@ -916,10 +916,10 @@ ID | Тип | Описание
 ## print
 
 #### Краткое описание
-Печатает (показывает с течением времени) указанное текстовое сообщение с помощью актера текстового принтера.
+Печатает (показывает с течением времени) указанное текстовое сообщение с помощью актора текстового принтера.
 
 #### Примечание
-Эта команда используется при обработке общих текстовых строк, например, общая строка `Kohaku: Hello World!` будет автоматически преобразована в `@print" Hello World! " author: Kohaku` при разборе скриптов новеллы. <br /> По умолчанию сбросит (очистит) принтер перед печатью нового сообщения; установите для параметра `reset` значение *false* или отключите `Auto Reset` в конфигурации актера принтера, чтобы предотвратить это, и вместо этого добавьте текст. <br /> Сделает принтер по умолчанию и скроет другие принтеры по умолчанию; установите для параметра `default` значение *false* или отключите `Auto Default` в конфигурации актера принтера, чтобы предотвратить это. <br /> Будет ждать ввода данных пользователем перед завершением задачи по умолчанию; установите для параметра `waitInput` значение *false* или отключите `Auto Wait` в конфигурации актера принтера, чтобы он возвращался, как только текст полностью раскрывается. <br />
+Эта команда используется при обработке общих текстовых строк, например, общая строка `Kohaku: Hello World!` будет автоматически преобразована в `@print" Hello World! " author: Kohaku` при разборе скриптов новеллы. <br /> По умолчанию сбросит (очистит) принтер перед печатью нового сообщения; установите для параметра `reset` значение *false* или отключите `Auto Reset` в конфигурации актора принтера, чтобы предотвратить это, и вместо этого добавьте текст. <br /> Сделает принтер по умолчанию и скроет другие принтеры по умолчанию; установите для параметра `default` значение *false* или отключите `Auto Default` в конфигурации актора принтера, чтобы предотвратить это. <br /> Будет ждать ввода данных пользователем перед завершением задачи по умолчанию; установите для параметра `waitInput` значение *false* или отключите `Auto Wait` в конфигурации актора принтера, чтобы он возвращался, как только текст полностью раскрывается. <br />
 
 #### Параметры
 
@@ -931,15 +931,15 @@ ID | Тип | Описание
 printer | String | ID используемого принтера. Если не указано иное, будет использоваться значение по умолчанию.
 author | String | ID исполнителя, который должен быть связан с напечатанным сообщением.
 speed | Decimal | Множитель скорости отображения текста; должно быть положительным или нулевым. Установка на единицу даст скорость по умолчанию.
-reset | Boolean | Следует ли сбрасывать текст принтера перед выполнением задания печати. Значение по умолчанию контролируется с помощью свойства `Auto Reset` в меню конфигурации актера принтера.
-default | Boolean | Использовать ли принтер по умолчанию и скрывать другие принтеры перед выполнением задания печати. Значение по умолчанию контролируется с помощью свойства `Auto Default` в меню конфигурации актера принтера.
-waitInput | Boolean | Следует ли ждать ввода данных пользователем после завершения задания печати. Значение по умолчанию контролируется с помощью свойства `Auto Wait` в меню конфигурации актера принтера.
-br | Integer | Количество разрывов строки, добавляемых перед печатным текстом. Значение по умолчанию контролируется с помощью свойства `Auto Line Break` в меню конфигурации актера принтера.
+reset | Boolean | Следует ли сбрасывать текст принтера перед выполнением задания печати. Значение по умолчанию контролируется с помощью свойства `Auto Reset` в меню конфигурации актора принтера.
+default | Boolean | Использовать ли принтер по умолчанию и скрывать другие принтеры перед выполнением задания печати. Значение по умолчанию контролируется с помощью свойства `Auto Default` в меню конфигурации актора принтера.
+waitInput | Boolean | Следует ли ждать ввода данных пользователем после завершения задания печати. Значение по умолчанию контролируется с помощью свойства `Auto Wait` в меню конфигурации актора принтера.
+br | Integer | Количество разрывов строки, добавляемых перед печатным текстом. Значение по умолчанию контролируется с помощью свойства `Auto Line Break` в меню конфигурации актора принтера.
 fadeTime | Decimal | Управляет продолжительностью (в секундах) отображения и скрытия принтеров анимации, связанной с этой командой. Значение по умолчанию для каждого принтера устанавливается в конфигурации актора.
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Распечатает фразу на принтере по умолчанию.
 @print "Lorem ipsum dolor sit amet."
@@ -954,7 +954,7 @@ fadeTime | Decimal | Управляет продолжительностью (в
 ## printer
 
 #### Краткое описание
-Изменяет [актера текстового принтера](/guide/text-printers.md).
+Изменяет [актора текстового принтера](/ru/guide/text-printers.md).
 
 #### Параметры
 
@@ -971,7 +971,7 @@ time | Decimal | Продолжительность (в секундах) мод
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Сделает принтер `Wide` по умолчанию и скроет все остальные видимые принтеры.
 @printer Wide
@@ -995,7 +995,7 @@ ID | Тип | Описание
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Остановить обработку ввода
 @processInput false
@@ -1028,10 +1028,10 @@ You've picked two.
 ## resetState
 
 #### Краткое описание
-Сбрасывает состояние [сервисов движка](https://naninovel.com/guide/engine-services.html) и выгружает (удаляет) все ресурсы, загруженные Naninovel (текстуры, аудио, видео и т.д.); в основном вернется к пустому начальному состоянию двигателя.
+Сбрасывает состояние [сервисов движка](https://naninovel.com/ru/guide/engine-services.html) и выгружает (удаляет) все ресурсы, загруженные Naninovel (текстуры, аудио, видео и т.д.); в основном вернется к пустому начальному состоянию двигателя.
 
 #### Примечание
-Процесс является асинхронным и маскируется экраном загрузки ([ILoadingUI](https://naninovel.com/guide/user-interface.html#ui-customization)).  <br /><br />  Когда [ResetStateOnLoad](https://naninovel.com/guide/configuration.html#state) отключен в конфигурации, вы можете использовать эту команду, чтобы вручную удалить неиспользуемые ресурсы, чтобы предотвратить проблемы с утечкой памяти.  <br /><br />  Имейте в виду, что эту команду нельзя отменить (перемотать назад).
+Процесс является асинхронным и маскируется экраном загрузки ([ILoadingUI](https://naninovel.com/ru/guide/user-interface.html#ui-customization)).  <br /><br />  Когда [ResetStateOnLoad](https://naninovel.com/ru/guide/configuration.html#state) отключен в конфигурации, вы можете использовать эту команду, чтобы вручную удалить неиспользуемые ресурсы, чтобы предотвратить проблемы с утечкой памяти.  <br /><br />  Имейте в виду, что эту команду нельзя отменить (перемотать назад).
 
 #### Параметры
 
@@ -1039,11 +1039,11 @@ You've picked two.
 
 ID | Тип | Описание
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">Exclude</span> | List&lt;String&gt; | Название [сервисов движка](https://naninovel.com/guide/engine-services.html) (интерфейсов), которые нужно исключить из сброса. При указании параметра всегда учитывайте добавление `ICustomVariableManager` для сохранения локальных переменных.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">Exclude</span> | List&lt;String&gt; | Название [сервисов движка](https://naninovel.com/ru/guide/engine-services.html) (интерфейсов), которые нужно исключить из сброса. При указании параметра всегда учитывайте добавление `ICustomVariableManager` для сохранения локальных переменных.
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Сбросить все службы.
 @resetState
@@ -1067,7 +1067,7 @@ ID | Тип | Описание
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Очистите содержимое принтера по умолчанию.
 @resetText
@@ -1095,7 +1095,7 @@ reset | List&lt;String&gt; | Если указано, сбросит состо�
 #### Краткое описание
 Автоматически сохраняйте игру в слот для быстрого сохранения.
 
-#### Пример
+#### Примеры
 ```
 @save
 ```
@@ -1103,10 +1103,10 @@ reset | List&lt;String&gt; | Если указано, сбросит состо�
 ## set
 
 #### Краткое описание
-Присваивает результат [выражения сценария](/guide/script-expressions.md) [пользовательской переменной](/guide/custom-variables.md).
+Присваивает результат [выражения сценария](/ru/guide/script-expressions.md) [пользовательской переменной](/ru/guide/custom-variables.md).
 
 #### Примечания
-Имя переменной должно быть буквенно-цифровым (только латинские символы) и может содержать символы подчеркивания, например: `name`,` Char1Score`, `my_score`; имена регистронезависимы, например: `myscore` равно `MyScore`. Если переменной с указанным именем не существует, она будет создана автоматически. <br /> <br /> Можно определить несколько выражений набора в одной строке, разделив их символом `;`. Выражения будут выполняться последовательно в порядке объявления. <br /> <br /> Пользовательские переменные по умолчанию хранятся в **local scope**. Это означает, что если вы назначите какую-то переменную в процессе игры, и игрок начнет новую игру или загрузит другой сохраненный игровой слот, где эта переменная не была назначена, значение будет потеряно. Если вместо этого вы хотите сохранить переменную в **global scope**, добавьте к ее имени `G_` или` g_`, например: `G_FinishedMainRoute` или` g_total_score`. <br /> <br /> Если имя переменной начинается с `T_` или` t_`, это считается ссылкой на значение, хранящееся в документе 'Script' [управляемый текст](/guide/managed-text.md). Такие переменные не могут быть назначены и в основном используются для ссылки на локализуемые текстовые значения. <br /> <br /> Вы можете получить и установить пользовательские переменные в сценариях C # с помощью `CustomVariableManager` [служба движка](/guide/engine-services.md).
+Имя переменной должно быть буквенно-цифровым (только латинские символы) и может содержать символы подчеркивания, например: `name`,` Char1Score`, `my_score`; имена регистронезависимы, например: `myscore` равно `MyScore`. Если переменной с указанным именем не существует, она будет создана автоматически. <br /> <br /> Можно определить несколько выражений набора в одной строке, разделив их символом `;`. Выражения будут выполняться последовательно в порядке объявления. <br /> <br /> Пользовательские переменные по умолчанию хранятся в **local scope**. Это означает, что если вы назначите какую-то переменную в процессе игры, и игрок начнет новую игру или загрузит другой сохраненный игровой слот, где эта переменная не была назначена, значение будет потеряно. Если вместо этого вы хотите сохранить переменную в **global scope**, добавьте к ее имени `G_` или` g_`, например: `G_FinishedMainRoute` или` g_total_score`. <br /> <br /> Если имя переменной начинается с `T_` или` t_`, это считается ссылкой на значение, хранящееся в документе 'Script' [управляемый текст](/ru/guide/managed-text.md). Такие переменные не могут быть назначены и в основном используются для ссылки на локализуемые текстовые значения. <br /> <br /> Вы можете получить и установить пользовательские переменные в сценариях C # с помощью `CustomVariableManager` [служба движка](/ru/guide/engine-services.md).
 
 #### Параметры
 
@@ -1114,11 +1114,11 @@ reset | List&lt;String&gt; | Если указано, сбросит состо�
 
 ID | Тип | Описание
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | Установить выражение. <br /><br />  Выражение должно быть в следующем формате: `VariableName=ExpressionBody`, где `VariableName` - это имя настраиваемой переменной, которую нужно назначить, а `ExpressionBody` - это [выражение сценария](/guide/script-expressions.md), результат которого следует присвоить переменной.  <br /><br />  Также можно использовать унарные операторы увеличения и уменьшения, например:  `@set foo++`, `@set foo--`.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | Установить выражение. <br /><br />  Выражение должно быть в следующем формате: `VariableName=ExpressionBody`, где `VariableName` - это имя настраиваемой переменной, которую нужно назначить, а `ExpressionBody` - это [выражение сценария](/ru/guide/script-expressions.md), результат которого следует присвоить переменной.  <br /><br />  Также можно использовать унарные операторы увеличения и уменьшения, например:  `@set foo++`, `@set foo--`.
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Присвойте переменной `foo` строковое значение` bar`
 @set foo="bar"
@@ -1169,7 +1169,7 @@ ID | Тип | Описание
 ## sfx
 
 #### Краткое описание
-Воспроизводит или изменяет воспроизводимую в данный момент [SFX (звуковой эффект)](/guide/audio.md#sound-effects) дорожку с указанным именем.
+Воспроизводит или изменяет воспроизводимую в данный момент [SFX (звуковой эффект)](/ru/guide/audio.md#sound-effects) дорожку с указанным именем.
 
 #### Примечание
 По умолчанию звуковые эффекты не зацикливаются. Если имя дорожки sfx (SfxPath) не указано, это повлияет на все воспроизводимые в данный момент дорожки. При вызове для дорожки, которая уже воспроизводится, воспроизведение не будет затронуто (дорожка не начнется с начала), но будут применены указанные параметры (громкость и зацикленность дорожки).
@@ -1189,7 +1189,7 @@ time | Decimal | Продолжительность (в секундах) мод
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Один раз воспроизводит SFX с названием `Explosion`
 @sfx Explosion
@@ -1204,7 +1204,7 @@ time | Decimal | Продолжительность (в секундах) мод
 ## show
 
 #### Краткое описание
-Показывает (делает видимыми) актеров (персонаж, фон, текстовый принтер, обработчик выбора и т.д.) с указанными идентификаторами. В случае, если найдены несколько актеров с одним и тем же идентификатором (например, персонаж и принтер), это повлияет только на первого найденного.
+Показывает (делает видимыми) акторов (персонаж, фон, текстовый принтер, обработчик выбора и т.д.) с указанными идентификаторами. В случае, если найдены несколько акторов с одним и тем же идентификатором (например, персонаж и принтер), это повлияет только на первого найденного.
 
 #### Параметры
 
@@ -1212,17 +1212,17 @@ time | Decimal | Продолжительность (в секундах) мод
 
 ID | Тип | Описание
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">ActorIds</span> | List&lt;String&gt; | ID актеров, которых нужно показать.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">ActorIds</span> | List&lt;String&gt; | ID акторов, которых нужно показать.
 time | Decimal |Продолжительность (в секундах) анимации затухания. Значение по умолчанию: 0.35 секунды.
 
 </div>
 
-#### Пример
+#### Примеры
 ```
-; Если актер с ID `SomeActor` скрыт, покажите его (постепенно) в течение 3 секунд.
+; Если актор с ID `SomeActor` скрыт, покажите его (постепенно) в течение 3 секунд.
 @show SomeActor time:3
 
-; Шоу актеров `Kohaku` и `Yuko`.
+; Шоу акторов `Kohaku` и `Yuko`.
 @show Kohaku,Yuko
 ```
 
@@ -1242,7 +1242,7 @@ time | Decimal | Продолжительность (в секундах) ани
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Показать принтер по умолчанию.
 @showPrinter
@@ -1253,7 +1253,7 @@ time | Decimal | Продолжительность (в секундах) ани
 ## showUI
 
 #### Краткое описание
-Делает видимыми [элементы UI](/guide/user-interface.md)  с указанными префабами. Если имена не указаны, откроется весь пользовательский интерфейс (в случае, если он был скрыт с помощью [@hideUI]).
+Делает видимыми [элементы UI](/ru/guide/user-interface.md)  с указанными префабами. Если имена не указаны, откроется весь пользовательский интерфейс (в случае, если он был скрыт с помощью [@hideUI]).
 
 #### Параметры
 
@@ -1266,7 +1266,7 @@ time | Decimal | Продолжительность (в секундах) ани
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ;Если вы добавили настраиваемый UI с именем префаба `Calendar`, следующее сделает его видимым на сцене.
 @showUI Calendar
@@ -1293,7 +1293,7 @@ ID | Тип | Описание
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Enable skip mode
 @skip
@@ -1306,7 +1306,7 @@ ID | Тип | Описание
 #### Краткое описание
 Может использоваться в общих текстовых строках для предотвращения активации режима `wait for input` при печати текста.
 
-#### Пример
+#### Примеры
 ```
 ; Проигрыватель скриптов не будет ждать ввода `continue` перед выполнением команды `@sfx`.
 And the rain starts.[skipInput]
@@ -1316,10 +1316,10 @@ And the rain starts.[skipInput]
 ## slide
 
 #### Краткое описание
-Сдвигает (перемещается по оси X) актера (персонаж, фон, текстовый принтер или обработчик выбора) с предоставленным идентификатором и, при необходимости, изменяет внешний вид актера.
+Сдвигает (перемещается по оси X) актора (персонаж, фон, текстовый принтер или обработчик выбора) с предоставленным идентификатором и, при необходимости, изменяет внешний вид актора.
 
 #### Примечание
-Имейте в виду, что эта команда ищет актера с предоставленным идентификатором среди всех менеджеров акторов, и в случае, если существует несколько актеров с одним и тем же ID (например, персонаж и текстовый принтер), это повлияет только на первого найденного.
+Имейте в виду, что эта команда ищет актора с предоставленным идентификатором среди всех менеджеров акторов, и в случае, если существует несколько акторов с одним и тем же ID (например, персонаж и текстовый принтер), это повлияет только на первого найденного.
 
 #### Parameters
 
@@ -1327,31 +1327,31 @@ And the rain starts.[skipInput]
 
 ID | Тип | Описание
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">IdAndAppearance</span> | Named&lt;String&gt; | ID актера для слайда и (необязательно) внешний вид, который нужно установить.
-from | Decimal | Позиционируйте по оси X (в диапазоне от 0 до 100, в процентах от левой границы экрана), от которой следует перемещать актера. Если не указан, будет использоваться текущая позиция актера, если она видна, и случайная позиция за кадром в противном случае.
-<span class="command-param-required" title="Required parameter: parameter should always be specified">to</span> | Decimal | Позиционируйте по оси X (в диапазоне от 0 до 100 в процентах от левого края экрана), куда нужно переместить актера.
-visible | Boolean | Изменить статус видимости актера (показать или скрыть). Если не установлен и целевой актер скрыт, он все равно будет автоматически отображаться.
-easing | String | Имя функции замедления, используемой для изменений.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  Если не указано, будет использоваться функция ослабления по умолчанию, установленная в настройках конфигурации менеджера актера.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">IdAndAppearance</span> | Named&lt;String&gt; | ID актора для слайда и (необязательно) внешний вид, который нужно установить.
+from | Decimal | Позиционируйте по оси X (в диапазоне от 0 до 100, в процентах от левой границы экрана), от которой следует перемещать актора. Если не указан, будет использоваться текущая позиция актора, если она видна, и случайная позиция за кадром в противном случае.
+<span class="command-param-required" title="Required parameter: parameter should always be specified">to</span> | Decimal | Позиционируйте по оси X (в диапазоне от 0 до 100 в процентах от левого края экрана), куда нужно переместить актора.
+visible | Boolean | Изменить статус видимости актора (показать или скрыть). Если не установлен и целевой актор скрыт, он все равно будет автоматически отображаться.
+easing | String | Имя функции замедления, используемой для изменений.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  Если не указано, будет использоваться функция ослабления по умолчанию, установленная в настройках конфигурации менеджера актора.
 time | Decimal | Продолжительность (в секундах) слайд-анимации. Значение по умолчанию: 0.35 секунды.
 
 </div>
 
-#### Пример
+#### Примеры
 ```
-; Учитывая, что актер `Jenna` в настоящее время не виден, покажите его с появлением `Angry` и переместите в центр экрана.
+; Учитывая, что актор `Jenna` в настоящее время не виден, покажите его с появлением `Angry` и переместите в центр экрана.
 @slide Jenna.Angry to:50
 
-; Если актер `Sheba` в настоящее время виден, скройте его и сдвиньте за левую границу экрана.
+; Если актор `Sheba` в настоящее время виден, скройте его и сдвиньте за левую границу экрана.
 @slide Sheba to:-10 visible:false
 
-; Переместите актера `Mia` из левой части экрана вправо в течение 5 секунд, используя замедление анимации `EaseOutBounce`.
+; Переместите актора `Mia` из левой части экрана вправо в течение 5 секунд, используя замедление анимации `EaseOutBounce`.
 @slide Sheba from:15 to:85 time:5 easing:EaseOutBounce
 ```
 
 ## spawn
 
 #### Краткое описание
-Создает префаб или [специальный эффект](/guide/special-effects.md); когда выполняется над уже созданным объектом, вместо этого обновляет параметры порождения.
+Создает префаб или [специальный эффект](/ru/guide/special-effects.md); когда выполняется над уже созданным объектом, вместо этого обновляет параметры порождения.
 
 #### Примечание
 Если в префабе есть компонент `UnityEngine.MonoBehaviour`, прикрепленный к корневому объекту, и компонент реализует интерфейс `Naninovel.Commands.Spawn.IParameterized`, то после порождения передаст указанные значения `params`; если компонент реализует интерфейс `Naninovel.Commands.Spawn.IAwaitable`, выполнение команды будет ожидать выполнения задачи асинхронного завершения, возвращаемой реализацией.
@@ -1367,7 +1367,7 @@ params | List&lt;String&gt; | PПараметры, устанавливаемы�
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Если префаб `Rainbow` назначен в ресурсах спауна, создайте его экземпляр.
 @spawn Rainbow
@@ -1379,9 +1379,9 @@ params | List&lt;String&gt; | PПараметры, устанавливаемы�
 Начинает переход сцены, маскируя реальное содержимое сцены всем, что видно в данный момент (кроме пользовательского интерфейса). Когда новая сцена будет готова, закончите с командой [@finishTrans].
 
 #### Примечание
-Во время перехода UI будет скрыт, а ввод данных пользователем заблокирован. Вы можете изменить это, переопределив `ISceneTransitionUI`, который обрабатывает процесс перехода. <br /><br /> Список доступных опций эффектов перехода см. в руководстве [transition effects](/guide/transition-effects.md).
+Во время перехода UI будет скрыт, а ввод данных пользователем заблокирован. Вы можете изменить это, переопределив `ISceneTransitionUI`, который обрабатывает процесс перехода. <br /><br /> Список доступных опций эффектов перехода см. в руководстве [transition effects](/ru/guide/transition-effects.md).
 
-#### Пример
+#### Примеры
 ```
 ; Переход Felix в солнечный день с Jenna в дождливый день
 @char Felix
@@ -1403,7 +1403,7 @@ params | List&lt;String&gt; | PПараметры, устанавливаемы�
 #### Краткое описание
 Останавливает выполнение скрипта naninovel.
 
-#### Пример
+#### Примеры
 ```
 Show the choices and halt script execution until the player picks one.
 @choice "Choice 1"
@@ -1431,7 +1431,7 @@ fade | Decimal | Продолжительность затухания гром�
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Затухает музыкальный трек `Promenade` на 10 секунд и останавливает воспроизведение
 @stopBgm Promenade fade:10
@@ -1459,7 +1459,7 @@ fade | Decimal | Продолжительность затухания гром�
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Прекратите проигрывать звуковой эффект с названием `Rain`, затухающий на 15 секунд.
 @stopSfx Rain fade:15
@@ -1476,7 +1476,7 @@ fade | Decimal | Продолжительность затухания гром�
 ## style
 
 #### Краткое описание
-Постоянно применяемые [стили текста](/guide/text-printers.md#text-styles) к содержимому текстового принтера.
+Постоянно применяемые [стили текста](/ru/guide/text-printers.md#text-styles) к содержимому текстового принтера.
 
 #### Примечание
 Вы также можете использовать теги форматированного текста внутри текстовых сообщений для выборочного применения стилей.
@@ -1492,7 +1492,7 @@ printer | String | ID используемого принтера. Если не
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Напечатайте первые два предложения жирным красным шрифтом размером 45 пикселей, затем сбросьте стиль и напечатайте последнее предложение, используя стиль по умолчанию.
 @style color=#ff0000,b,size=45
@@ -1510,7 +1510,7 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 #### Краткое описание
 Сбросить состояние двигателя и отобразить UI`ITitleUI` (главное меню).
 
-#### Пример
+#### Примеры
 ```
 @title
 ```
@@ -1518,10 +1518,10 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 ## unlock
 
 #### Краткое описание
-Устанавливает [разблокируемый элемент](/guide/unlockable-items.md)  с предоставленным идентификатором в состояние `unlocked`.
+Устанавливает [разблокируемый элемент](/ru/guide/unlockable-items.md)  с предоставленным идентификатором в состояние `unlocked`.
 
 #### Примечание
-Разблокированное состояние элементов сохраняется в [global scope](/guide/state-management.md#global-state).<br />  Если элемент с предоставленным идентификатором не зарегистрирован в карте глобального состояния, соответствующий запись будет добавлена автоматически.
+Разблокированное состояние элементов сохраняется в [global scope](/ru/guide/state-management.md#global-state).<br />  Если элемент с предоставленным идентификатором не зарегистрирован в карте глобального состояния, соответствующий запись будет добавлена автоматически.
 
 #### Параметры
 
@@ -1533,7 +1533,7 @@ ID | Тип | Описание
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 @unlock CG/FightScene1
 ```
@@ -1570,7 +1570,7 @@ ID | Тип | Описание
 
 </div>
 
-#### Пример
+#### Примеры
 ```
 ; Звуковой эффект "ThunderSound" будет воспроизводиться через 0.5 секунды после завершения фонового эффекта дрожания.
 @fx ShakeBackground

@@ -69,7 +69,7 @@
  - `GetPlayMakerGlobalArray("variableName", arrayIndex)` — возвращает значение, хранящееся в индексе "arrayIndex" массива переменной с именем "variableName"
 
 К примеру, у вас есть целое число "Score" и глобальные переменные PlayMaker булева массива "FinishedRoutes" – вы можете использовать их в сценариях Naninovel следующим образом:
-?
+
 
 ```
 Felix: My score is {GetPlayMakerGlobalVariable("Score")}.

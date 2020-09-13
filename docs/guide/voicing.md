@@ -21,7 +21,7 @@
 Например, рассмотрим следующий сценарий Naninovel с именем "Script001":
 
 ```
-@print text:"Text from a print command."?
+@print text:"Text from a print command."
 Text from a simple generic text line.
 Text from first sentence.[i] Text from second sentence.
 ```
@@ -30,7 +30,7 @@ Text from first sentence.[i] Text from second sentence.
 
 Текст | Имя аудиоклипа
 --- | ---
-Text from a print command. | 1.0?
+Text from a print command. | 1.0
 Text from a simple generic text line. | 2.0
 Text from first sentence. | 3.0
 Text from second sentence. | 3.2
