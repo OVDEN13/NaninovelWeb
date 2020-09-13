@@ -6,7 +6,7 @@
 
 Дизайн Unity продвигает использование сцен и композиции префабов, что не очень практично при разработке визуальных новелл.
 
-Все системы Naninovel либо не связаны непосредственно с [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html),либо прикреплены к [постоянному](https://docs.unity3d.com/ScriptReference/Object.DontDestroyOnLoad.html) корневому [GameObject](https://docs.unity3d.com/ScriptReference/GameObject.html).?
+Все системы Naninovel либо не связаны непосредственно с [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html), либо прикреплены к [постоянному](https://docs.unity3d.com/ScriptReference/Object.DontDestroyOnLoad.html) корневому [GameObject](https://docs.unity3d.com/ScriptReference/GameObject.html).
 
 ![](https://i.gyazo.com/9805e2ce450bc486a007cdc001f8ae13.png)
 
@@ -18,7 +18,7 @@
 
 ![](https://i.gyazo.com/f58a8af9f2f6d71286061e55fc228896.png)
 
-Поскольку процесс инициализации является асинхронным, используйте либо [подход async-await?](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/) при вызове метода `InitializeAsync()`, либо используйте? статическое событие `Engine.OnInitialized`.
+Поскольку процесс инициализации является асинхронным, используйте либо [подход async-await?](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/) при вызове метода `InitializeAsync()`, либо используйте статическое событие `Engine.OnInitialized`.
 
 Чтобы полностью отключить и удалить из памяти все системы движка, используйте статический метод `Engine.Destroy()`.
 

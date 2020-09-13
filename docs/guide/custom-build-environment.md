@@ -2,7 +2,7 @@
 
 При сборке проекта с помощью [меню сборки](https://docs.unity3d.com/Manual/BuildSettings.html) в редакторе, Naninovel автоматически выполняет дополнительные процедуры пре- и пост-обработки. Эти процедуры, среди прочего, включают в себя обеспечение того, чтобы все ресурсы, назначенные через меню конфигурации Naninovel (например, документы сценариев, внешности персонажей, клипы BGM, SFX и т.д.), были включены в сборку.
 
-В случае, если вы используете пользовательскую среду сборки (например, [Cloud Build](https://unity3d.com/unity/features/cloud-build) или запускаете сборку с помощью пользовательских скриптов или из командной строки) вы должны вручную вызвать статические методы? `Naninovel.BuildProcessor.PreprocessBuild(BuildPlayerOptions)` и `Naninovel.BuildProcessor.PostprocessBuild()` до и после сборки соответственно.
+В случае, если вы используете пользовательскую среду сборки (например, [Cloud Build](https://unity3d.com/unity/features/cloud-build) или запускаете сборку с помощью пользовательских скриптов или из командной строки) вы должны вручную вызвать статические методы `Naninovel.BuildProcessor.PreprocessBuild(BuildPlayerOptions)` и `Naninovel.BuildProcessor.PostprocessBuild()` до и после сборки соответственно.
 
 Ниже приведен пример скрипта обработки пользовательских сборок Cloud Build, который вызывает необходимые методы обработки Naninovel. Обратитесь к [официальной документации](https://docs.unity3d.com/Manual/UnityCloudBuildPreAndPostExportMethods.html) для получения информации о том, как настроить сценарии обработки.
 

@@ -39,5 +39,5 @@ Use `@turnOnAC` custom Naninovel command in a Naninovel script to enable AC, res
 [!!7tOIFZRSAec]
 
 ::: example
-Смотрите [проект GitHub](https://github.com/Elringus/NaninovelAdventureCreator) для примера интеграции. При первом открытии проекта возникнут ошибки из-за отсутствия пакетов Adventure Creator и Naninovel. Импортируйте их из хранилища активов для исправления данных ошибок.
+См. [проект GitHub](https://github.com/Elringus/NaninovelAdventureCreator) в качестве примера интеграции. При первом открытии проекта возникнут ошибки из-за отсутствия пакетов Adventure Creator и Naninovel. Импортируйте их из Asset Store для исправления данных ошибок.
 :::
