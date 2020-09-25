@@ -276,7 +276,6 @@ Player: You can call me {PlayerName}.
 
 Ознакомьтесь со следующим видеоуроком как с примером по настройке 3D-модели в качестве универсального персонажа и внесению изменений внешности в анимацию модели с помощью компонента [Animator](https://docs.unity3d.com/Manual/class-AnimatorController.html) компонент.
 
-Check the following video tutorial for example on setting up a 3D rigged model as a generic character and routing appearance changes to the rig animations via [Animator](https://docs.unity3d.com/Manual/class-AnimatorController.html).
 
 [!!HPxhR0I1u2Q]
 
@@ -307,7 +306,7 @@ Check the following video tutorial for example on setting up a 3D rigged model a
 
 Обратитесь к документации Live2D по [трекингу глаз](https://docs.live2d.com/cubism-sdk-tutorials/lookat) и [синхронизации губ](https://docs.live2d.com/cubism-sdk-tutorials/lipsync) для получения подробной информации о настройке.
 
-Имейте в виду, что `Live2DController` ожидает игровой объект "Drawables" внутри префаба модели Live2D (создается автоматически при импорте моделей Live2D в Unity); контроллер будет масштабировать этот объект во время выполнения в соответствии с параметром "scale" команд [@char]. Следовательно, любые локальные значения, заданные в редакторе, будут проигнорированы. Чтобы установить начальный масштаб для префабов Live2D, пожалуйста, используйте масштаб корневого игрового объекта, как [показано в видеогайде].(https://youtu.be/rw_Z69z0pAg?t=353).
+Имейте в виду, что `Live2DController` ожидает игровой объект "Drawables" внутри префаба модели Live2D (создается автоматически при импорте моделей Live2D в Unity); контроллер будет масштабировать этот объект во время выполнения в соответствии с параметром "scale" команд [@char]. Следовательно, любые локальные значения, заданные в редакторе, будут проигнорированы. Чтобы установить начальный масштаб для префабов Live2D, пожалуйста, используйте масштаб корневого игрового объекта, как [показано в видеогайде](https://youtu.be/rw_Z69z0pAg?t=353).
 
 При установке расширения Live2D в меню конфигурации Naninovel появится пункт "Live2D", содержащий следующие параметры:
 

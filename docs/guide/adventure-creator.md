@@ -1,6 +1,6 @@
 ﻿# Adventure Creator
 
-[Adventure Creator](https://www.adventurecreator.org/) позволяет вам создавать традиционные 2D, 2.5D и 3D-приключенческие игры – те, в основе которых лежат повествование, исследование и головоломки: такие, как Monkey Island, Grim Fandango, The Longest Journey и The Walking Dead от Telltale.
+[Adventure Creator](https://www.adventurecreator.org/) позволяет вам создавать традиционные 2D, 2.5D и 3D-приключенческие игры – те, в основе которых лежат повествование, исследование и головоломки такие, как: Monkey Island, Grim Fandango, The Longest Journey и The Walking Dead от Telltale.
 
 ![](https://i.gyazo.com/74a12fa535198cb26a87a5037b15a988.jpg)
 
@@ -31,8 +31,6 @@
 Используйте пользовательское действие AC `Play Naninovel Script` для (опционального) отключения AC, инициализации движка Naninovel (при необходимости) и загрузки указанного скрипта Naninovel. По умолчанию камеры AC и Naninovel также будут автоматически меняться местами, но вы можете предотвратить это, отключив свойство `Swap Cameras`.
 
 Используйте пользовательскую команду Naninovel `@turnOnAC` в сценарии Naninovel для включения AC, сброса состояния движка Naninovel (опционально) и замены камер обратно (также опционально). Сброс состояния контролируется с помощью параметров `reset`, а замена камер – с помощью параметров `swapCameras`.
-
-Use `@turnOnAC` custom Naninovel command in a Naninovel script to enable AC, reset Naninovel engine state (optionally) and swap the cameras back (also optionally). State reset is controlled with `reset` and camera swap with `swapCameras` parameters.
 
 Следующее видео демонстрирует сцену AC с интегрированным Naninovel для обработки диалога.
 
