@@ -1,20 +1,20 @@
-# Sandbox 
+# Sandbox | Песочница
 
-Sandbox is a special Naninovel WebGL build that you can use to try out the engine features before purchasing Naninovel on the Asset Store. It uses [Google Drive](https://drive.google.com/drive/my-drive) as a remote resources provider, which you can use to store the in-game resources (character sprites, backgrounds, music, etc) and write naninovel scripts using [Google Documents](https://www.google.com/docs/about).
+Sandbox - это специальная сборка Naninovel WebGL, которую вы можете использовать, чтобы опробовать функции движка перед покупкой Naninovel в Asset Store. Она использует [Google Drive](https://drive.google.com/drive/my-drive) в качестве поставщика удаленных ресурсов, который вы можете использовать для хранения внутриигровых ресурсов (спрайтов персонажей, фонов, музыки и т.д) и писать сценарии нановеллы, используя [Документы Google](https://www.google.com/docs/about).
 
-## How to Use
+## Как использовать
 
-A Google Drive account is required to use the sandbox. You can get one for free at [google.com/drive](https://www.google.com/drive). 
+Для использования песочницы требуется учетная запись Google Диска. Вы можете получить ее бесплатно на [google.com/drive](https://www.google.com/drive).
 
-Proceed to [naninovel.com/sandbox/web](https://naninovel.com/sandbox/web.html) to load the WebGL build. Upon first start it'll ask to authorize with a Google account; select account connected with the Google Drive you wish to use with the sandbox. If you're concerned about safety of your drive, create a new drive account to use with the sandbox.
+Перейдите на [naninovel.com/sandbox/web](https://naninovel.com/sandbox/web.html), чтобы загрузить сборку WebGL. При первом запуске он попросит авторизоваться с учетной записью Google; выберите учетную запись, связанную с Google Диском, которую вы хотите использовать с песочницей. Если вас беспокоит безопасность вашего диска, создайте новую учетную запись диска для использования с песочницей.
 
-After authorization you'll be redirected back to the app. Press `HOW TO USE` button and then `UPLOAD DATA` to create a `NaninovelSandbox` folder in the root of your Google Drive along with a set of sub-folders to store naninovel scripts, characters, backgrounds and audio assets; `readme.txt` files will also be uploaded inside each of the sub-folders explaining how to add the resources and use them in naninovel scripts.
+После авторизации вы будете перенаправлены обратно в приложение. Нажмите кнопку `HOW TO USE`, а затем `UPLOAD DATA`, чтобы создать папку «NaninovelSandbox» в корне вашего Google Диска вместе с набором подпапок для хранения naninovel скриптов, персонажей, фонов и звуковых ресурсов; Файлы `readme.txt` также будут загружены в каждую из подпапок, объясняя, как добавлять ресурсы и использовать их в сценариях naninovel.
 
-After uploading the data navigate to your Google Drive, drop the required resources to the corresponding sub-folders and write naninovel scripts using Google Documents (documents should be created in the `Scripts` sub-folder). Return to the app and press a refresh button in the script navigator panel to load the created naninovel scripts.
+После загрузки данных перейдите на свой Google Диск, перетащите необходимые ресурсы в соответствующие подпапки и напишите сценарии naninovel с помощью Google Documents (документы должны быть созданы в подпапке Scripts). Вернитесь в приложение и нажмите кнопку обновления на панели навигатора скриптов, чтобы загрузить созданные скрипты naninovel.
 
-## Video Guide
+## Видео гайд
 
-Check out our video guide for the step-by-step tutorial on how to set up and start using Naninovel sandbox.
+Ознакомьтесь с нашим видео-руководством, в котором вы найдете пошаговое руководство по настройке и началу использования песочницы Naninovel.
 
 <div class="video-container">
     <iframe src="https://www.youtube-nocookie.com/embed/tn14ZhBTFew" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
