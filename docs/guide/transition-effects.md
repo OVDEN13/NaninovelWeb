@@ -420,8 +420,6 @@
 
 — добавит переходы `MyCustom1` и `MyCustom2`.
 
-You can then use conditional directives to select a specific render method based on the enabled transition keyword. When re-using built-in actor shader, it's possible to implement custom transitions via `ApplyTransitionEffect` method, which is used in the fragment handler:
-
 Затем можно использовать условные директивы для выбора конкретного метода визуализации на основе ключевого слова перехода. При повторном использовании встроенного шейдера акторов можно реализовать пользовательские переходы с помощью метода `ApplyTransitionEffect`, который используется в обработчике фрагментов:
 
 ```c
