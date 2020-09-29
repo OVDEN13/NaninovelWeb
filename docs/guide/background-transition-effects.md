@@ -148,7 +148,7 @@
 @back Appearance.Crumble
 ```
 
-## Disolve *(Опечатка – dissolve?)*
+## Disolve
 
 ### Демонстрация
 

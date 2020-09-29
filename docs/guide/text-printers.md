@@ -41,8 +41,6 @@ Felix: Lorem ipsum dolor sit amet.
 
 [!9605a5c8cd1911217350d77712f47e7d]
 
-By default, skip mode is only available while executing commands that was already executed in the past; e.g. if the user hadn't already read the text that is going to be printed, skip mode won't be available. This can be changed in the game settings using "Skip mode" setting.
-
 Режим пропуска можно переключать с помощью ввода `Skip` (клавиша `Ctrl` по умолчанию для автономного модуля ввода) или кнопки "SKIP" на панели управления.
 
 По умолчанию режим пропуска доступен только при выполнении команд, которые уже были выполнены в прошлом; например, если пользователь еще не прочитал текст, который будет напечатан, режим пропуска будет недоступен. Это можно изменить в настройках игры, используя настройку "Режим пропуска" ("Skip mode").
@@ -57,8 +55,6 @@ By default, skip mode is only available while executing commands that was alread
 
 ## Диалоговый принтер
 
-Dialogue printers present text inside windows with a flexible height. They initially take about a third of the screen size and will increase the height when the content requires more space. Dialogue printers also expose associated character name in a label above the text window.
-
 Диалоговые принтеры представляют текст внутри окон с переменной высотой. Они изначально занимают около трети размера экрана и увеличивают высоту, когда содержимое требует больше места. Диалоговые принтеры также выводят имя связанного с репликой персонажа в виде метке над текстовым окном.
 
 ![Dialogue Printer](https://i.gyazo.com/73abe9eabc7b285109b08e77dbf75430.png)
@@ -70,8 +66,6 @@ Dialogue printers present text inside windows with a flexible height. They initi
 ![Wide Printer](https://i.gyazo.com/83c091c08846fa1cab8764a8d4dddeda.png)
 
 ## Полноэкранный принтер
-
-Fullscreen printers present text inside windows with a static size. They take most of the screen size and are indented for presenting large amounts of text, aka "NVL" mode.
 
 Полноэкранные принтеры представляют текст внутри окон со статическим размером. Они занимают большую часть размера экрана и предназначены для представления больших объемов текста (так называемый "NVL" режим).
 

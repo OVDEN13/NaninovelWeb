@@ -33,7 +33,7 @@
 
 ## Галерея CG
 
-Используя функцию галереи CG, вы можете указать ресурсы текстур (изображения), которые могут быть разблокировываться в течение игры, а затем просмотрены через UI "`ICGGalleryUI`, доступный в главном меню.
+Используя функцию галереи CG, вы можете указать ресурсы текстур (изображения), которые могут быть разблокировываться в течение игры, а затем просмотрены через UI `ICGGalleryUI`, доступный в главном меню.
 
 [!!wkZeszk6gm0]
 
@@ -75,9 +75,9 @@
 
 ```
 Tip1ID: Tip 1 Title | Tip 1 Category | Tip 1 Description
-Tip2ID: Tip 2 Title || Tip 2 Description
+Tip2ID: Tip 2 Title | Tip 2 Description
 Tip3ID: Tip 3 Title 
-Tip4ID: Tip 4 Title | Tip 4 Category |
+Tip4ID: Tip 4 Title | Tip 4 Category 
 ...
 ```
 

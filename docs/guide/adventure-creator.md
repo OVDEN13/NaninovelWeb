@@ -1,6 +1,6 @@
 ﻿# Adventure Creator
 
-[Adventure Creator](https://www.adventurecreator.org/) позволяет вам создавать традиционные 2D, 2.5D и 3D-приключенческие игры – те, в основе которых лежат повествование, исследование и головоломки такие, как: Monkey Island, Grim Fandango, The Longest Journey и The Walking Dead от Telltale.
+[Adventure Creator](https://www.adventurecreator.org/) позволяет вам создавать традиционные 2D, 2.5D и 3D-приключенческие игры – те, в основе которых лежат повествование, исследование и головоломки, такие, как: Monkey Island, Grim Fandango, The Longest Journey и The Walking Dead от Telltale.
 
 ![](https://i.gyazo.com/74a12fa535198cb26a87a5037b15a988.jpg)
 
@@ -24,7 +24,7 @@
 
 ![](https://i.gyazo.com/ed765928c0420ec2b1e26d6bf4a66e6c.png)
 
-При использовании Naninovel в качестве встроенной? системы для игры на базе AC вы также можете отключить опции `Initialize On Application Load` и `Show Title UI` в конфигурации движка.
+При использовании Naninovel в качестве встроенной системы для игры на базе AC вы также можете отключить опции `Initialize On Application Load` и `Show Title UI` в конфигурации движка.
 
 ## Использование
 
