@@ -83,7 +83,7 @@ Felix: My score is {GetPlayMakerGlobalVariable("Score")}.
 
 ## Расширение IDE
 
-Чтобы добавить поддержку команды `@playmaker` в [расширение IDE Atom](/ru/guide/naninovel-scripts.md#ide-support), откройте файл метаданных, расположенный по адресу `%HOMEPATH%/.atom/packages/language-naniscript/server/metadata.json` (где `%HOMEPATH%` – это путь к каталогу пользователя вашей ОС), и добавьте следующую запись в массив `commands`:
+Чтобы добавить поддержку команды `@playmaker` в [расширение IDE Atom](/ru/guide/naninovel-scripts.md#поддержка-IDE), откройте файл метаданных, расположенный по адресу `%HOMEPATH%/.atom/packages/language-naniscript/server/metadata.json` (где `%HOMEPATH%` – это путь к каталогу пользователя вашей ОС), и добавьте следующую запись в массив `commands`:
 
 ```json
 {

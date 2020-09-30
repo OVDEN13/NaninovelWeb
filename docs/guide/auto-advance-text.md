@@ -1,6 +1,6 @@
 # Режим авточтения
 
-Функция Auto-advance позволяет автоматически продолжать выполнение сценария при обработке команд [`i`](/api/#i).
+Функция Auto-advance позволяет автоматически продолжать выполнение сценария при обработке команд [`i`](/ru/api/#i).
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/e6f58f861fa18bd62591db9794e7641b.mp4 " type="video/mp4"></video>
 

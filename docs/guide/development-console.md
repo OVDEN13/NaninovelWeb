@@ -22,13 +22,13 @@ public static void ToggleDebugInfo () => UI.DebugInfoGUI.Toggle();
 Команда | Описание
 --- | ---
 nav | Переключает UI навигатора сценариев Naninovel.
-debug | Переключает окно [отладки сценариев Naninovel](/ru/guide/naninovel-scripts.md#scripts-debug).
-var | Переключает окно[редактора пользовательских переменных](/ru/guide/custom-variables.md#variables-debug).
+debug | Переключает окно [отладки сценариев Naninovel](/ru/guide/naninovel-scripts.md#отладка-сценариев).
+var | Переключает окно[редактора пользовательских переменных](/ru/guide/custom-variables.md#отладка-переменных).
 purge | Сбрасывает кэш загруженных ресурсов, когда используется провайдер [Google Drive](/ru/guide/resource-providers.md#google-drive).
 play | Начинает исполнять загруженный в данный момент сценарий Naninovel.
 stop | Останавливает исполнение загруженного в данный момент сценарая Naninovel.
 rewind (int) | Откатывает загруженный в данный момент сценарий Naninovel к строке с заданным индексом. Строка должна быть либо командой, либо универсальным текстом. При перемотке назад строка должна существовать в стеке отката.
-reload | Исполняет [горячую перезагрузку](/ru/guide/naninovel-scripts.md#hot-reload) проигрываемого в данный момент сценарая Naninovel. Работает только в редакторе Unity.
+reload | Исполняет [горячую перезагрузку](/ru/guide/naninovel-scripts.md#горячая-перезагрузка) проигрываемого в данный момент сценарая Naninovel. Работает только в редакторе Unity.
 
 ## Исполнение команд
 
